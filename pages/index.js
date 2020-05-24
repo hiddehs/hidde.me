@@ -1,12 +1,11 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import Hero from '../components/index/hero'
 
 export default function Home() {
   return (
     <Layout>
-      <div className="shadow p-4 bg-white">
-        <h1>Test</h1>
-      </div>
+      <Hero></Hero>
     </Layout>
   )
 }
