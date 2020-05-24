@@ -8,7 +8,7 @@ export default function MyApp ({ Component, pageProps }) {
     <>
       <Head><title>hidde.me</title></Head>
       <Header/>
-      <Component {...pageProps} />
+      <Component className={"mt-20"} {...pageProps} />
     </>
   )
 }

@@ -1,3 +1,5 @@
+const { colors } = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [
     './components/**/*.js', './pages/**/*.js', './css/**/*.css',
@@ -11,12 +13,12 @@ module.exports = {
     extend: {
       fontSize: {
         'base': '1.125rem', // 18px
-        'lg': '1.5rem',
-        'xl': '1.75rem',
-        '2xl': '2rem',
-        '5xl': '3rem',
-        '6xl': '4rem',
-        '7xl': '5rem',
+        // 'lg': '1.5rem',
+        // 'xl': '1.75rem',
+        // '2xl': '2rem',
+        // '5xl': '3rem',
+        // '6xl': '4rem',
+        // '7xl': '5rem',
       },
       fontFamily: {
         'body': [
@@ -33,6 +35,18 @@ module.exports = {
       colors: {
         primary: '#FEF208',
         secondary: '#009DCA',
+        black: '#221E1F',
+        gray: {
+          100: '#FBFBFB',
+          200: '#F7F7F7',
+          300: '#F2F2F2',
+          400: '#EEEEEE',
+          500: '#EAEAEA',
+          600: '#BBBBBB',
+          700: '#8C8C8C',
+          800: '#5E5E5E',
+          900: '#221E1F',
+        },
       },
     },
   },
