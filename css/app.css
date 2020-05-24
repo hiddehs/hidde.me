@@ -10,79 +10,129 @@
     font-weight: 400;
     font-style: normal;
 }
+
 @font-face {
     font-family: NeueHaasGrotesk;
     src: url('fonts/font-65Md.woff2') format('woff2'),
     url('fonts/font-65Md.woff') format('woff');
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
-}@font-face {
+}
+
+@font-face {
     font-family: NeueHaasGrotesk;
     src: url('fonts/font-75Bd.woff2') format('woff2'),
     url('fonts/font-75Bd.woff') format('woff');
-    font-weight: 800;
+    font-weight: 900;
     font-style: normal;
 }
 
+
 html {
     @apply font-body text-base text-black;
+    /*text-rendering: optimizelegibility;*/
+    /*-webkit-font-smoothing: antialiased;*/
+    /*-moz-osx-font-smoothing: grayscale;*/
 }
 
-.container{
+.container {
     @apply mx-auto px-4;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+}
+
 @screen xl {
     .container {
         @apply px-0;
     }
-}
-
-h1,h2,h3,h4,h5,h6{
-    @apply font-display font-bold;
 
 }
 
 h1 {
-    @apply text-6xl;
-}
-
-h2 {
     @apply text-5xl;
 }
 
-h3 {
+h2 {
     @apply text-4xl;
 }
-h4{
+
+h3 {
     @apply text-3xl;
 }
-h5{
+
+h4 {
     @apply text-2xl;
 }
-h6{
+
+h5 {
     @apply text-xl;
 }
+
+h6 {
+    @apply text-lg;
+}
+
+@screen md {
+    h1 {
+        @apply text-6xl;
+    }
+
+    h2 {
+        @apply text-5xl;
+    }
+
+    h3 {
+        @apply text-4xl;
+    }
+
+    h4 {
+        @apply text-3xl;
+    }
+
+    h5 {
+        @apply text-2xl;
+    }
+
+    h6 {
+        @apply text-xl;
+    }
+}
+
+
+
 
 a {
     /*@apply text-blue-600 underline;*/
 }
-a:hover{
+
+a:hover {
 
 }
 
-nav{
-    /*background-color: rgba(255,255,255,.7);*/
-    @apply bg-white .bg-opacity-75;
-    backdrop-filter: blur(5px);
+nav {
+    @apply bg-white bg-opacity-75;
+    backdrop-filter: blur(8px);
 }
 
-.btn{
+.btn {
     @apply py-3 px-4 border border-gray-900 leading-none font-medium inline-block;
 }
-.btn:hover{
+
+.btn:hover {
     @apply bg-gray-900 text-gray-100;
 }
 
-.btn.btn-primary{
+.btn.btn-primary {
     @apply bg-primary;
 }
+
+.btn.btn-outline-primary {
+    @apply border-primary;
+}
+
+.btn.btn-outline-primary:hover {
+    @apply bg-primary;
+}
+

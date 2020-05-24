@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     fontWeight: {
       normal: 400,
-      medium: 500,
-      bold: 800,
+      medium: 600,
+      bold: 700,
     },
     extend: {
       fontSize: {
@@ -22,12 +22,12 @@ module.exports = {
       },
       fontFamily: {
         'body': [
-          'Neue Haas Grotesk Text Pro',
+          'NeueHaasGrotesk',
           'Helvetica',
           'Arial',
           'sans-serif'],
         'display': [
-          'Neue Haas Grotesk Text Pro',
+          'NeueHaasGrotesk',
           'Helvetica',
           'Arial',
           'sans-serif'],

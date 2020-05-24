@@ -5,7 +5,7 @@ export default function Work ({ children }) {
     <>
       <SectionWithTitle title='work'>
         <div className="work-items">
-
+{/*//grid*/}
         </div>
       </SectionWithTitle>
     </>
