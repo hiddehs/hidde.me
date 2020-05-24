@@ -3,7 +3,7 @@ import Section from '../Section'
 export default function Hero () {
   return (
     <Section className="hero bg-gray-100">
-      <div className="container mx-auto">
+      <div className="container">
         <div className="flex flex-wrap flex-row items-center">
           <div className="col w-full lg:w-1/2">
             <h1 className={'text-5xl leading-tight mb-4'}>Hidde Schultze —<br/>

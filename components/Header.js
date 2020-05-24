@@ -1,9 +1,11 @@
+import Link from 'next/link'
+
 export default function Header() {
   return (
     <nav className="fixed w-full top-0">
-      <div className="container mx-auto my-4">
+      <div className="container my-4">
         <div className="flex flex-row justify-between">
-          <img src="logo.svg" alt="hidde.me Logo"/>
+          <Link href={"/"}><img src="logo.svg" alt="hidde.me Logo"/></Link>
           <div className="links">
             <a href="#work">work</a>
             <a href="#exp">experience</a>
