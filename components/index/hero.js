@@ -7,13 +7,13 @@ export default function Hero () {
         <div className="flex flex-wrap flex-row items-center">
           <div className="col w-full lg:w-1/2">
             <h2 className={'leading-tight mb-4'}>Hidde Schultze —<br/>
-              <span className="function">creative</span> developer.</h2>
+              <span className="function">full_stack</span> developer.</h2>
             <h5 className={'font-medium text-gray-800 mb-4'}>Founder VisualRadioAssist &
               hidde.dev</h5>
-            <a href="#work" className="btn">view my work</a>
+            <a href="#work" className="btn">view work</a>
           </div>
           <div className="col w-full lg:w-1/2 text-right">
-            -plaatje-
+            <video src=""></video>
           </div>
         </div>
       </div>

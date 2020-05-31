@@ -9,7 +9,9 @@ export default function Footer () {
         <div className="container my-6">
           <div className="flex flex-row justify-between items-center">
             <div className="col w-1/5">
-              <img src="icon.svg" height="31px" alt="hidde.me Logo"/>
+              <Link href={'/'}>
+                <a><img src="icon.svg" height="31px" alt="hidde.me Logo"/></a>
+              </Link>
             </div>
             <div className="col w-3/5 text-center">
               <div className={'text-center'}>
@@ -27,7 +29,8 @@ export default function Footer () {
 
             </div>
             <div className="col w-1/5 text-right">
-              <a href="" title={"Go to Top"} className={"btn btn-outline-primary"}>
+              <a href="" title={'Go to Top'}
+                 className={'btn btn-outline-primary'}>
                 <span className="icon">/\</span>
               </a>
             </div>
