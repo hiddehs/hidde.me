@@ -1,11 +1,11 @@
 import SectionWithTitle from '../SectionWithTitle'
 import WorkItems from '../work/WorkItems'
 
-export default function Work ({ children }) {
+export default function Work ({data, children }) {
   return (
     <>
       <SectionWithTitle title='work'>
-        <WorkItems/>
+        <WorkItems data={data}/>
         <div className="vertical-scrollbar my-6">
             <hr/>
         </div>

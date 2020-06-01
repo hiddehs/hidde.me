@@ -32,6 +32,9 @@ module.exports = {
           'Arial',
           'sans-serif'],
       },
+      minWidth: {
+        '2/5': '40%',
+      },
       colors: {
         primary: '#FEF208',
         secondary: '#009DCA',

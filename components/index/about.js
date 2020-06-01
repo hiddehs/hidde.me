@@ -10,7 +10,7 @@ export default function About () {
               <img src="about.jpg" alt="Person (Hidde) standing on cliff"/>
             </div>
             <div className="p-16">
-              <h2>hi 👋🏻,</h2>
+              <h2>👋 hi,</h2>
               <h2>nice to meet you.</h2>
               <p>I'm Hidde Schultze, ...</p>
               <div className="social-links">

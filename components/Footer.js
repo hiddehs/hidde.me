@@ -14,17 +14,18 @@ export default function Footer () {
               </Link>
             </div>
             <div className="col w-3/5 text-center">
-              <div className={'text-center'}>
-                <Link href="/terms">
-                  <a>Terms and Conditions</a>
-                </Link>
-                <span className="spacer mx-3">––</span>
-                <Link href="/privacy">
-                  <a>Privacy</a>
-                </Link>
-              </div>
+              {/*<div className={'text-center'}>*/}
+              {/*  <Link href="/terms">*/}
+              {/*    <a>Terms and Conditions</a>*/}
+              {/*  </Link>*/}
+              {/*  <span className="spacer mx-3">––</span>*/}
+              {/*  <Link href="/privacy">*/}
+              {/*    <a>Privacy</a>*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
               <div className="text-center">
-                All rights reserved © {year}
+                <p>All rights reserved © {year}</p>
+                <p className="text-sm text-gray-600">KVK 12345678</p>
               </div>
 
             </div>

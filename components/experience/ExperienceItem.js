@@ -1,6 +1,6 @@
 import ExperienceItemTags from './ExperienceItemTags'
 
-export default function ExperienceItem ({ logo, title = 'Title', company = 'Company', description = 'After many years of having own radiostations and studio’s I thought\n' +
+export default function ExperienceItem ({ data, logo, title = 'Title', company = 'Company', description = 'After many years of having own radiostations and studio’s I thought\n' +
 '            about making it easier to start with Visual Radio, for every\n' +
 '            radiostation – from small to regional audience.', tags = [] }) {
   return (
@@ -13,14 +13,14 @@ export default function ExperienceItem ({ logo, title = 'Title', company = 'Comp
         <div className="content">
           <div className="title mb-2">
             <h6 className="mt-1">
-              {title}
+              {data.title[0].text}
             </h6>
             <p className="text-gray-600 font-medium">
-              {company}
+              {data.company[0].text}
             </p>
           </div>
-          <p className="description text-gray-800" dangerouslySetInnerHTML={{__html:description}}/>
-          <ExperienceItemTags className="mt-3"/>
+          <p className="description text-gray-800" dangerouslySetInnerHTML={{__html:data.description[0].text}}/>
+          <ExperienceItemTags tags={data.tags} className="mt-3" />
         </div>
       </div>
       <style jsx>
