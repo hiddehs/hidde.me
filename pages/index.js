@@ -4,9 +4,7 @@ import Hero from '../components/index/hero'
 import Work from '../components/index/work'
 import Expierence from '../components/index/experience'
 import About from '../components/index/about'
-import withApollo from '../lib/apollo'
 import gql from 'graphql-tag'
-import { useLazyQuery } from '@apollo/react-hooks'
 import { getStandaloneApolloClient } from '../lib/apollo_standalone'
 
 const GET_INDEX_DATA = gql`
