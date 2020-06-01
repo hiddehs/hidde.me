@@ -1,7 +1,4 @@
 import WorkItem from './WorkItem'
-import gql from 'graphql-tag'
-import { useLazyQuery, useQuery } from '@apollo/react-hooks'
-
 
 function WorkItems ({ className, data }) {
   if (data) {

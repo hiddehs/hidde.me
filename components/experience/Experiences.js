@@ -1,6 +1,4 @@
 import ExperienceItem from './ExperienceItem'
-import gql from 'graphql-tag'
-import { useQuery } from '@apollo/react-hooks'
 
 const Experiences = ({ className, data }) => {
   if (data) {
