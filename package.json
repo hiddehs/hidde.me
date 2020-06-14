@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node lib/gitlab_contribution_converter.js 1 && next build",
+    "build": "yarn run gitlab_convert_1 && yarn run gitlab_convert_2 && next build",
     "start": "next start",
     "gitlab_convert_1": "node lib/gitlab_contribution_converter.js 1",
     "gitlab_convert_2": "node lib/gitlab_contribution_converter.js 2"
