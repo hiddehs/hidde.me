@@ -1,19 +1,29 @@
+import React, { useState } from 'react'
+import _ from 'lodash'
+import moment from 'moment'
+
 export default function PatternBackground () {
+
   let elEnter = (event) => {
     const el = event.target
     let index = Array.from(el.parentNode.children).indexOf(el)
 
     let nearHoverCircles = []
     let lessNearHoverCircles = []
-    if(el.parentNode.previousElementSibling){
-      nearHoverCircles.push(el.parentNode.previousElementSibling.children[index])
-      lessNearHoverCircles.push(el.parentNode.previousElementSibling.children[index-1])
-      lessNearHoverCircles.push(el.parentNode.previousElementSibling.children[index+1])
+    if (el.parentNode.previousElementSibling) {
+      nearHoverCircles.push(
+        el.parentNode.previousElementSibling.children[index])
+      lessNearHoverCircles.push(
+        el.parentNode.previousElementSibling.children[index - 1])
+      lessNearHoverCircles.push(
+        el.parentNode.previousElementSibling.children[index + 1])
     }
-    if(el.parentNode.nextElementSibling){
+    if (el.parentNode.nextElementSibling) {
       nearHoverCircles.push(el.parentNode.nextElementSibling.children[index])
-      lessNearHoverCircles.push(el.parentNode.nextElementSibling.children[index-1])
-      lessNearHoverCircles.push(el.parentNode.nextElementSibling.children[index+1])
+      lessNearHoverCircles.push(
+        el.parentNode.nextElementSibling.children[index - 1])
+      lessNearHoverCircles.push(
+        el.parentNode.nextElementSibling.children[index + 1])
     }
     nearHoverCircles.push(el.nextElementSibling)
     nearHoverCircles.push(el.previousElementSibling)
@@ -31,16 +41,20 @@ export default function PatternBackground () {
     let index = Array.from(el.parentNode.children).indexOf(el)
     let nearHoverCircles = []
 
-
-    if(el.parentNode.previousElementSibling){
-      nearHoverCircles.push(el.parentNode.previousElementSibling.children[index])
-      nearHoverCircles.push(el.parentNode.previousElementSibling.children[index-1])
-      nearHoverCircles.push(el.parentNode.previousElementSibling.children[index+1])
+    if (el.parentNode.previousElementSibling) {
+      nearHoverCircles.push(
+        el.parentNode.previousElementSibling.children[index])
+      nearHoverCircles.push(
+        el.parentNode.previousElementSibling.children[index - 1])
+      nearHoverCircles.push(
+        el.parentNode.previousElementSibling.children[index + 1])
     }
-    if(el.parentNode.nextElementSibling){
+    if (el.parentNode.nextElementSibling) {
       nearHoverCircles.push(el.parentNode.nextElementSibling.children[index])
-      nearHoverCircles.push(el.parentNode.nextElementSibling.children[index-1])
-      nearHoverCircles.push(el.parentNode.nextElementSibling.children[index+1])
+      nearHoverCircles.push(
+        el.parentNode.nextElementSibling.children[index - 1])
+      nearHoverCircles.push(
+        el.parentNode.nextElementSibling.children[index + 1])
     }
     nearHoverCircles.push(el.nextElementSibling)
     nearHoverCircles.push(el.previousElementSibling)
@@ -48,31 +62,95 @@ export default function PatternBackground () {
     nearHoverCircles.forEach((el) => {
       if (el) {
         el.classList.remove('near-hover')
-        el.classList.remove("less-near-hover")
+        el.classList.remove('less-near-hover')
       }
     })
   }
 
-  let createPattern = () => {
+  let colCalculator = (colSize = 1) => {
+    if (process.browser) {
+      return Math.round((window.innerWidth / 36) * (colSize / 12))
+    }
+    return 0
+  }
+
+  let createGitPattern = (colSize) => {
+    let colCount = colCalculator(colSize)
+    let totalCircleCount = colCount * 16
+    // console.log(totalCircleCount)
+    let startDate = moment().add('-' + totalCircleCount, 'days')
+    // console.log(startDate.toISOString())
+
     let pattern = []
-    for (let i = 0; i < 100; i++) {
+    let currentDayIndex = 0
+    let year = ''
+    let month = ''
+    for (let i = 0; i < colCount; i++) {
+      let col = []
+      for (let j = 0; j < 16; j++) {
+        let el
+        startDate.add('+24', 'hours')
+        if (startDate.year() !== year) {
+          el = <><div className={'month text-xs'}>{startDate.format('YY')}</div>
+            <div className={'month text-xs'}>{startDate.format('MMM')}.</div></>
+        } else if (startDate.month() !== month) {
+          el = <div className={'month text-xs'}>{startDate.format('MMM')}</div>
+        } else {
+          el = <div onMouseEnter={elEnter} onMouseLeave={elLeave}
+                    key={1 + i + j}
+                    className={`circle date-${startDate.toString()}`}></div>
+        }
+        col.push(el)
+        month = startDate.month()
+        year = startDate.year()
+        currentDayIndex++
+      }
+      pattern.push(<div className="circle-col" key={i}>{col}</div>)
+    }
+    return pattern
+  }
+
+  let createPattern = (colSize) => {
+    let colCount = colCalculator(colSize)
+    console.log(colCount)
+    let pattern = []
+    for (let i = 0; i < colCount; i++) {
       let col = []
       for (let j = 0; j < 17; j++) {
         let el = <div onMouseEnter={elEnter} onMouseLeave={elLeave}
+                      key={1 + i + j}
                       className="circle"></div>
         col.push(el)
       }
-      pattern.push(<div className="circle-col">{col}</div>)
+      pattern.push(<div className="circle-col" key={i}>{col}</div>)
     }
     return pattern
+  }
+
+  let makePattern = () => {
+    return {
+      left: createPattern(7),
+      git: createGitPattern(5),
+      right: createPattern(0),
+    }
+  }
+  const [pattern, setPattern] = useState(makePattern)
+  if (process.browser) {
+    window.addEventListener('resize', _.debounce(() => {
+      setPattern(makePattern())
+    }, 200))
   }
   return (
     <>
       <div className="pattern-background z-0">
-        {createPattern()}
+        {pattern.left}
+        {pattern.git}
+        {pattern.right}
       </div>
       <style jsx>{`
-        
+        .circle-col .month{
+          font-size: .5em;
+        }
       `}</style>
     </>
 

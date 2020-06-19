@@ -230,11 +230,21 @@ nav {
     @apply bg-gray-600;
     opacity: .80;
 }
+
 .pattern-background .circle.less-near-hover:after {
     @apply bg-gray-600;
     opacity: .35;
 }
+
 .pattern-background .circle:hover:after {
     @apply bg-gray-800;
     transform: scale3d(1.2, 1.2, 1.2);
+}
+
+.pattern-background .circle-col .month {
+    @apply text-gray-600;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    padding: 10px 0;
 }
