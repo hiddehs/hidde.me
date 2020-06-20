@@ -51,12 +51,38 @@ export default async (req, res) => {
           }
       }
   `
+  let githubContributionsHistory
+  let githubContributionsHistoryCache = null
+  try {
+    githubContributionsHistoryCache = fs.readFileSync(
+      `lib/github_contribution_cache.json`)
+  } catch (e) {
 
-  const githubClient = standaloneGitHubApolloClient()
-  let githubContributionsHistory = await githubClient.query(
-    GITHUB_GET_CONTRIBUTIONS_QL, {
-      SINCE_DATE: moment().add('-275', 'days').toISOString(),
-    })
+  }
+
+  let fetchGit = async () => {
+    const githubClient = standaloneGitHubApolloClient()
+    githubContributionsHistory = await githubClient.query(
+      GITHUB_GET_CONTRIBUTIONS_QL, {
+        SINCE_DATE: moment().add('-275', 'days').toISOString(),
+      })
+    // write github to cache
+    fs.writeFileSync(
+      `lib/github_contribution_cache.json`,
+      JSON.stringify(
+        { timestamp: moment().unix(), raw: githubContributionsHistory }))
+  }
+
+  if (githubContributionsHistoryCache == null) {
+    await fetchGit()
+  } else {
+    let cache = JSON.parse(githubContributionsHistoryCache)
+    if (moment(cache.timestamp).diff(moment(), 'hours') > 1) {
+      await fetchGit()
+    } else {
+      githubContributionsHistory = cache.raw
+    }
+  }
 
   let dailyContributions = {}
 
