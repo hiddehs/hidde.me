@@ -34,6 +34,7 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 ::selection {
     @apply bg-primary text-black;
 }
@@ -106,7 +107,8 @@ h6 {
 a:not(.btn) {
     @apply underline text-gray-800;
 }
-a:hover{
+
+a:hover {
     @apply text-black;
 }
 
@@ -119,15 +121,19 @@ nav .flex a:not(.btn) {
     transition: .15s ease-in;
     display: block;
 }
+
 nav .flex .links {
     display: flex;
 }
-nav .flex .links  a:last-child{
+
+nav .flex .links a:last-child {
     margin-right: -.65rem;
 }
+
 nav .flex a:not(.btn):hover {
     @apply bg-gray-300 rounded-sm;
 }
+
 nav .flex a.logo {
     padding: .5rem .5rem;
     margin-left: -.5rem;
@@ -163,3 +169,82 @@ nav {
     @apply bg-primary;
 }
 
+.primary-bg-accent {
+    position: relative;
+    z-index: 1;
+}
+
+
+.primary-bg-accent:before {
+    @apply bg-primary;
+    width: 105%;
+    height: 110%;
+    left: -2.5%;
+    top: -1%;
+    content: '';
+    position: absolute;
+    opacity: 1;
+    z-index: -1;
+    transform: rotate(0.5deg);
+}
+
+.pattern-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 11px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    cursor: none;
+}
+
+.pattern-background .circle-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.pattern-background .circle {
+    display: block;
+    position: relative;
+    width: 6px;
+    height: 6px;
+    padding: 18px;
+}
+
+.pattern-background .circle:after {
+    @apply bg-gray-500;
+    content: '';
+    display: block;
+    position: relative;
+    margin-left: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: .40s ease-out;
+}
+
+.pattern-background .circle.near-hover:after {
+    @apply bg-gray-600;
+    opacity: .80;
+}
+
+.pattern-background .circle.less-near-hover:after {
+    @apply bg-gray-600;
+    opacity: .35;
+}
+
+.pattern-background .circle:hover:after {
+    @apply bg-gray-800;
+    transform: scale3d(1.2, 1.2, 1.2);
+}
+
+.pattern-background .circle-col .month {
+    @apply text-gray-600;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    padding: 10px 0;
+}

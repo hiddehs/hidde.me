@@ -4,7 +4,7 @@ import WorkItems from '../work/WorkItems'
 export default function Work ({data, children }) {
   return (
     <>
-      <SectionWithTitle title='work'>
+      <SectionWithTitle title='work' subtitle='selected'>
         <WorkItems data={data}/>
         <div className="vertical-scrollbar my-6">
             <hr/>

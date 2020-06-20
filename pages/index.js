@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import Hero from '../components/index/hero'
+import HomeHero from '../components/index/homeHero'
 import Work from '../components/index/work'
 import Expierence from '../components/index/experience'
 import About from '../components/index/about'
@@ -48,7 +48,7 @@ const GET_INDEX_DATA = gql`
 const Home = ({ data }) => {
   return (
     <Layout>
-      <Hero></Hero>
+      <HomeHero></HomeHero>
       <Work data={data.allWorks}></Work>
       <Expierence data={data.allExperiences}></Expierence>
       <About></About>
