@@ -29,3 +29,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .env
+
+lib/gitlab_cache/*
+lib/*_cache_1.json
+lib/*_cache_2.json

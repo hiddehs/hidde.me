@@ -5,7 +5,7 @@ import Work from '../components/index/work'
 import Expierence from '../components/index/experience'
 import About from '../components/index/about'
 import gql from 'graphql-tag'
-import { getStandaloneApolloClient } from '../lib/apollo_standalone'
+import { getStandaloneApolloClient } from '../lib/prismicApolloClient'
 
 const GET_INDEX_DATA = gql`
     query {
