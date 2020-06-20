@@ -69,10 +69,10 @@ export default async (req, res) => {
         SINCE_DATE: moment().add('-275', 'days').toISOString(),
       })
     // write github to cache
-    fs.writeFileSync(
-      path.join(process.cwd(), 'lib/github_contribution_cache.json'),
-      JSON.stringify(
-        { timestamp: moment().unix(), raw: githubContributionsHistory }))
+    // fs.writeFileSync(
+    //   path.join(process.cwd(), 'lib/github_contribution_cache.json'),
+    //   JSON.stringify(
+    //     { timestamp: moment().unix(), raw: githubContributionsHistory }))
   }
   await fetchGit()
 
