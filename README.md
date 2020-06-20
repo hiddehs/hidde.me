@@ -21,8 +21,8 @@ To fetch from `.env` configured GitLab instances `GITLAB_BASE_URL_1` & `GITLAB_B
 ```bash
 cp .env.example .env
 ```
-| variable              | description                                                                          |
-|-----------------------|--------------------------------------------------------------------------------------|
+| Env. Variable         | Description                                                                          |
+| :-------------------- | :----------------------------------------------------------------------------------- |
 | PRISMIC_ACCESS_TOKEN  | Token used in `lib/prismicApolloClient.js` for static-prop GraphQL content fetching. |
 | GITHUB_ACCESS_TOKEN   | Token used in `lib/githubApolloClient.js` for fetching contributions.                |
 | GITLAB_ACCESS_TOKEN_1 | Token 1 used in `lib/gitlabApiClient.js` for fetching contributions.                 |
