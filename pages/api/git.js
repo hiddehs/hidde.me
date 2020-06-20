@@ -54,13 +54,13 @@ export default async (req, res) => {
       }
   `
   let githubContributionsHistory
-  let githubContributionsHistoryCache = null
-  try {
-    githubContributionsHistoryCache = fs.readFileSync(
-      path.join(process.cwd(), 'lib/github_contribution_cache.json'))
-  } catch (e) {
-
-  }
+  // let githubContributionsHistoryCache = null
+  // try {
+  //   githubContributionsHistoryCache = fs.readFileSync(
+  //     path.join(process.cwd(), 'lib/github_contribution_cache.json'))
+  // } catch (e) {
+  //
+  // }
 
   let fetchGit = async () => {
     const githubClient = standaloneGitHubApolloClient()
@@ -74,17 +74,18 @@ export default async (req, res) => {
       JSON.stringify(
         { timestamp: moment().unix(), raw: githubContributionsHistory }))
   }
+  await fetchGit()
 
-  if (githubContributionsHistoryCache == null) {
-    await fetchGit()
-  } else {
-    let cache = JSON.parse(githubContributionsHistoryCache)
-    if (moment(cache.timestamp).diff(moment(), 'hours') > 1) {
-      await fetchGit()
-    } else {
-      githubContributionsHistory = cache.raw
-    }
-  }
+  // if (githubContributionsHistoryCache == null) {
+  //   await fetchGit()
+  // } else {
+  //   let cache = JSON.parse(githubContributionsHistoryCache)
+  //   if (moment(cache.timestamp).diff(moment(), 'hours') > 1) {
+  //     await fetchGit()
+  //   } else {
+  //     githubContributionsHistory = cache.raw
+  //   }
+  // }
 
   let dailyContributions = {}
 
