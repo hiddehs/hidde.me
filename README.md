@@ -23,9 +23,9 @@ cp .env.example .env
 ```
 | Env. Variable         | Description                                                                          |
 | :-------------------- | :----------------------------------------------------------------------------------- |
-| PRISMIC_ACCESS_TOKEN  | Token used in `lib/prismicApolloClient.js` for static-prop GraphQL content fetching. |
-| GITHUB_ACCESS_TOKEN   | Token used in `lib/githubApolloClient.js` for fetching contributions.                |
-| GITLAB_ACCESS_TOKEN_1 | Token 1 used in `lib/gitlabApiClient.js` for fetching contributions.                 |
-| GITLAB_ACCESS_TOKEN_2 | Token 2 used in  `lib/githubApolloClient.js`  for fetching contributions.            |
-| GITLAB_BASE_URL_1     | Url 1 for GitLab instance 1                                                          |
-| GITLAB_BASE_URL_2     | Url 2 for GitLab instance 2                                                          |
+| `PRISMIC_ACCESS_TOKEN`  | Token used in `lib/prismicApolloClient.js` for static-prop GraphQL content fetching. |
+| `GITHUB_ACCESS_TOKEN`   | Token used in `lib/githubApolloClient.js` for fetching contributions.                |
+| `GITLAB_ACCESS_TOKEN_1` | Token 1 used in `lib/gitlabApiClient.js` for fetching contributions.                 |
+| `GITLAB_ACCESS_TOKEN_2` | Token 2 used in  `lib/githubApolloClient.js`  for fetching contributions.            |
+| `GITLAB_BASE_URL_1`     | Url 1 for GitLab instance 1                                                          |
+| `GITLAB_BASE_URL_2`     | Url 2 for GitLab instance 2                                                          |
