@@ -7,7 +7,6 @@ import moment from 'moment'
 import { concatAST } from 'graphql'
 
 export default async (req, res) => {
-
   const GITHUB_GET_CONTRIBUTIONS_QL = gql`
 
       query($SINCE_DATE: DateTime){

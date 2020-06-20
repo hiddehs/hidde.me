@@ -186,12 +186,12 @@ export default function PatternBackground () {
   //     setPattern(makePattern())
   //   }, 200))
   // }
-  if (!api) return <p></p>
+
   return (
     <>
       <div className="pattern-background z-0">
         {createPattern(7)}
-        {createGitPattern(5)}
+        {(api) && createGitPattern(5)}
         {createPattern(0)}
       </div>
       {getGitDayState !== null && getGitDayState !== undefined &&
