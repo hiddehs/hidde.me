@@ -254,7 +254,9 @@ nav {
     background-color: #73CEDF;
 }
 
-.pattern-background .circle.color-red:after {
+.pattern-background .circle.color-orange:after {
+    background-color: #F4A41B;
+}.pattern-background .circle.color-red:after {
     background-color: #F12E3E;
 }
 
@@ -272,19 +274,21 @@ nav {
 
 .pattern-background .circle:not(.circle-git):hover:after {
     @apply bg-gray-800;
-    transform: scale3d(1.4, 1.4, 1.4);
+    /*transform: scale3d(1.4, 1.4, 1.4);*/
 }
 
 .pattern-background .circle.circle-git.near-hover:after {
-    transform: scale3d(2, 2, 2);
+    /*transform: scale3d(2, 2, 2);*/
 }
 
 .pattern-background .circle.circle-git.less-near-hover:after {
-    transform: scale3d(1.5, 1.5, 1.5);
+    /*transform: scale3d(1.5, 1.5, 1.5);*/
 }
 
 .pattern-background .circle.circle-git:hover:after {
     /*background-color: inherit;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
     transform: scale3d(8.7, 8.7, 8.7) perspective(1px) translateZ(0);
     box-shadow: 0 0.2px 1px rgba(0, 0, 0, 0.13);
 

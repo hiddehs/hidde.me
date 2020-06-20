@@ -15,6 +15,7 @@ const GET_INDEX_DATA = gql`
                     project_title
                     description_short
                     image_fallback
+                    home_index
                     link {
                         ... on _ExternalLink{
                             url
