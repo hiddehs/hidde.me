@@ -6,6 +6,8 @@ import fs from 'fs'
 import moment from 'moment'
 import { concatAST } from 'graphql'
 
+// TODO: Move caches to seperate cache folder
+
 export default async (req, res) => {
   const GITHUB_GET_CONTRIBUTIONS_QL = gql`
 
