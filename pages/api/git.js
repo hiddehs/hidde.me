@@ -5,6 +5,7 @@ const gitLabApiClient = require('../../lib/gitlabApiClient.js')
 import fs from 'fs'
 import moment from 'moment'
 import { concatAST } from 'graphql'
+import path from 'path'
 
 // TODO: Move caches to seperate cache folder
 
@@ -56,7 +57,7 @@ export default async (req, res) => {
   let githubContributionsHistoryCache = null
   try {
     githubContributionsHistoryCache = fs.readFileSync(
-      `lib/github_contribution_cache.json`)
+      path.join(process.cwd(), 'lib/github_contribution_cache.json'))
   } catch (e) {
 
   }
@@ -69,7 +70,7 @@ export default async (req, res) => {
       })
     // write github to cache
     fs.writeFileSync(
-      `lib/github_contribution_cache.json`,
+      path.join(process.cwd(), 'lib/github_contribution_cache.json'),
       JSON.stringify(
         { timestamp: moment().unix(), raw: githubContributionsHistory }))
   }
@@ -118,7 +119,7 @@ export default async (req, res) => {
   for (let i = 1; i < 3; i++) {
     gitLabApiClient.init(i)
     let gitLabContributions = JSON.parse(fs.readFileSync(
-      `lib/gitlab_contribution_history_cache_${i}.json`))
+      path.join(process.cwd(), `lib/gitlab_contribution_history_cache_${i}.json`)))
     let gitLabIDs = []
     gitLabContributions.data.forEach((contribution) => {
       if (!dailyContributions[contribution.day]) dailyContributions[contribution.day] = []
