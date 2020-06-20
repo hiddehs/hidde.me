@@ -3,11 +3,13 @@ import _ from 'lodash'
 import moment from 'moment'
 import useSWR from 'swr'
 import fetch from 'unfetch'
+import ContributionViewer from './ContributionViewer'
 
 const fetcher = url => fetch(url).then(r => r.json())
 
 export default function PatternBackground () {
   const { data: api, error } = useSWR('/api/git', fetcher)
+  const [getGitDayState, setGitDayState] = useState(null)
 
   let elEnter = (event) => {
     const el = event.target
@@ -106,11 +108,15 @@ export default function PatternBackground () {
     '200': 'red',
   }
 
-  let gitElEnter = (e) =>{
-
+  let gitElEnter = (contributionsOnDate, e) => {
+    console.log("elEnter()")
+    _.debounce(function(){
+      console.log("bounce")
+      setGitDayState(contributionsOnDate)
+    }, 400)()
     elEnter(e)
   }
-  let gitElLeave = (e) =>{
+  let gitElLeave = (e) => {
     elLeave(e)
   }
 
@@ -124,8 +130,6 @@ export default function PatternBackground () {
     let pattern = []
     let currentDayIndex = 0
     let prevStartDate = { year: null, month: null }
-
-
 
     for (let i = 0; i < colCount; i++) {
       let col = []
@@ -153,16 +157,18 @@ export default function PatternBackground () {
 
           let commitCountColor = 'primary'
           for (let threshold in gitCountThresholdColors) {
-            if(threshold >= count){
-              commitCountColor = gitCountThresholdColors[threshold];
-              break;
+            if (threshold >= count) {
+              commitCountColor = gitCountThresholdColors[threshold]
+              break
             }
           }
 
-          element = <div onMouseEnter={gitElEnter} onMouseLeave={elLeave}
-                         key={startDate.unix()}
-                         className={`circle text-white circle-git color-${commitCountColor}`}
-          ><span className="tag">{count}</span></div>
+          element =
+            <div onMouseEnter={(e) => {gitElEnter(contributionsOnDate, e)}}
+                 onMouseLeave={elLeave}
+                 key={startDate.unix()}
+                 className={`circle text-white circle-git color-${commitCountColor}`}
+            ><span className="tag">{count}</span></div>
         }
         col.push(element)
         prevStartDate = {
@@ -189,6 +195,9 @@ export default function PatternBackground () {
         {createGitPattern(5)}
         {createPattern(0)}
       </div>
+      {getGitDayState !== null && getGitDayState !== undefined &&
+      <ContributionViewer contributions={getGitDayState}/>
+      }
       <style jsx>{`
         .circle-col .month{
           font-size: .5em;
