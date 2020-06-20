@@ -6,7 +6,7 @@ function WorkItems ({ className, data }) {
       <>
         <div
           className={`flex flex-row items-stretch flex-nowrap overflow-hidden work-items ${className}`}>
-          {data.edges.map((item, k) =>
+          {data.edges.sort(i => i.node.home_index).map((item, k) =>
             <WorkItem data={item.node} key={k}/>,
           )}
         </div>

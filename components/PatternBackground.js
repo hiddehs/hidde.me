@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
+import useSWR from 'swr'
+import fetch from 'unfetch'
+import ContributionViewer from './ContributionViewer'
+
+const fetcher = url => fetch(url).then(r => r.json())
 
 export default function PatternBackground () {
+  const { data: api, error } = useSWR('/api/git', fetcher)
+  const [getGitDayState, setGitDayState] = useState(null)
 
   let elEnter = (event) => {
     const el = event.target
@@ -69,53 +76,9 @@ export default function PatternBackground () {
 
   let colCalculator = (colSize = 1) => {
     if (process.browser) {
-      return Math.round((window.innerWidth / 36) * (colSize / 12))
+      return Math.round((window.innerWidth / 37) * (colSize / 12))
     }
     return 0
-  }
-
-  let createGitPattern = (colSize) => {
-    let colCount = colCalculator(colSize)
-    let totalCircleCount = colCount * 16
-
-    let startDate = moment().add('-' + totalCircleCount, 'days')
-    let pattern = []
-    let currentDayIndex = 0
-    let prevStartDate = { year: null, month: null }
-
-    for (let i = 0; i < colCount; i++) {
-      let col = []
-      for (let j = 0; j < 16; j++) {
-        let element
-        startDate.add('+24', 'hours')
-        if (startDate.year() !==
-          prevStartDate.year) {
-          element = <>
-            <div key={startDate.unix()}
-                 className={'month text-xs'}>{startDate.format('YY')}</div>
-            <div key={startDate.unix()}
-                 className={'month text-xs'}>{startDate.format('MMM')}.
-            </div>
-          </>
-        } else if (startDate.month() !== prevStartDate.month) {
-          element = <div key={startDate.unix()}
-                         className={'month text-xs'}>{startDate.format(
-            'MMM')}</div>
-        } else {
-          element = <div onMouseEnter={elEnter} onMouseLeave={elLeave}
-                         key={startDate.unix()}
-                         className={`circle date-${startDate.toString()}`}></div>
-        }
-        col.push(element)
-        prevStartDate = {
-          month: startDate.month(),
-          year: startDate.year(),
-        }
-        currentDayIndex++
-      }
-      pattern.push(<div className="circle-col" key={i}>{col}</div>)
-    }
-    return pattern
   }
 
   let createPattern = (colSize) => {
@@ -134,26 +97,106 @@ export default function PatternBackground () {
     return pattern
   }
 
-  let makePattern = () => {
-    return {
-      left: createPattern(7),
-      git: createGitPattern(5),
-      right: createPattern(0),
+  // let gitTreshholds = {
+  //   min:
+  // }
+
+  const gitCountThresholdColors = {
+    '0': 'primary',
+    '2': 'blue',
+    '5': 'green',
+    '18': 'red',
+    '200': 'orange',
+  }
+
+  let setGitDayStateDebounced = _.debounce(function (contributionsOnDate) {
+    setGitDayState(contributionsOnDate)
+  }, 20)
+  let gitElEnter = (contributionsOnDate, e) => {
+    setGitDayStateDebounced(contributionsOnDate)
+    elEnter(e)
+  }
+
+  let createGitPattern = (colSize) => {
+    let colCount = colCalculator(colSize) - 1
+    let totalCircleCount = ((colCount) * 16) - 1
+
+    let startDate = moment().add('-' + totalCircleCount, 'days')
+    let pattern = []
+    let prevStartDate = { year: null, month: null }
+
+    for (let i = 0; i < colCount; i++) {
+      let col = []
+      for (let j = 0; j < 16; j++) {
+        let element
+        startDate = startDate.add('1', 'day')
+        if (startDate.year() !==
+          prevStartDate.year) {
+          element = <>
+            <div key={startDate.unix()}
+                 className={'month text-xs'}>{startDate.format('YY')}</div>
+            <div key={startDate.unix() + 1}
+                 className={'month text-xs'}>{startDate.format('MMM')}
+            </div>
+          </>
+        } else if (startDate.month() !== prevStartDate.month) {
+          element = <div key={startDate.unix()}
+                         className={'month text-xs'}>{startDate.format(
+            'MMM')}</div>
+        } else {
+          const contributionsOnDate = api.api.contributions[startDate.format(
+            'Y-MM-DD')]
+
+          let count = (contributionsOnDate) ? contributionsOnDate.length : 0
+
+          let commitCountColor = 'primary'
+          for (let threshold in gitCountThresholdColors) {
+            if (threshold >= count) {
+              commitCountColor = gitCountThresholdColors[threshold]
+              break
+            }
+          }
+
+          element =
+            <div onMouseEnter={(e) => {gitElEnter(contributionsOnDate, e)}}
+                 onMouseLeave={elLeave}
+                 key={startDate.unix()}
+                 className={`circle text-white circle-git color-${commitCountColor} ${startDate.format(
+                   'MM')}`}
+            ><span className="tag">{count}</span></div>
+        }
+        col.push(element)
+        prevStartDate = {
+          month: startDate.month(),
+          year: startDate.year(),
+        }
+      }
+      if (i + 1 === colCount) {
+        col.pop()
+        col.push(<div
+          className={'month text-xs'}>today.</div>)
+      }
+      pattern.push(<div className="circle-col" key={i}>{col}</div>)
     }
+    return pattern
   }
-  const [pattern, setPattern] = useState(makePattern)
-  if (process.browser) {
-    window.addEventListener('resize', _.debounce(() => {
-      setPattern(makePattern())
-    }, 200))
-  }
+
+  // if (process.browser) {
+  //   window.addEventListener('resize', _.debounce(() => {
+  //     setPattern(makePattern())
+  //   }, 200))
+  // }
+  if (!api) return <p></p>
   return (
     <>
       <div className="pattern-background z-0">
-        {pattern.left}
-        {pattern.git}
-        {pattern.right}
+        {createPattern(7)}
+        {createGitPattern(5)}
+        {createPattern(0)}
       </div>
+      {getGitDayState !== null && getGitDayState !== undefined &&
+      <ContributionViewer contributions={getGitDayState}/>
+      }
       <style jsx>{`
         .circle-col .month{
           font-size: .5em;
@@ -163,3 +206,4 @@ export default function PatternBackground () {
 
   )
 }
+

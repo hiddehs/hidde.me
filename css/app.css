@@ -224,21 +224,78 @@ nav {
     height: 6px;
     border-radius: 50%;
     transition: .40s ease-out;
+    transform: perspective(1px) translateZ(0);
+    backface-visibility: hidden;
 }
 
-.pattern-background .circle.near-hover:after {
+.pattern-background .circle .tag {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    font-weight: 600;
+    left: 50%;
+    font-size: 1.1em;
+    line-height: 100%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    transition: opacity .2s .2s ease-in;
+}
+
+
+.pattern-background .circle.color-primary:after {
+    background-color: #FEF208;
+}
+
+.pattern-background .circle.color-green:after {
+    background-color: #3EAA47;
+}
+
+.pattern-background .circle.color-blue:after {
+    background-color: #73CEDF;
+}
+
+.pattern-background .circle.color-orange:after {
+    background-color: #F4A41B;
+}.pattern-background .circle.color-red:after {
+    background-color: #F12E3E;
+}
+
+
+.pattern-background .circle:not(.circle-git).near-hover:after {
     @apply bg-gray-600;
     opacity: .80;
 }
 
-.pattern-background .circle.less-near-hover:after {
+.pattern-background .circle:not(.circle-git).less-near-hover:after {
     @apply bg-gray-600;
     opacity: .35;
 }
 
-.pattern-background .circle:hover:after {
+
+.pattern-background .circle:not(.circle-git):hover:after {
     @apply bg-gray-800;
-    transform: scale3d(1.2, 1.2, 1.2);
+    /*transform: scale3d(1.4, 1.4, 1.4);*/
+}
+
+.pattern-background .circle.circle-git.near-hover:after {
+    /*transform: scale3d(2, 2, 2);*/
+}
+
+.pattern-background .circle.circle-git.less-near-hover:after {
+    /*transform: scale3d(1.5, 1.5, 1.5);*/
+}
+
+.pattern-background .circle.circle-git:hover:after {
+    /*background-color: inherit;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    transform: scale3d(8.7, 8.7, 8.7) perspective(1px) translateZ(0);
+    box-shadow: 0 0.2px 1px rgba(0, 0, 0, 0.13);
+
+}
+
+.pattern-background .circle.circle-git:hover .tag {
+    opacity: 1;
 }
 
 .pattern-background .circle-col .month {
@@ -247,4 +304,15 @@ nav {
     width: 36px;
     height: 36px;
     padding: 10px 0;
+}
+
+.contribution-viewer {
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-75%)
+}
+
+.contribution-viewer .contribution {
+
 }
