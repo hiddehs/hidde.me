@@ -77,32 +77,40 @@ export default function PatternBackground () {
   let createGitPattern = (colSize) => {
     let colCount = colCalculator(colSize)
     let totalCircleCount = colCount * 16
-    // console.log(totalCircleCount)
-    let startDate = moment().add('-' + totalCircleCount, 'days')
-    // console.log(startDate.toISOString())
 
+    let startDate = moment().add('-' + totalCircleCount, 'days')
     let pattern = []
     let currentDayIndex = 0
-    let year = ''
-    let month = ''
+    let prevStartDate = { year: null, month: null }
+
     for (let i = 0; i < colCount; i++) {
       let col = []
       for (let j = 0; j < 16; j++) {
-        let el
+        let element
         startDate.add('+24', 'hours')
-        if (startDate.year() !== year) {
-          el = <><div className={'month text-xs'}>{startDate.format('YY')}</div>
-            <div className={'month text-xs'}>{startDate.format('MMM')}.</div></>
-        } else if (startDate.month() !== month) {
-          el = <div className={'month text-xs'}>{startDate.format('MMM')}</div>
+        if (startDate.year() !==
+          prevStartDate.year) {
+          element = <>
+            <div key={startDate.unix()}
+                 className={'month text-xs'}>{startDate.format('YY')}</div>
+            <div key={startDate.unix()}
+                 className={'month text-xs'}>{startDate.format('MMM')}.
+            </div>
+          </>
+        } else if (startDate.month() !== prevStartDate.month) {
+          element = <div key={startDate.unix()}
+                         className={'month text-xs'}>{startDate.format(
+            'MMM')}</div>
         } else {
-          el = <div onMouseEnter={elEnter} onMouseLeave={elLeave}
-                    key={1 + i + j}
-                    className={`circle date-${startDate.toString()}`}></div>
+          element = <div onMouseEnter={elEnter} onMouseLeave={elLeave}
+                         key={startDate.unix()}
+                         className={`circle date-${startDate.toString()}`}></div>
         }
-        col.push(el)
-        month = startDate.month()
-        year = startDate.year()
+        col.push(element)
+        prevStartDate = {
+          month: startDate.month(),
+          year: startDate.year(),
+        }
         currentDayIndex++
       }
       pattern.push(<div className="circle-col" key={i}>{col}</div>)
@@ -112,7 +120,6 @@ export default function PatternBackground () {
 
   let createPattern = (colSize) => {
     let colCount = colCalculator(colSize)
-    console.log(colCount)
     let pattern = []
     for (let i = 0; i < colCount; i++) {
       let col = []
