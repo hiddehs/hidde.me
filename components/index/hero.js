@@ -13,7 +13,7 @@ export default function Hero () {
             <a href="#work" className="btn">view work</a>
           </div>
           <div className="col w-full lg:w-1/2 text-right">
-            <video src=""></video>
+            <video loop playsInline={true} autoPlay={true} muted={true} src="hero.mov"></video>
           </div>
         </div>
       </div>

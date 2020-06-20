@@ -4,18 +4,23 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "yarn run gitlab_convert_1 && yarn run gitlab_convert_2 && next build",
+    "start": "next start",
+    "gitlab_convert_1": "node lib/gitlab_contribution_converter.js 1",
+    "gitlab_convert_2": "node lib/gitlab_contribution_converter.js 2"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-prismic": "^1.0.7",
     "autoprefixer": "^9.8.0",
-    "graphql": "^15.0.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
+    "moment": "^2.26.0",
     "next": "9.4.2",
     "next-apollo": "^4.0.1",
     "postcss-import": "^12.0.1",
