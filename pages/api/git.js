@@ -99,7 +99,6 @@ export default async (req, res) => {
           if (!gitHubIds.includes(his.id)) {
             if (!dailyContributions[day]) dailyContributions[day] = []
             gitHubIds.push(his.id)
-            console.log(repo)
             dailyContributions[day].push({
               type: 'github',
               repository: {
