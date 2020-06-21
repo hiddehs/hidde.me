@@ -216,15 +216,17 @@ nav {
 
 .pattern-background .circle:after {
     @apply bg-gray-500;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     content: '';
     display: block;
-    position: relative;
-    margin-left: -3px;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    transition: .40s ease-out;
-    transform: perspective(1px) translateZ(0);
+    transition: .20s ease-out;
+    /*transform: perspective(1px) translateZ(0);*/
     backface-visibility: hidden;
 }
 
@@ -234,11 +236,11 @@ nav {
     z-index: 1;
     font-weight: 600;
     left: 50%;
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 100%;
-    top: 56%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    transition: opacity .2s .2s ease-in;
+    transition: opacity .2s .1s ease-in;
 }
 
 
@@ -256,7 +258,9 @@ nav {
 
 .pattern-background .circle.color-orange:after {
     background-color: #F4A41B;
-}.pattern-background .circle.color-red:after {
+}
+
+.pattern-background .circle.color-red:after {
     background-color: #F12E3E;
 }
 
@@ -287,9 +291,9 @@ nav {
 
 .pattern-background .circle.circle-git:hover:after {
     /*background-color: inherit;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    transform: scale3d(8.7, 8.7, 8.7) perspective(1px) translateZ(0);
+    width: 42px;
+    height: 42px;
+    /*transform: scale3d(8.7, 8.7, 8.7) perspective(1px) translateZ(0);*/
     box-shadow: 0 0.2px 1px rgba(0, 0, 0, 0.13);
 
 }
