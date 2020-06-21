@@ -23,7 +23,7 @@ export default function WorkItem ({ data, video = '' }) {
           {data.link ? <><a href={data.link.url} target="blank"
                             className="font-medium link">{data.link.url.replace(
             'https://', '').replace('http://', '')}</a><br/></> : ''}
-          <a href="#more" className="font-medium">Read more</a>
+          {/*<a href="#more" className="font-medium">Read more</a>*/}
         </div>
       </div>
       <style jsx>

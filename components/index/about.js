@@ -18,20 +18,27 @@ export default function About () {
                     <h2 className="leading-none">👋 hi,</h2>
                     <h2>nice to meet you.</h2>
                   </div>
-                  <p className={"mb-1"}>I'm Hidde Schultze, a full stack developer from <a
-                    href="https://nomadlist.com/zwolle"
-                    style={{ textDecoration: 'none' }}
-                    className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
-                    className="tag-circle bg-green-400"></span> Zwolle 🇳🇱</a></p>
-                  <p>As a developer I strive to create the best experience for the
-                    end-user (B2C/B2B) by connecting multidisciplinary teams with
+                  <p className={'mb-1'}>I'm Hidde Schultze, a full stack
+                    developer from <a
+                      href="https://nomadlist.com/zwolle"
+                      style={{ textDecoration: 'none' }}
+                      className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
+                      className="tag-circle bg-green-400"></span> Zwolle
+                      🇳🇱</a></p>
+                  <p>As a developer I strive to create the best experience for
+                    the
+                    end-user (B2C/B2B) by connecting multidisciplinary teams
+                    with
                     UX, UI designers and front- and back-end developers. </p>
-                  <p>I enjoy working on projects that have a real impact on the
-                    society. .. .. health, radio</p>
+                  <p>I love working on projects that have a real impact on the
+                    society. Especially when it can improve healthcare or change
+                    the way people interact with radio broadcasts.</p>
                   <div className="social-links mt-6 mb-8">
-                    <a className="btn btn-sm btn-square mr-3" target="_blank" href="https://github.com/hiddehs"><span
+                    <a className="btn btn-sm btn-square mr-3" target="_blank"
+                       href="https://github.com/hiddehs"><span
                       className="hs-icon social-github"></span></a>
-                    <a className="btn btn-sm btn-square mr-3" target="_blank" href="https://gitlab.com/hiddehs"><span
+                    <a className="btn btn-sm btn-square mr-3" target="_blank"
+                       href="https://gitlab.com/hiddehs"><span
                       className="hs-icon social-gitlab"></span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
                        href="https://linkedin.com/hiddeschultze"><span
