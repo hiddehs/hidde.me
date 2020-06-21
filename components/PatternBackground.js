@@ -32,7 +32,7 @@ export default function PatternBackground () {
   }, 20)
   let gitElEnter = (contributionsOnDate, e) => {
     setGitDayStateDebounced(contributionsOnDate)
-    PatternCreator().events.elEnter(e)
+    // PatternCreator().events.elEnter(e)
   }
 
   let createGitPattern = (colSize) => {
