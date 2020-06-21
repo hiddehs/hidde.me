@@ -4,11 +4,9 @@ const Experiences = ({ className, data }) => {
   if (data) {
     return (
         <div className={`flex flex-col flex-wrap expierences ${className}`}>
-          {data.edges.map((i, k) =>
+          {data.edges.sort(i => i.node.index).map((i, k) =>
             <ExperienceItem key={k} data={i.node}/>
           )}
-          {/*<ExperienceItem/>*/}
-          {/*<ExperienceItem/>*/}
         </div>
     )
   }
