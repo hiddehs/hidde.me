@@ -31,8 +31,8 @@ export default function Footer () {
             </div>
             <div className="col w-1/5 text-right">
               <a href="" title={'Go to Top'}
-                 className={'btn btn-outline-primary'}>
-                <span className="icon">/\</span>
+                 className='btn btn-outline-primary btn-square'>
+                <span className="hs-icon arrow-up"></span>
               </a>
             </div>
           </div>

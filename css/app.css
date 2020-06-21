@@ -152,7 +152,9 @@ nav {
     @apply py-3 px-4 border border-gray-900 leading-none font-medium inline-block;
     border-width: 1.5px;
 }
-
+.btn.btn-square{
+    @apply px-3;
+}
 .btn:hover {
     @apply bg-gray-900 text-gray-100;
 }
@@ -219,7 +221,7 @@ nav {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     content: '';
     display: block;
     width: 6px;
@@ -322,6 +324,38 @@ nav {
 }
 
 
-.experience-item .content .description p:nth-child(1){
+.experience-item .content .description p:nth-child(1) {
     @apply mb-2;
+}
+
+
+/*TODO: SASS:*/
+
+span.hs-icon {
+    height: 100%;
+    vertical-align: middle;
+    line-height: 100%;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+span.hs-icon:after {
+    content: '.';
+    opacity: 0;
+}
+
+.btn span.hs-icon {
+    width: 16px;
+}
+.btn:not(.btn-primary):not(.btn-outline-primary):hover span.hs-icon {
+    filter: invert(1);
+}
+
+span.hs-icon.link-arrow-right {
+    background-image: url("icons/link_arrow_right.svg")
+}
+
+span.hs-icon.arrow-up {
+    background-image: url("icons/arrow_up.svg");
 }

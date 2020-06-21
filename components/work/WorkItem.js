@@ -38,7 +38,7 @@ export default function WorkItem ({ data, video = '' }) {
           height: 10px;
           margin-left: .2em;
           margin-top: -.2em;
-          background: url('link-arrow.svg') center no-repeat;
+          background: url('icons/link-arrow.svg') center no-repeat;
           background-size: 9px;
           fill: red;
         }
