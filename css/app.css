@@ -320,3 +320,8 @@ nav {
 .contribution-viewer .contribution {
 
 }
+
+
+.experience-item .content .description p:nth-child(1){
+    @apply mb-2;
+}

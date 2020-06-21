@@ -5,14 +5,19 @@ export default function WorkItem ({ data, video = '' }) {
     <>
       <div className="work-item w-full flex flex-col">
         <div className="image mb-4">
-          {data.image_fallback ? <img style={{maxHeight: 260, width: 'auto'}} src={data.image_fallback.url} alt=""/> : ''}
+          {data.image_fallback
+            ? <img style={{ maxHeight: 260, width: 'auto' }}
+                   src={data.image_fallback.url} alt=""/>
+            : ''}
           {data.video ? <video src={data.video} alt=""/> : ''}
         </div>
         <div className="content">
           <h6>
             {data.project_title[0].text}
           </h6>
-          <p className={'short-description font-medium text-gray-600 my-1'} dangerouslySetInnerHTML={{ __html: data.description_short[0].text }}/>
+          <p className={'short-description font-medium text-gray-600 my-1'}>
+            {RichText.render(data.description_short)}
+          </p>
         </div>
         <div className="footer mt-auto">
           {data.link ? <><a href={data.link.url} target="blank"

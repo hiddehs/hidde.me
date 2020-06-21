@@ -25,7 +25,7 @@ export default function Footer () {
               {/*</div>*/}
               <div className="text-center">
                 <p>All rights reserved © {year}</p>
-                <p className="text-sm text-gray-600">KVK 12345678</p>
+                <p className="text-sm text-gray-600">KVK 67988695</p>
               </div>
 
             </div>

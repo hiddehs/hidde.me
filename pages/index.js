@@ -36,6 +36,11 @@ const GET_INDEX_DATA = gql`
                     logo
                     start
                     end
+                    company_link{
+                        ... on _ExternalLink {
+                            url
+                        }
+                    }
                     tags{
                         tag
                         color
