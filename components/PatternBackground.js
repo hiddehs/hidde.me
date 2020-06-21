@@ -12,8 +12,7 @@ const fetcher = url => fetch(url).then(r => r.json())
 export default function PatternBackground () {
   const { data: api, error } = useSWR('/api/git', fetcher)
   const [getGitDayState, setGitDayState] = useState(null)
-
-
+  const [getCommitViewerLocation, setCommitViewerLocation] = useState('top')
 
   // let gitTreshholds = {
   //   min:
@@ -27,23 +26,55 @@ export default function PatternBackground () {
     '200': 'orange',
   }
 
+  let gitColCount = 0
+  let totalGitCircleCount = 0
   let setGitDayStateDebounced = _.debounce(function (contributionsOnDate) {
     setGitDayState(contributionsOnDate)
   }, 20)
   let gitElEnter = (contributionsOnDate, e) => {
+    let el = e.target
+    if (el.parentNode) {
+
+      let y = Array.from(el.parentNode.children).indexOf(el)
+      let x = Array.from(el.parentNode.parentNode.children).
+        indexOf(el.parentNode)
+
+      if (x > (gitColCount / 3) * 2) {
+        //left
+        setCommitViewerLocation('left')
+      } else if (x < (gitColCount / 3)) {
+        // right
+        setCommitViewerLocation('right')
+      } else {
+        //middle
+        if (y > 8) {
+          setCommitViewerLocation('top')
+        } else {
+          setCommitViewerLocation('bottom')
+        }
+      }
+      // else if (x > gitColCount / 2 && y < 8) {
+      //     setCommitViewerLocation('bottom')
+      //   } else if (x > gitColCount / 2 && y < 8) {
+      //     setCommitViewerLocation('left')
+      //   } else if (x < gitColCount / 2 && y > 8) {
+      //   }
+      // console.log({ x, y, gitColCount })
+    }
+
     setGitDayStateDebounced(contributionsOnDate)
     // PatternCreator().events.elEnter(e)
   }
 
   let createGitPattern = (colSize) => {
-    let colCount = PatternCreator().colCalculator(colSize) - 1
-    let totalCircleCount = ((colCount) * 16) - 1
+    gitColCount = PatternCreator().colCalculator(colSize) - 1
+    totalGitCircleCount = ((gitColCount) * 16) - 1
 
-    let startDate = moment().add('-' + totalCircleCount, 'days')
+    let startDate = moment().add('-' + totalGitCircleCount, 'days')
     let pattern = []
     let prevStartDate = { year: null, month: null }
 
-    for (let i = 0; i < colCount; i++) {
+    for (let i = 0; i < gitColCount; i++) {
       let col = []
       for (let j = 0; j < 16; j++) {
         let element
@@ -89,7 +120,7 @@ export default function PatternBackground () {
           year: startDate.year(),
         }
       }
-      if (i + 1 === colCount) {
+      if (i + 1 === gitColCount) {
         col.pop()
         col.push(<div
           className={'month text-xs'}>today.</div>)
@@ -109,12 +140,21 @@ export default function PatternBackground () {
     <>
       <div className="pattern-background z-0">
         {PatternCreator().createPattern(7)}
-        {(api) && createGitPattern(5)}
-        {PatternCreator().createPattern(0)}
+        {(api) &&
+        <div className="git pattern-background p-0" style={{
+          padding: 0,
+          overflow: 'visible',
+          position: 'relative',
+          width: 'auto',
+        }}>
+          {createGitPattern(5)}
+          {getGitDayState !== null && getGitDayState !== undefined &&
+          <ContributionViewer location={getCommitViewerLocation}
+                              contributions={getGitDayState}/>
+          }
+        </div>
+        }
       </div>
-      {getGitDayState !== null && getGitDayState !== undefined &&
-      <ContributionViewer contributions={getGitDayState}/>
-      }
       <style jsx>{`
         .circle-col .month{
           font-size: .5em;

@@ -66,7 +66,7 @@ export default async (req, res) => {
     const githubClient = standaloneGitHubApolloClient()
     githubContributionsHistory = await githubClient.query(
       GITHUB_GET_CONTRIBUTIONS_QL, {
-        SINCE_DATE: moment().add('-275', 'days').toISOString(),
+        SINCE_DATE: moment().add('-360', 'days').toISOString(),
       })
     // write github to cache
     // fs.writeFileSync(
@@ -99,12 +99,13 @@ export default async (req, res) => {
           if (!gitHubIds.includes(his.id)) {
             if (!dailyContributions[day]) dailyContributions[day] = []
             gitHubIds.push(his.id)
+            console.log(repo)
             dailyContributions[day].push({
               type: 'github',
               repository: {
-                url: repo.url,
-                name: repo.name,
-                visibility: ((repo.isPrivate)
+                url: repo.repository.url,
+                name: repo.repository.name,
+                visibility: ((repo.repository.isPrivate)
                   ? 'private'
                   : 'public'),
               },
