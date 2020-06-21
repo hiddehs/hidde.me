@@ -31,17 +31,7 @@ export default function WorkItem ({ data, video = '' }) {
         .link{
           text-decoration: none;
         }
-        .link::after{
-          content:'';
-          display:inline-block;
-          width: 10px;
-          height: 10px;
-          margin-left: .2em;
-          margin-top: -.2em;
-          background: url('icons/link-arrow.svg') center no-repeat;
-          background-size: 9px;
-          fill: red;
-        }
+        
         `}
       </style>
     </>

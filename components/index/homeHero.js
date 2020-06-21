@@ -29,7 +29,7 @@ export default function HomeHero () {
   })
 
   return (
-    <Section className="hero bg-gray-300 z-0">
+    <Section className="hero bg-gray-200 z-0">
 
       <div className="container mx-auto flex items-center justify-between">
         <div className="z-10 relative my-auto inline-block">
