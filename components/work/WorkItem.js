@@ -23,7 +23,7 @@ export default function WorkItem ({ data, video = '' }) {
           {data.link ? <><a href={data.link.url} target="blank"
                             className="font-medium link">{data.link.url.replace(
             'https://', '').replace('http://', '')}</a><br/></> : ''}
-          <a href="#more" className="font-medium">Read more</a>
+          {/*<a href="#more" className="font-medium">Read more</a>*/}
         </div>
       </div>
       <style jsx>
@@ -31,17 +31,7 @@ export default function WorkItem ({ data, video = '' }) {
         .link{
           text-decoration: none;
         }
-        .link::after{
-          content:'';
-          display:inline-block;
-          width: 10px;
-          height: 10px;
-          margin-left: .2em;
-          margin-top: -.2em;
-          background: url('icons/link-arrow.svg') center no-repeat;
-          background-size: 9px;
-          fill: red;
-        }
+        
         `}
       </style>
     </>
