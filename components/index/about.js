@@ -29,15 +29,15 @@ export default function About () {
                   <p>I enjoy working on projects that have a real impact on the
                     society. .. .. health, radio</p>
                   <div className="social-links mt-6 mb-8">
-                    <a className="btn btn-sm btn-square mr-3" target="_blank" href="/github"><span
+                    <a className="btn btn-sm btn-square mr-3" target="_blank" href="https://github.com/hiddehs"><span
                       className="hs-icon social-github"></span></a>
-                    <a className="btn btn-sm btn-square mr-3" target="_blank" href="/gitlab"><span
+                    <a className="btn btn-sm btn-square mr-3" target="_blank" href="https://gitlab.com/hiddehs"><span
                       className="hs-icon social-gitlab"></span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
-                       href="/linkedin"><span
+                       href="https://linkedin.com/hiddeschultze"><span
                       className="hs-icon social-linkedin"></span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
-                       href="/twitter"><span
+                       href="https://twitter.com/hiddehs"><span
                       className="hs-icon social-twitter"></span></a>
                     <a href="mailto:hi@hidde.me" className="">hi@hidde.me</a>
                   </div>
