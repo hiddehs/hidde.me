@@ -43,9 +43,9 @@ export default function HomeHero () {
           <a href="#about" className="btn">about me</a>
         </div>
         <PatternBackground/>
-        <div className="relative" style={{ height: '600px', zIndex: -1 }}>
-          <img src="hero_bg.jpg" className="hero-bg" alt=""/>
-        </div>
+        {/*<div className="relative" style={{ height: '600px', zIndex: -1 }}>*/}
+        {/*  <img src="hero_bg.jpg" className="hero-bg" alt=""/>*/}
+        {/*</div>*/}
       </div>
 
 

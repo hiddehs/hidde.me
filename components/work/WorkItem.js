@@ -3,7 +3,7 @@ import { Date, RichText } from 'prismic-reactjs'
 export default function WorkItem ({ data, video = '' }) {
   return (
     <>
-      <div className="work-item w-full flex flex-col">
+      <div className="work-item flex flex-col mr-6 max-w-lg w-full">
         <div className="image mb-4">
           {data.image_fallback
             ? <img style={{ maxHeight: 260, width: 'auto' }}
@@ -28,6 +28,23 @@ export default function WorkItem ({ data, video = '' }) {
       </div>
       <style jsx>
         {`
+        .work-item .image{
+          //min-height: 290px;
+          padding-bottom: 65%;
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+        }
+        .work-item .image img{
+          object-fit: cover;
+          position:absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          min-height: 100%;
+          min-width: 100%;
+          height: 100%;
+        }
         .link{
           text-decoration: none;
         }
