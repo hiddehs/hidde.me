@@ -30,6 +30,7 @@ const GET_INDEX_DATA = gql`
         allExperiences{
             edges{
                 node{
+                    index
                     title
                     company
                     description

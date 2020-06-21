@@ -21,7 +21,6 @@ export default function ExperienceItem ({ data }) {
               <a className="text-gray-600 font-medium" target="_blank"
                  style={{ textDecoration: 'none' }} href={data.company_link &&
               data.company_link.url}>{data.company[0].text}</a>
-
             </div>
             <p className="description text-gray-800">
               {RichText.render(data.description)}
