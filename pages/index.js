@@ -16,6 +16,11 @@ const GET_INDEX_DATA = gql`
                     description_short
                     image_fallback
                     home_index
+                    video {
+                        ... on _FileLink{
+                            url
+                        }
+                    }
                     link {
                         ... on _ExternalLink{
                             url

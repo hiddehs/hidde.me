@@ -1,15 +1,61 @@
 import { Date, RichText } from 'prismic-reactjs'
+import LazyLoad from 'react-lazyload'
 
 export default function WorkItem ({ data, video = '' }) {
+
+
+
+  // if (process.browser) {
+  //   console.log("domcontent lsitener")
+  //   document.addEventListener('DOMContentLoaded', function () {
+  //     console.log("dom content loaded")
+  //     var lazyVideos = [].slice.call(document.querySelectorAll('video.lazy'))
+  //
+  //     if ('IntersectionObserver' in window) {
+  //       var lazyVideoObserver = new IntersectionObserver(
+  //         function (entries, observer) {
+  //           entries.forEach(function (video) {
+  //             if (video.isIntersecting) {
+  //               for (var source in video.target.children) {
+  //                 var videoSource = video.target.children[source]
+  //                 if (typeof videoSource.tagName === 'string' &&
+  //                   videoSource.tagName === 'SOURCE') {
+  //                   videoSource.src = videoSource.dataset.src
+  //                 }
+  //               }
+  //
+  //               video.target.load()
+  //               video.target.classList.remove('lazy')
+  //               lazyVideoObserver.unobserve(video.target)
+  //             }
+  //           })
+  //         })
+  //
+  //       lazyVideos.forEach(function (lazyVideo) {
+  //         lazyVideoObserver.observe(lazyVideo)
+  //       })
+  //     }
+  //   })
+  // }
+
   return (
     <>
       <div className="work-item flex flex-col mr-6 max-w-lg w-full">
         <div className="image mb-4">
-          {data.image_fallback
-            ? <img style={{ maxHeight: 260, width: 'auto' }}
-                   src={data.image_fallback.url} alt=""/>
-            : ''}
-          {data.video ? <video src={data.video} alt=""/> : ''}
+          {(data.video)?
+            <LazyLoad><video className="absolute z-20 lazy" muted playsInline loop
+                             autoPlay={true} poster={data.image_fallback.url}>
+              <source src={data.video.url}/>
+            </video></LazyLoad> :
+            (data.image_fallback ? <img style={{
+            maxHeight: 260,
+            width: 'auto',
+          }}
+            className="relative z-10"
+            src={data.image_fallback.url} alt=""/>
+            : '')
+
+          }}
         </div>
         <div className="content">
           <h6>
@@ -35,7 +81,7 @@ export default function WorkItem ({ data, video = '' }) {
           width: 100%;
           overflow: hidden;
         }
-        .work-item .image img{
+        .work-item .image img, .work-item .image video{
           object-fit: cover;
           position:absolute;
           top: 50%;

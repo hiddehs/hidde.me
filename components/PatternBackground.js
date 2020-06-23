@@ -30,7 +30,7 @@ export default function PatternBackground () {
   let totalGitCircleCount = 0
   let setGitDayStateDebounced = _.debounce(function (contributionsOnDate) {
     setGitDayState(contributionsOnDate)
-  }, 20)
+  }, 200)
   let gitElEnter = (contributionsOnDate, e) => {
     let el = e.target
     if (el.parentNode) {
@@ -53,13 +53,6 @@ export default function PatternBackground () {
           setCommitViewerLocation('bottom')
         }
       }
-      // else if (x > gitColCount / 2 && y < 8) {
-      //     setCommitViewerLocation('bottom')
-      //   } else if (x > gitColCount / 2 && y < 8) {
-      //     setCommitViewerLocation('left')
-      //   } else if (x < gitColCount / 2 && y > 8) {
-      //   }
-      // console.log({ x, y, gitColCount })
     }
 
     setGitDayStateDebounced(contributionsOnDate)
@@ -141,7 +134,9 @@ export default function PatternBackground () {
       <div className="pattern-background z-0">
         {PatternCreator().createPattern(7)}
         {(api) &&
-        <div className="git pattern-background p-0" style={{
+        <div className="git pattern-background p-0" onMouseLeave={()=>{
+          setGitDayState(null)
+        }} style={{
           padding: 0,
           overflow: 'visible',
           position: 'relative',
