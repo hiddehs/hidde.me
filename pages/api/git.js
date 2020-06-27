@@ -120,7 +120,8 @@ export default async (req, res) => {
   for (let i = 1; i < 3; i++) {
     gitLabApiClient.init(i)
     let gitLabContributions = JSON.parse(fs.readFileSync(
-      path.join(process.cwd(), `lib/gitlab_contribution_history_cache_${i}.json`)))
+      path.join(process.cwd(),
+        `lib/gitlab_contribution_history_cache_${i}.json`)))
     let gitLabIDs = []
     gitLabContributions.data.forEach((contribution) => {
       if (!dailyContributions[contribution.day]) dailyContributions[contribution.day] = []
@@ -180,6 +181,8 @@ export default async (req, res) => {
   Object.keys(dailyContributions).sort().forEach(key => {
     dailyContributionsSorted[key] = dailyContributions[key]
   })
+
+  // removing private messages
 
   res.statusCode = 200
   res.setHeader('Content-Type', 'application/json')
