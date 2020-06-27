@@ -5,13 +5,21 @@ function WorkItems ({ className, data }) {
     return (
       <>
         <div
-          className={`flex flex-row overflow-hidden work-items ${className}`}>
-          {data.edges.sort((a,b)=> (a.node.home_index > b.node.home_index) ? 1 : -1).map((item, k) =>
-            <WorkItem data={item.node} key={k}/>,
-          )}
+          className={`grid grid-cols-1 sm:grid-cols-3 gap-6 overflow-hidden work-items ${className}`}>
+          {data.edges.sort(
+            (a, b) => (a.node.home_index > b.node.home_index) ? 1 : -1).
+            map((item, k) =>
+              <WorkItem data={item.node} key={k}/>,
+            )}
         </div>
+        <style jsx>{
+          `
+          .work-items{
+            min-width: 1000px;
+          }
+        `}</style>
       </>
-    )
+  )
   }
   return <>...</>
 }

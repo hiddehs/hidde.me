@@ -9,11 +9,11 @@ export default function About () {
         <div className="container mx-auto flex items-center justify-between">
           <div className="z-10 relative my-auto mx-auto inline-block">
             <div>
-              <div className="flex flex-row items-start py-16">
-                <div className="rounded-full overflow-hidden">
-                  <img src="me.jpg" alt="Person (Hidde) standing on cliff"/>
+              <div className="flex flex-col lg:flex-row items-start py-16">
+                <div className="rounded-full overflow-hidden w-1/4 lg:w-auto">
+                  <img className="w-full lg:w-auto" src="me.jpg" alt="Face of Hidde standing on cliff"/>
                 </div>
-                <div className="ml-16 max-w-lg">
+                <div className="lg:ml-16 py-6 lg:py-0 max-w-lg">
                   <div className="title mb-5 mt-8">
                     <h2 className="leading-none">👋 hi,</h2>
                     <h2>nice to meet you.</h2>

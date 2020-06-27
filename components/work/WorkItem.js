@@ -40,7 +40,7 @@ export default function WorkItem ({ data, video = '' }) {
 
   return (
     <>
-      <div className="work-item flex flex-col mr-6 max-w-lg w-full">
+      <div className="work-item">
         <div className="image mb-4">
           {(data.video)?
             <LazyLoad><video className="absolute z-20 lazy" muted playsInline loop

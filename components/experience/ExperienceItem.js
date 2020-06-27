@@ -6,7 +6,7 @@ export default function ExperienceItem ({ data }) {
   return (
     <>
       <div
-        className="experience-item mb-16 flex flex-no-wrap justify-between w-3/4">
+        className="experience-item mb-16 flex flex-no-wrap justify-between lg:w-3/4">
 
         <div
           className="item-content flex flex-row items-start justify-start w-full lg:w-4/6 md:w-1/2">
