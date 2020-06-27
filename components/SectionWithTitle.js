@@ -5,7 +5,7 @@ export default function SectionWithTitle ({ children, className, title, subtitle
     <>
       <Section className={className}>
         <div className="container">
-          <div className={'title-row my-10'}>
+          <div className={'title-row py-10'}>
             <h2>{subtitle
               ? <span className='text-gray-400 hover:text-gray-800'>{subtitle}.</span>
               : ''}{title}</h2>

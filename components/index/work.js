@@ -10,7 +10,7 @@ export default function Work ({data, children }) {
             <hr/>
         </div>
         <div className="bottom flex content-end">
-          <a href={"#"} className="btn ml-auto"><span className="hs-icon link-arrow-right mr-1"></span> show more work on hidde.dev</a>
+          <a href={"#"} className="btn ml-auto w-full text-center md:text-left md:w-auto"><span className="hs-icon link-arrow-right mr-1"></span> show more work on hidde.dev</a>
         </div>
       </SectionWithTitle>
     </>
