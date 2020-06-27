@@ -1,7 +1,8 @@
+@import "../node_modules/hamburgers/dist/hamburgers.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 @font-face {
     font-family: NeueHaasGrotesk;
@@ -122,9 +123,9 @@ nav .flex a:not(.btn) {
     display: block;
 }
 
-nav .flex .links {
-    display: flex;
-}
+/*nav .flex .links {*/
+/*    display: flex;*/
+/*}*/
 
 nav .flex .links a:last-child {
     margin-right: -.65rem;
