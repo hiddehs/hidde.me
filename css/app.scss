@@ -137,10 +137,15 @@ a.link::after {
 }
 
 
-.hero .container {
-  min-height: 676px;
-  @screen md {
-    min-height: 588px;
+.hero {
+  .bg-gray-200 .container:first-child {
+    &, .pattern-background {
+      min-height: 676px;
+      @screen md {
+        min-height: 588px;
+      }
+    }
+
+    margin-top: 67px;
   }
-  margin-top: 67px;
 }

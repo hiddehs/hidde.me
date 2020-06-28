@@ -92,26 +92,47 @@
   /*transform: scale3d(1.4, 1.4, 1.4);*/
 }
 
-.pattern-background .circle.circle-git.near-hover:after {
-  /*transform: scale3d(2, 2, 2);*/
+@keyframes hoverCircle {
+  0% {
+    transform: translate(-50%, -50%) scale3d(1,1,1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale3d(0.9,0.9,0.9);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale3d(1,1,1);
+  }
 }
 
-.pattern-background .circle.circle-git.less-near-hover:after {
-  /*transform: scale3d(1.5, 1.5, 1.5);*/
+.pattern-background .circle.circle-git {
+  &:hover:after {
+    //animation: hoverCircle 1.5s ease-in-out infinite;
+  }
+
+  &:hover, &.is-active {
+    &:after {
+      width: 42px;
+      height: 42px;
+      box-shadow: 0 0.2px 1px rgba(0, 0, 0, 0.13);
+    }
+
+
+
+    .tag {
+      opacity: 1;
+    }
+  }
 }
 
-.pattern-background .circle.circle-git:hover:after {
-  /*background-color: inherit;*/
-  width: 42px;
-  height: 42px;
-  /*transform: scale3d(8.7, 8.7, 8.7) perspective(1px) translateZ(0);*/
-  box-shadow: 0 0.2px 1px rgba(0, 0, 0, 0.13);
 
-}
+//.pattern-background .circle.circle-git.near-hover:after {
+//  /*transform: scale3d(2, 2, 2);*/
+//}
+//
+//.pattern-background .circle.circle-git.less-near-hover:after {
+//  /*transform: scale3d(1.5, 1.5, 1.5);*/
+//}
 
-.pattern-background .circle.circle-git:hover .tag {
-  opacity: 1;
-}
 
 .pattern-background .circle-col .month {
   @apply text-gray-600;

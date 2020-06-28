@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
-import moment from 'moment'
 import useSWR from 'swr'
 import fetch from 'unfetch'
-import ContributionViewer from './ContributionViewer'
 import PatternCreator from './patterns/patternModule'
-import patternModule from './patterns/patternModule'
 import gitPatternModule from './patterns/gitPatternModule'
 
-const fetcher = url => fetch(url).then(r => r.json())
 
-export default function PatternBackground () {
-  const { data: api, error } = useSWR('/api/git', fetcher)
-  const [getGitDayState, setGitDayState] = useState(null)
+
+export default function PatternBackground ({ data, getContributionDay, setContributionDay }) {
+
 
   let setGitDayStateDebounced = _.debounce(function (contributionsOnDate) {
-    setGitDayState(contributionsOnDate)
+    // setGitDayState(contributionsOnDate)
   }, 200)
 
   const [getCommitViewerLocation, setCommitViewerLocation] = useState('top')
@@ -58,6 +54,7 @@ export default function PatternBackground () {
   let gitPatternSize = 6
   let restPatternSize = 0
   if (process.browser) {
+    console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       // mobile enz
       basePatternSize = gitPatternSize = 20
@@ -70,20 +67,28 @@ export default function PatternBackground () {
     }
   }
 
-  let gp = gitPatternModule(api, {
-      enter: gitElEnter,
-      leave: PatternCreator().events.elLeave,
-    },
-    gitHeight,
-  )
   let pc = PatternCreator(height)
+  let gp = gitPatternModule(data, {
+      enter: gitElEnter,
+      leave: pc.events.elLeave,
+      setContributionDay: setContributionDay,
+      getContributionDay: getContributionDay
+    },
+    gitHeight
+  )
+
+
+  if (data && getContributionDay == null) {
+    setContributionDay(Object.keys(data.contributions)[Object.keys(data.contributions).length - 1])
+  }
   return (
     <>
       <div className="pattern-background z-0">
         {pc.createPattern(basePatternSize)}
-        {(api) &&
+        {data &&
         <div className="git pattern-background p-0" onMouseLeave={() => {
-          setGitDayState(null)
+          console.log("mouseleave")
+          setContributionDay(Object.keys(data.contributions)[Object.keys(data.contributions).length - 1])
         }} style={{
           padding: 0,
           overflow: 'visible',
@@ -91,10 +96,6 @@ export default function PatternBackground () {
           width: 'auto',
         }}>
           {gp.createGitPattern(gitPatternSize)}
-          {getGitDayState !== null && getGitDayState !== undefined &&
-          <ContributionViewer location={getCommitViewerLocation}
-                              contributions={getGitDayState}/>
-          }
         </div>
         }
         {pc.createPattern(restPatternSize)}
