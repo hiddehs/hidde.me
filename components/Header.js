@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 export default function Header () {
   const [getLinksOpen, setLinksOpen] = useState(0)
@@ -29,11 +30,11 @@ export default function Header () {
           <div className={`links ${getLinksOpen
             ? 'flex'
             : 'hidden'} sm:flex flex-wrap flex-row items-center py-3 md:py-0`}>
-            <a className="text-3xl block font-bold w-full" href="#work">work</a>
-            <a className="text-3xl block font-bold w-full"
-               href="#exp">experience</a>
-            <a className="text-3xl block font-bold w-full"
-               href="#about">about</a>
+            <AnchorLink offset={50} className="text-3xl block font-bold w-full" href="#work">work</AnchorLink>
+            <AnchorLink offset={50} className="text-3xl block font-bold w-full"
+               href="#experience">experience</AnchorLink>
+            <AnchorLink offset={50} className="text-3xl block font-bold w-full"
+               href="#about">about</AnchorLink>
           </div>
 
         </div>

@@ -13,14 +13,13 @@ export default async (req, res) => {
   const {
     query: { start },
   } = req
-  console.log(start)
   const startDate = moment.unix(start)
 
   const GITHUB_GET_CONTRIBUTIONS_QL = gql`
 
-      query($SINCE_DATE: DateTime, $SINCE_DATE2: GitTimestamp){
+      query($SINCE_DATETIME: DateTime, $SINCE_GITTIMESTAMP: GitTimestamp){
           viewer {
-              contributionsCollection(from: $SINCE_DATE){
+              contributionsCollection(from: $SINCE_DATETIME){
                   commitContributionsByRepository{
                       resourcePath
                       repository{
@@ -32,7 +31,7 @@ export default async (req, res) => {
                                   name
                                   target{
                                       ... on Commit{
-                                          history(first:80, since: $SINCE_DATE2, author:{id: "MDQ6VXNlcjIwMTExMTk0"}){
+                                          history(first:80, since: $SINCE_GITTIMESTAMP, author:{id: "MDQ6VXNlcjIwMTExMTk0"}){
                                               nodes{
                                                   id
                                                   authoredDate
@@ -72,8 +71,8 @@ export default async (req, res) => {
     const githubClient = standaloneGitHubApolloClient()
     githubContributionsHistory = await githubClient.query(
       GITHUB_GET_CONTRIBUTIONS_QL, {
-        SINCE_DATE: startDate.toISOString(),
-        SINCE_DATE2: startDate.toISOString(),
+        SINCE_DATETIME: startDate.toISOString(),
+        SINCE_GITTIMESTAMP: startDate.toISOString(),
       })
     // write github to cache
     // fs.writeFileSync(

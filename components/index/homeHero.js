@@ -4,7 +4,7 @@ import PatternBackground from '../PatternBackground'
 import ContributionViewer from '../ContributionViewer'
 import useSWR from 'swr'
 import fetch from 'unfetch'
-import moment from 'moment'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const fetcher = url => fetch(url).then(r => r.json())
 export default function HomeHero () {
@@ -28,14 +28,14 @@ export default function HomeHero () {
     '@full stack',
   ]
 
-  // useEffect(() => {
-  //   if (getWorkTitleIndex < workTitles.length - 1) {
-  //     const interval = setInterval(() => {
-  //       setWorkTitleIndex((getWorkTitleIndex) + 1)
-  //     }, (1250 / workTitles.length))
-  //     return () => clearInterval(interval)
-  //   }
-  // })
+  useEffect(() => {
+    if (getWorkTitleIndex < workTitles.length - 1) {
+      const interval = setInterval(() => {
+        setWorkTitleIndex((getWorkTitleIndex) + 1)
+      }, (1250 / workTitles.length))
+      return () => clearInterval(interval)
+    }
+  })
 
   return (
     <Section className="hero bg-gray-200 z-0">
@@ -51,7 +51,7 @@ export default function HomeHero () {
             <h5 className={'font-medium text-gray-800 mb-4'}>Founder
               VisualRadioAssist &
               hidde.dev</h5>
-            <a href="#about" className="btn">about me</a>
+            <AnchorLink href="#about" className="btn">about me</AnchorLink>
           </div>
           <PatternBackground data={data} setGitStartMoment={setGitStartMoment}
                              getContributionDay={getContributionDay}

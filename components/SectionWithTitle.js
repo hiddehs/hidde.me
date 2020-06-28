@@ -3,7 +3,7 @@ import Section from './Section'
 export default function SectionWithTitle ({ children, className, title, subtitle = null }) {
   return (
     <>
-      <Section className={className}>
+      <Section className={className} id={title.toLowerCase()}>
         <div className="container">
           <div className={'title-row py-10'}>
             <h2>{subtitle

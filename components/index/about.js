@@ -16,7 +16,7 @@ export default function About () {
 
   return (
     <>
-      <Section className={'bg-gray-200'}>
+      <Section className={'bg-gray-200'} id="about">
         <div className="container mx-auto flex items-center justify-between">
           <div className="z-10 relative my-auto mx-auto inline-block">
             <div>
