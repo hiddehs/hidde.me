@@ -7,7 +7,7 @@ export default function ContributionViewer ({ contributions, location }) {
   let activeIndex = contributions.slice(0, 3).length - 1
   return (
     <>
-      <div className={`contribution-viewer relative z-20 ${location}`}>
+      <div className={`contribution-viewer md:absolute relative z-20 ${location}`}>
         {contributions.slice(0, 3).reverse().map((contribution, i) =>
           <div key={contribution.id}
                className={`contribution flex bg-white items-center justify-start row border-2 border-black border-solid bg-white p-4 ${(i ===

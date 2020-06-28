@@ -30,10 +30,9 @@ export default function HomeHero () {
 
   return (
     <Section className="hero bg-gray-200 z-0">
-
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="z-10 relative my-auto inline-block">
-          <h2 className={'leading-tight mb-4'}>Hidde Schultze —<br/>
+      <div className="container mx-auto flex items-start md:items-center justify-between">
+        <div className="z-10 relative mt-12 md:my-auto inline-block">
+          <h2 className={'leading-tight mb-4'}>Hidde Schultze <span className="hidden sm:inline">—</span><br/>
             <span
               className="primary-bg-accent">{workTitles[getWorkTitleIndex]}</span> developer.
           </h2>
@@ -50,12 +49,7 @@ export default function HomeHero () {
 
 
       <style jsx>{`
-        .container {
-          margin-top: 63px;
-        }
-        .container{
-          min-height: 600px;
-        }
+        
         .hero-bg{
           position: absolute;
           right: 0;

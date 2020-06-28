@@ -1,0 +1,49 @@
+
+@screen lg{
+  .contribution-viewer.left {
+    /*right: */
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .contribution-viewer.right {
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .contribution-viewer.top {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .contribution-viewer.bottom {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.contribution-viewer{
+  .contribution {
+    box-shadow: 0px 34.9267px 34.9267px rgba(0, 0, 0, 0.02), 0px -4.65689px 9.31378px rgba(0, 0, 0, 0.14), 0px 1.16422px 0px rgba(0, 0, 0, 0.05);
+  }
+
+  .contribution.active-contribution {
+    position: relative;
+    z-index: 100;
+  }
+
+  .contribution:not(.active-contribution) {
+    margin-bottom: -1.2rem;
+    filter: blur(1px);
+    transform: scale(.9);
+  }
+
+  .contribution.index-0 {
+    transform: scale(.8);
+  }
+
+}

@@ -22,9 +22,9 @@ export default function ExperienceItem ({ data }) {
                  style={{ textDecoration: 'none' }} href={data.company_link &&
               data.company_link.url}>{data.company[0].text}</a>
             </div>
-            <p className="description text-gray-800">
+            <div className="description text-gray-800">
               {RichText.render(data.description)}
-            </p>
+            </div>
 
             <ExperienceItemTags tags={data.tags} className="mt-3"/>
           </div>

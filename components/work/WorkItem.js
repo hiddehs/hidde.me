@@ -3,8 +3,6 @@ import LazyLoad from 'react-lazyload'
 
 export default function WorkItem ({ data, video = '' }) {
 
-
-
   // if (process.browser) {
   //   console.log("domcontent lsitener")
   //   document.addEventListener('DOMContentLoaded', function () {
@@ -61,9 +59,9 @@ export default function WorkItem ({ data, video = '' }) {
           <h6>
             {data.project_title[0].text}
           </h6>
-          <p className={'short-description font-medium text-gray-600 my-1'}>
+          <div className={'short-description font-medium text-gray-600 my-1'}>
             {RichText.render(data.description_short)}
-          </p>
+          </div>
         </div>
         <div className="footer mt-auto">
           {data.link ? <><a href={data.link.url} target="blank"
