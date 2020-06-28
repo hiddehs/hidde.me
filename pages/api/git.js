@@ -66,7 +66,6 @@ export default async (req, res) => {
   // } catch (e) {
   //
   // }
-  console.log(startDate.toISOString())
   let fetchGit = async () => {
     const githubClient = standaloneGitHubApolloClient()
     githubContributionsHistory = await githubClient.query(

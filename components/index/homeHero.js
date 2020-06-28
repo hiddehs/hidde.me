@@ -38,7 +38,7 @@ export default function HomeHero () {
   })
 
   return (
-    <Section className="hero bg-gray-200 z-0">
+    <Section className="hero bg-gray-200 z-0" id="hero">
       <div className="bg-gray-200">
         <div
           className="container mx-auto flex items-start md:items-center justify-between">
@@ -51,7 +51,11 @@ export default function HomeHero () {
             <h5 className={'font-medium text-gray-800 mb-4'}>Founder
               VisualRadioAssist &
               hidde.dev</h5>
-            <AnchorLink href="#about" className="btn">about me</AnchorLink>
+            <AnchorLink href="#about" className="btn">
+              {/*<span*/}
+              {/*  className="hs-icon link-arrow-right hover:mr-1 hover:inline opacity-0 hover:opacity-100"></span>*/}
+              about
+              me</AnchorLink>
           </div>
           <PatternBackground data={data} setGitStartMoment={setGitStartMoment}
                              getContributionDay={getContributionDay}
@@ -72,7 +76,8 @@ export default function HomeHero () {
                 className='text-gray-400 hover:text-gray-800'>live.</span>work
               </h3>
             </div>
-            {data && getContributionDay !== null && getContributionDay !== undefined &&
+            {data && getContributionDay !== null && getContributionDay !==
+            undefined &&
             <ContributionViewer
               contributions={data.contributions[getContributionDay]}/>
             }

@@ -2,6 +2,10 @@
 .btn {
   @apply py-3 px-4 border border-gray-900 leading-none font-medium inline-block;
   border-width: 1.5px;
+
+  .hs-icon {
+    transition: .2s ease-in;
+  }
 }
 
 .btn.btn-square {
@@ -30,4 +34,10 @@
 
 .btn.btn-outline-primary:hover {
   @apply bg-primary;
+}
+
+.btn:hover {
+  .link-arrow-right {
+    transform: translateX(3px);
+  }
 }
