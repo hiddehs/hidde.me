@@ -25,14 +25,14 @@ export default function HomeHero () {
     '@full stack',
   ]
 
-  // useEffect(() => {
-  //   if (getWorkTitleIndex < workTitles.length - 1) {
-  //     const interval = setInterval(() => {
-  //       setWorkTitleIndex((getWorkTitleIndex) + 1)
-  //     }, (1250 / workTitles.length))
-  //     return () => clearInterval(interval)
-  //   }
-  // })
+    useEffect(() => {
+      if (getWorkTitleIndex < workTitles.length - 1) {
+        const interval = setInterval(() => {
+          setWorkTitleIndex((getWorkTitleIndex) + 1)
+        }, (1250 / workTitles.length))
+        return () => clearInterval(interval)
+      }
+    })
 
 
   return (
