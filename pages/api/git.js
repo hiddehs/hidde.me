@@ -10,9 +10,15 @@ import path from 'path'
 // TODO: Move caches to seperate cache folder
 
 export default async (req, res) => {
+  const {
+    query: { start },
+  } = req
+  console.log(start)
+  const startDate = moment.unix(start)
+
   const GITHUB_GET_CONTRIBUTIONS_QL = gql`
 
-      query($SINCE_DATE: DateTime){
+      query($SINCE_DATE: DateTime, $SINCE_DATE2: GitTimestamp){
           viewer {
               contributionsCollection(from: $SINCE_DATE){
                   commitContributionsByRepository{
@@ -26,7 +32,7 @@ export default async (req, res) => {
                                   name
                                   target{
                                       ... on Commit{
-                                          history(first:30, author:{id: "MDQ6VXNlcjIwMTExMTk0"}){
+                                          history(first:80, since: $SINCE_DATE2, author:{id: "MDQ6VXNlcjIwMTExMTk0"}){
                                               nodes{
                                                   id
                                                   authoredDate
@@ -61,12 +67,13 @@ export default async (req, res) => {
   // } catch (e) {
   //
   // }
-
+  console.log(startDate.toISOString())
   let fetchGit = async () => {
     const githubClient = standaloneGitHubApolloClient()
     githubContributionsHistory = await githubClient.query(
       GITHUB_GET_CONTRIBUTIONS_QL, {
-        SINCE_DATE: moment().add('-360', 'days').toISOString(),
+        SINCE_DATE: startDate.toISOString(),
+        SINCE_DATE2: startDate.toISOString(),
       })
     // write github to cache
     // fs.writeFileSync(
@@ -123,10 +130,15 @@ export default async (req, res) => {
       path.join(process.cwd(),
         `lib/gitlab_contribution_history_cache_${i}.json`)))
     let gitLabIDs = []
+
     gitLabContributions.data.forEach((contribution) => {
-      if (!dailyContributions[contribution.day]) dailyContributions[contribution.day] = []
-      gitLabIDs.push(contribution.id)
-      dailyContributions[contribution.day].push(contribution)
+
+      // removing before startdate
+      if (moment(contribution.day).unix() > start) {
+        if (!dailyContributions[contribution.day]) dailyContributions[contribution.day] = []
+        gitLabIDs.push(contribution.id)
+        dailyContributions[contribution.day].push(contribution)
+      }
     })
   }
 
@@ -181,7 +193,6 @@ export default async (req, res) => {
   Object.keys(dailyContributions).sort().forEach(key => {
     dailyContributionsSorted[key] = dailyContributions[key]
   })
-
   // removing private messages
 
   res.statusCode = 200

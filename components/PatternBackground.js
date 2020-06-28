@@ -4,11 +4,9 @@ import useSWR from 'swr'
 import fetch from 'unfetch'
 import PatternCreator from './patterns/patternModule'
 import gitPatternModule from './patterns/gitPatternModule'
+import moment from 'moment'
 
-
-
-export default function PatternBackground ({ data, getContributionDay, setContributionDay }) {
-
+export default function PatternBackground ({ data, getContributionDay, setContributionDay, setGitStartMoment, getGitStartMoment }) {
 
   let setGitDayStateDebounced = _.debounce(function (contributionsOnDate) {
     // setGitDayState(contributionsOnDate)
@@ -54,7 +52,6 @@ export default function PatternBackground ({ data, getContributionDay, setContri
   let gitPatternSize = 6
   let restPatternSize = 0
   if (process.browser) {
-    console.log(window.innerWidth)
     if (window.innerWidth < 768) {
       // mobile enz
       basePatternSize = gitPatternSize = 20
@@ -72,14 +69,28 @@ export default function PatternBackground ({ data, getContributionDay, setContri
       enter: gitElEnter,
       leave: pc.events.elLeave,
       setContributionDay: setContributionDay,
-      getContributionDay: getContributionDay
+      getContributionDay: getContributionDay,
+      getGitStartMoment: getGitStartMoment,
     },
-    gitHeight
+    gitHeight,
   )
 
+  // console.log(getGitStartMoment)
+  if (!getGitStartMoment) {
+    let totalGitCircleCount = ((pc.colCalculator(gitPatternSize)) * gitHeight) -
+      1
+    setGitStartMoment(
+      moment().
+        add('-' + totalGitCircleCount, 'days').
+        set('hours', 0).
+        set('minutes', 0).
+        set('seconds', 0))
+  }
 
   if (data && getContributionDay == null) {
-    setContributionDay(Object.keys(data.contributions)[Object.keys(data.contributions).length - 1])
+    setContributionDay(
+      Object.keys(data.contributions)[Object.keys(data.contributions).length -
+      1])
   }
   return (
     <>
@@ -87,8 +98,9 @@ export default function PatternBackground ({ data, getContributionDay, setContri
         {pc.createPattern(basePatternSize)}
         {data &&
         <div className="git pattern-background p-0" onMouseLeave={() => {
-          console.log("mouseleave")
-          setContributionDay(Object.keys(data.contributions)[Object.keys(data.contributions).length - 1])
+          console.log('mouseleave')
+          setContributionDay(Object.keys(data.contributions)[Object.keys(
+            data.contributions).length - 1])
         }} style={{
           padding: 0,
           overflow: 'visible',

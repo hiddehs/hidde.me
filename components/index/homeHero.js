@@ -4,13 +4,16 @@ import PatternBackground from '../PatternBackground'
 import ContributionViewer from '../ContributionViewer'
 import useSWR from 'swr'
 import fetch from 'unfetch'
+import moment from 'moment'
 
 const fetcher = url => fetch(url).then(r => r.json())
 export default function HomeHero () {
 
   const [getWorkTitleIndex, setWorkTitleIndex] = useState(0)
   const [getContributionDay, setContributionDay] = useState(null)
-  const { data } = useSWR('/api/git', fetcher)
+  const [getGitStartMoment, setGitStartMoment] = useState(null)
+  const { data } = useSWR(() => '/api/git?start=' + getGitStartMoment.unix(),
+    fetcher)
 
   const workTitles = [
     '@ux/ui',
@@ -25,15 +28,14 @@ export default function HomeHero () {
     '@full stack',
   ]
 
-    useEffect(() => {
-      if (getWorkTitleIndex < workTitles.length - 1) {
-        const interval = setInterval(() => {
-          setWorkTitleIndex((getWorkTitleIndex) + 1)
-        }, (1250 / workTitles.length))
-        return () => clearInterval(interval)
-      }
-    })
-
+  // useEffect(() => {
+  //   if (getWorkTitleIndex < workTitles.length - 1) {
+  //     const interval = setInterval(() => {
+  //       setWorkTitleIndex((getWorkTitleIndex) + 1)
+  //     }, (1250 / workTitles.length))
+  //     return () => clearInterval(interval)
+  //   }
+  // })
 
   return (
     <Section className="hero bg-gray-200 z-0">
@@ -51,7 +53,10 @@ export default function HomeHero () {
               hidde.dev</h5>
             <a href="#about" className="btn">about me</a>
           </div>
-          <PatternBackground data={data} getContributionDay={getContributionDay} setContributionDay={setContributionDay} />
+          <PatternBackground data={data} setGitStartMoment={setGitStartMoment}
+                             getContributionDay={getContributionDay}
+                             getGitStartMoment={getGitStartMoment}
+                             setContributionDay={setContributionDay}/>
           {/*<div className="relative" style={{ height: '600px', zIndex: -1 }}>*/}
           {/*  <img src="hero_bg.jpg" className="hero-bg" alt=""/>*/}
           {/*</div>*/}
@@ -60,12 +65,16 @@ export default function HomeHero () {
       </div>
       <div className="bg-gray-100">
         <div className="container">
-          <div className="flex md:flex-row md:items-center flex-col justify-start">
+          <div
+            className="flex md:flex-row md:items-center flex-col justify-start">
             <div className={'title-row py-2 md:pr-10'}>
-              <h3><span className='text-gray-400 hover:text-gray-800'>live.</span>work</h3>
+              <h3><span
+                className='text-gray-400 hover:text-gray-800'>live.</span>work
+              </h3>
             </div>
-            {getContributionDay !== null && getContributionDay !== undefined &&
-            <ContributionViewer contributions={data.contributions[getContributionDay]}/>
+            {data && getContributionDay !== null && getContributionDay !== undefined &&
+            <ContributionViewer
+              contributions={data.contributions[getContributionDay]}/>
             }
           </div>
         </div>

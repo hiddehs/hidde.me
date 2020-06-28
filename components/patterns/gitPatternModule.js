@@ -14,13 +14,13 @@ export default function gitPatternModule (
     '200': 'orange',
   }
   let gitColCount = 0
-  let totalGitCircleCount = 0
+  // let totalGitCircleCount = 0
 
   let createGitPattern = (colSize) => {
     gitColCount = PatternCreator().colCalculator(colSize)
-    totalGitCircleCount = ((gitColCount) * height) - 1
 
-    let startDate = moment().add('-' + totalGitCircleCount, 'days')
+    let startDate = events.getGitStartMoment.clone()
+
     let pattern = []
     let prevStartDate = { year: null, month: null }
 
@@ -86,7 +86,6 @@ export default function gitPatternModule (
   }
   return {
     createGitPattern,
-    gitColCount,
-    totalGitCircleCount,
+    gitColCount
   }
 }
