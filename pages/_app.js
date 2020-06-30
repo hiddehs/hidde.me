@@ -9,6 +9,14 @@ export default function MyApp ({ Component, pageProps }) {
     <>
       <Head>
         <title>hidde.me</title>
+        <meta name="og:type" content="website"/>
+        <meta name="description" content="Hidde Schultze is a full stack developer from the Netherlands, founder of VisualRadioAssist and working on several (e)health projects."/>
+
+        <meta name="og:title" content="hidde schultze – full stack dev"/>
+        <meta name="keywords" content="hidde, schultze, visual radio, visual radio assist, visualradioassist, drimpy, hidde.dev, ehealth, health, corona app, backend minvws, brain bakery website"/>
+        <meta name="og:url" content="https://hidde.me/"/>
+        <meta name="og:description" content="Hidde Schultze is a full stack developer from the Netherlands, founder of VisualRadioAssist and working on several (e)health projects."/>
+        <meta name="og:image" content=""/>
 
         <script async
                 src="https://www.googletagmanager.com/gtag/js?id=UA-76194988-1"/>
