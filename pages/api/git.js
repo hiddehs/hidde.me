@@ -15,6 +15,10 @@ export default async (req, res) => {
   } = req
   const startDate = moment.unix(start)
 
+  const confidentialRepositories = [
+    'drimpy',
+  ]
+
   const GITHUB_GET_CONTRIBUTIONS_QL = gql`
 
       query($SINCE_DATETIME: DateTime, $SINCE_GITTIMESTAMP: GitTimestamp){
@@ -23,6 +27,7 @@ export default async (req, res) => {
                   commitContributionsByRepository{
                       resourcePath
                       repository{
+                          id
                           name
                           url
                           isPrivate
@@ -107,8 +112,10 @@ export default async (req, res) => {
             dailyContributions[day].push({
               type: 'github',
               repository: {
+                id: repo.repository.id,
                 url: repo.repository.url,
                 name: repo.repository.name,
+                avatar: null,
                 visibility: ((repo.repository.isPrivate)
                   ? 'private'
                   : 'public'),
@@ -123,7 +130,7 @@ export default async (req, res) => {
   // Adding GitLab Cache (made on build time)
 
   for (let i = 1; i < 3; i++) {
-    gitLabApiClient.init(i)
+    // gitLabApiClient.init(i)
     let gitLabContributions = JSON.parse(fs.readFileSync(
       path.join(process.cwd(),
         `lib/gitlab_contribution_history_cache_${i}.json`)))
@@ -187,9 +194,42 @@ export default async (req, res) => {
 
   // Sorting ASC Date (key)
 
+  let obfuscrateStringFill = (length) => {
+    const characters = ['%', '$', '#', '@', '*', '!', '^', '0', '1', 'x']
+    let result = ''
+    for (let i = 0; i < length; i++) {
+      result += characters[Math.floor(
+        Math.random() * Math.floor(characters.length))]
+    }
+    return result
+  }
+
+  let isConfidential = (name) => {
+    let isConfidentialName = false
+    confidentialRepositories.forEach((confidentialName) => {
+
+      if (confidentialName.includes(name) ||
+        name.includes(confidentialName)) {
+        isConfidentialName = confidentialName
+      }
+    })
+    return isConfidentialName
+  }
+
   let dailyContributionsSorted = {}
+
   Object.keys(dailyContributions).sort().forEach(key => {
-    dailyContributionsSorted[key] = dailyContributions[key]
+    let contributions = dailyContributions[key]
+    contributions.forEach((contribution) => {
+      if (contribution.message && contribution.message.length > 0 &&
+        isConfidential(contribution.repository.name.toLowerCase()) !== false) {
+        contribution.message = contribution.message.slice(0, 3) +
+          obfuscrateStringFill(contribution.message.length - 3)
+        contribution.repository.name = isConfidential(contribution.repository.name.toLowerCase())
+        contribution.repository.url = ''
+      }
+    })
+    dailyContributionsSorted[key] = contributions
   })
   // removing private messages
 

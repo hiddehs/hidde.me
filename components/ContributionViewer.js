@@ -30,8 +30,14 @@ export default function ContributionViewer ({ contributions }) {
                   <p className='text-gray-600 text-xs'>
           <span style={{ width: '13px', verticalAlign: 'baseline' }}
                 className={`hs-icon mr-1 social-${contribution.type}`}/>
-                    <span
-                      className="font-medium">{contribution.repository.name}</span> @ {convertTimestamp(
+                    {(contribution.repository.url &&
+                      contribution.repository.visibility === 'public') ?
+                      <a target="_blank" href={contribution.repository.url}
+                         className="font-medium mr-1">{contribution.repository.name}</a>
+                      : <span
+                        className="font-medium mr-1">{contribution.repository.name}</span>
+                    }
+                     @ {convertTimestamp(
                     contribution.authoredDate)}</p>
                 </div>
               </div>,

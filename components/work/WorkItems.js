@@ -12,8 +12,7 @@ function WorkItems ({ className, data }) {
               <WorkItem data={item.node} key={k}/>,
             )}
         </div>
-        <style jsx>{
-          `
+        <style jsx>{`
           .work-items{
             //min-width: 1000px;
           }

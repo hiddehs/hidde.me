@@ -52,8 +52,7 @@ export default function WorkItem ({ data, video = '' }) {
             className="relative z-10"
             src={data.image_fallback.url} alt=""/>
             : '')
-
-          }}
+          }
         </div>
         <div className="content">
           <h6>
