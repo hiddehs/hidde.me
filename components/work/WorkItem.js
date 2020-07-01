@@ -2,40 +2,6 @@ import { Date, RichText } from 'prismic-reactjs'
 import LazyLoad from 'react-lazyload'
 
 export default function WorkItem ({ data, video = '' }) {
-
-  // if (process.browser) {
-  //   console.log("domcontent lsitener")
-  //   document.addEventListener('DOMContentLoaded', function () {
-  //     console.log("dom content loaded")
-  //     var lazyVideos = [].slice.call(document.querySelectorAll('video.lazy'))
-  //
-  //     if ('IntersectionObserver' in window) {
-  //       var lazyVideoObserver = new IntersectionObserver(
-  //         function (entries, observer) {
-  //           entries.forEach(function (video) {
-  //             if (video.isIntersecting) {
-  //               for (var source in video.target.children) {
-  //                 var videoSource = video.target.children[source]
-  //                 if (typeof videoSource.tagName === 'string' &&
-  //                   videoSource.tagName === 'SOURCE') {
-  //                   videoSource.src = videoSource.dataset.src
-  //                 }
-  //               }
-  //
-  //               video.target.load()
-  //               video.target.classList.remove('lazy')
-  //               lazyVideoObserver.unobserve(video.target)
-  //             }
-  //           })
-  //         })
-  //
-  //       lazyVideos.forEach(function (lazyVideo) {
-  //         lazyVideoObserver.observe(lazyVideo)
-  //       })
-  //     }
-  //   })
-  // }
-
   return (
     <>
       <div className="work-item flex flex-col">
@@ -72,7 +38,6 @@ export default function WorkItem ({ data, video = '' }) {
       <style jsx>
         {`
         .work-item .image{
-          //min-height: 290px;
           padding-bottom: 65%;
           position: relative;
           width: 100%;

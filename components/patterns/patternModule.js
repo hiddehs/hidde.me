@@ -84,7 +84,7 @@ export default function PatternCreator (height = 17) {
                       className="circle"></div>
         col.push(el)
       }
-      // console.log(colCount);
+
       pattern.push(<div className="circle-col" key={i}>{col}</div>)
     }
     return pattern

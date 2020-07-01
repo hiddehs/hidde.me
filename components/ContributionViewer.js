@@ -4,7 +4,7 @@ export default function ContributionViewer ({ contributions }) {
   let convertTimestamp = (rawIso) => {
     return moment(rawIso).format('MM-DD HH:mm:ss')
   }
-  let activeIndex = (contributions) ? contributions.slice(0, 3).length - 1 : 0
+
   return (
     <>
       <div
@@ -12,13 +12,11 @@ export default function ContributionViewer ({ contributions }) {
         contributions.length > 5
           ? 'md:grid-cols-11'
           : 'md:grid-cols-9'} gap-4 z-20 mb-5 md:mb-0 md:py-5`}>
-        {/*{contributions.length > 0 ? {*/}
 
         {(contributions && contributions.length > 0) ? <>
           {contributions.slice(0, 3).map((contribution, i) =>
               <div key={contribution.id + i.toString()}
-                   className={`contribution col-span-3 flex bg-white items-center justify-start row border-2 border-black border-solid bg-white p-4 ${(i ===
-                     activeIndex) ? 'active-contribution' : ('index-' + i)}`}>
+                   className="contribution col-span-3 flex bg-white items-center justify-start row border-2 border-black border-solid bg-white p-4">
                 <div className="rounded-full bg-primary flex-shrink-0"
                      style={{ width: '46px', height: '46px' }}>
                   <img src="" alt="" className={'w-full'}/>
@@ -37,7 +35,7 @@ export default function ContributionViewer ({ contributions }) {
                       : <span
                         className="font-medium mr-1">{contribution.repository.name}</span>
                     }
-                     @ {convertTimestamp(
+                    @ {convertTimestamp(
                     contribution.authoredDate)}</p>
                 </div>
               </div>,

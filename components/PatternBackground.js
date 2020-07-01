@@ -75,7 +75,6 @@ export default function PatternBackground ({ data, getContributionDay, setContri
     gitHeight,
   )
 
-  // console.log(getGitStartMoment)
   if (!getGitStartMoment) {
     let totalGitCircleCount = ((pc.colCalculator(gitPatternSize)) * gitHeight) -
       1
