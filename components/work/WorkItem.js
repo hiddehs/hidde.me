@@ -6,18 +6,21 @@ export default function WorkItem ({ data, video = '' }) {
     <>
       <div className="work-item flex flex-col">
         <div className="image mb-4">
-          {(data.video)?
-            <LazyLoad><video className="absolute z-20 lazy" muted playsInline loop
-                             autoPlay={true} poster={data.image_fallback.url}>
-              <source src={data.video.url}/>
-            </video></LazyLoad> :
-            (data.image_fallback ? <img style={{
-            maxHeight: 260,
-            width: 'auto',
-          }}
-            className="relative z-10"
-            src={data.image_fallback.url} alt=""/>
-            : '')
+          {(data.video) ?
+            <LazyLoad>
+              <video className="absolute z-20 lazy" muted playsInline loop
+                     autoPlay={true} poster={data.image_fallback.url}>
+                <source src={data.video.url}/>
+              </video>
+            </LazyLoad> :
+            (data.image_fallback ?
+              <LazyLoad><img style={{
+                maxHeight: 260,
+                width: 'auto',
+              }}
+                             className="relative z-10"
+                             src={data.image_fallback.url} alt=""/></LazyLoad>
+              : '')
           }
         </div>
         <div className="content">
