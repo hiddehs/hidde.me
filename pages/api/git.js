@@ -222,7 +222,7 @@ export default async (req, res) => {
     let contributions = dailyContributions[key]
     contributions.forEach((contribution) => {
       if (contribution.message && contribution.message.length > 0 &&
-        isConfidential(contribution.repository.name.toLowerCase()) !== false) {
+        (isConfidential(contribution.repository.name.toLowerCase()) !== false || isConfidential(contribution.repository.url.toLowerCase()) !== false)) {
         contribution.message = contribution.message.slice(0, 3) +
           obfuscrateStringFill(contribution.message.length - 3)
         contribution.repository.name = isConfidential(contribution.repository.name.toLowerCase())
