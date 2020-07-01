@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
-import Hero from '../components/index/hero'
+import HomeHero from '../components/index/homeHero'
 import Work from '../components/index/work'
 import Expierence from '../components/index/experience'
 import About from '../components/index/about'
 import gql from 'graphql-tag'
-import { getStandaloneApolloClient } from '../lib/apollo_standalone'
+import { getStandaloneApolloClient } from '../lib/prismicApolloClient'
 
 const GET_INDEX_DATA = gql`
     query {
@@ -15,6 +15,12 @@ const GET_INDEX_DATA = gql`
                     project_title
                     description_short
                     image_fallback
+                    home_index
+                    video {
+                        ... on _FileLink{
+                            url
+                        }
+                    }
                     link {
                         ... on _ExternalLink{
                             url
@@ -29,12 +35,18 @@ const GET_INDEX_DATA = gql`
         allExperiences{
             edges{
                 node{
+                    index
                     title
                     company
                     description
                     logo
                     start
                     end
+                    company_link{
+                        ... on _ExternalLink {
+                            url
+                        }
+                    }
                     tags{
                         tag
                         color
@@ -48,7 +60,7 @@ const GET_INDEX_DATA = gql`
 const Home = ({ data }) => {
   return (
     <Layout>
-      <Hero></Hero>
+      <HomeHero></HomeHero>
       <Work data={data.allWorks}></Work>
       <Expierence data={data.allExperiences}></Expierence>
       <About></About>

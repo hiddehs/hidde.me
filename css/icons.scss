@@ -1,0 +1,54 @@
+
+/*TODO: SASS:*/
+
+span.hs-icon {
+  height: 100%;
+  vertical-align: baseline;
+  line-height: 100%;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.btn span.hs-icon {
+  margin-left: 1.5px;
+}
+
+span.hs-icon:after {
+  content: '.';
+  opacity: 0;
+}
+
+.btn span.hs-icon {
+  width: 18px;
+  min-height: 18px;
+}
+
+.btn:not(.btn-primary):not(.btn-outline-primary):hover span.hs-icon {
+  filter: invert(1);
+}
+
+span.hs-icon.link-arrow-right {
+  background-image: url("icons/link_arrow_right.svg")
+}
+
+span.hs-icon.arrow-up {
+  background-image: url("icons/arrow_up.svg");
+}
+
+span.hs-icon.social-twitter {
+  background-image: url("icons/twitter.svg");
+}
+
+span.hs-icon.social-github {
+  background-image: url("icons/github.svg");
+}
+
+span.hs-icon.social-gitlab {
+  background-image: url("icons/gitlab.svg");
+}
+
+span.hs-icon.social-linkedin {
+  background-image: url("icons/linkedin.svg");
+}

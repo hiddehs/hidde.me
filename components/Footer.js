@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const year = (new Date()).getFullYear()
 
@@ -25,15 +26,17 @@ export default function Footer () {
               {/*</div>*/}
               <div className="text-center">
                 <p>All rights reserved © {year}</p>
-                <p className="text-sm text-gray-600">KVK 12345678</p>
+                <p className="text-sm text-gray-600">KVK 67988695 – <a className="text-gray-600" target="_blank"
+                  href="https://rusty.2k16.hiddeschultze.nl">rusty.2k16.hiddeschultze.nl</a> – <a
+                  href="https://github.com/hiddehs/hidde.me"><span className="hs-icon w-3 social-github"></span> github.repo</a></p>
               </div>
 
             </div>
             <div className="col w-1/5 text-right">
-              <a href="" title={'Go to Top'}
-                 className={'btn btn-outline-primary'}>
-                <span className="icon">/\</span>
-              </a>
+              <AnchorLink href="#hero" title={'Go to Top'}
+                 className='btn btn-outline-primary btn-square'>
+                <span className="hs-icon arrow-up"></span>
+              </AnchorLink>
             </div>
           </div>
         </div>

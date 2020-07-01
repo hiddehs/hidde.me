@@ -1,42 +1,62 @@
 import { Date, RichText } from 'prismic-reactjs'
+import LazyLoad from 'react-lazyload'
 
 export default function WorkItem ({ data, video = '' }) {
   return (
     <>
-      <div className="work-item w-full flex flex-col">
+      <div className="work-item flex flex-col">
         <div className="image mb-4">
-          {data.image_fallback ? <img style={{maxHeight: 260, width: 'auto'}} src={data.image_fallback.url} alt=""/> : ''}
-          {data.video ? <video src={data.video} alt=""/> : ''}
+          {(data.video)?
+            <LazyLoad><video className="absolute z-20 lazy" muted playsInline loop
+                             autoPlay={true} poster={data.image_fallback.url}>
+              <source src={data.video.url}/>
+            </video></LazyLoad> :
+            (data.image_fallback ? <img style={{
+            maxHeight: 260,
+            width: 'auto',
+          }}
+            className="relative z-10"
+            src={data.image_fallback.url} alt=""/>
+            : '')
+          }
         </div>
         <div className="content">
           <h6>
             {data.project_title[0].text}
           </h6>
-          <p className={'short-description font-medium text-gray-600 my-1'} dangerouslySetInnerHTML={{ __html: data.description_short[0].text }}/>
+          <div className={'short-description font-medium text-gray-600 my-1'}>
+            {RichText.render(data.description_short)}
+          </div>
         </div>
         <div className="footer mt-auto">
           {data.link ? <><a href={data.link.url} target="blank"
                             className="font-medium link">{data.link.url.replace(
             'https://', '').replace('http://', '')}</a><br/></> : ''}
-          <a href="#more" className="font-medium">Read more</a>
+          {/*<a href="#more" className="font-medium">Read more</a>*/}
         </div>
       </div>
       <style jsx>
         {`
+        .work-item .image{
+          padding-bottom: 65%;
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+        }
+        .work-item .image img, .work-item .image video{
+          object-fit: cover;
+          position:absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          min-height: 100%;
+          min-width: 100%;
+          height: 100%;
+        }
         .link{
           text-decoration: none;
         }
-        .link::after{
-          content:'';
-          display:inline-block;
-          width: 10px;
-          height: 10px;
-          margin-left: .2em;
-          margin-top: -.2em;
-          background: url('link-arrow.svg') center no-repeat;
-          background-size: 9px;
-          fill: red;
-        }
+        
         `}
       </style>
     </>

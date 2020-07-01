@@ -1,9 +1,17 @@
 const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: [
-    './components/**/*.js', './pages/**/*.js', './css/**/*.css',
-  ],
+  purge: {
+    content: ['./components/**/*.js', './pages/**/*.js', './css/**/*.css'],
+    options: {
+      whitelist: [
+        'bg-red-600',
+        'bg-blue-600',
+        'bg-orange-600',
+        'bg-green-600',
+        'bg-blue-800'],
+    },
+  },
   theme: {
     fontWeight: {
       normal: 400,
@@ -14,7 +22,7 @@ module.exports = {
       fontSize: {
         'base': '1.125rem', // 18px
         // 'lg': '1.5rem',
-        // 'xl': '1.75rem',
+        'xl2': '1.167rem',
         // '2xl': '2rem',
         // '5xl': '3rem',
         // '6xl': '4rem',

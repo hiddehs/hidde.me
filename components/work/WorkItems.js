@@ -5,13 +5,20 @@ function WorkItems ({ className, data }) {
     return (
       <>
         <div
-          className={`flex flex-row items-stretch flex-nowrap overflow-hidden work-items ${className}`}>
-          {data.edges.map((item, k) =>
-            <WorkItem data={item.node} key={k}/>,
-          )}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden work-items ${className}`}>
+          {data.edges.sort(
+            (a, b) => (a.node.home_index > b.node.home_index) ? 1 : -1).
+            map((item, k) =>
+              <WorkItem data={item.node} key={k}/>,
+            )}
         </div>
+        <style jsx>{`
+          .work-items{
+            //min-width: 1000px;
+          }
+        `}</style>
       </>
-    )
+  )
   }
   return <>...</>
 }

@@ -4,24 +4,36 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "yarn run gitlab_convert_1 && yarn run gitlab_convert_2 && next build",
+    "start": "next start",
+    "gitlab_convert_1": "node lib/gitlab_contribution_converter.js 1",
+    "gitlab_convert_2": "node lib/gitlab_contribution_converter.js 2"
   },
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-prismic": "^1.0.7",
     "autoprefixer": "^9.8.0",
-    "graphql": "^15.0.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
+    "hamburgers": "^1.1.3",
+    "lodash": "^4.17.15",
+    "moment": "^2.27.0",
     "next": "9.4.2",
     "next-apollo": "^4.0.1",
     "postcss-import": "^12.0.1",
     "prismic-reactjs": "^1.3.1",
     "react": "16.13.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "16.13.1",
-    "tailwindcss": "^1.4.6"
+    "react-lazyload": "^2.6.8",
+    "sass": "^1.26.9",
+    "swr": "^0.2.3",
+    "tailwindcss": "^1.4.6",
+    "unfetch": "^4.1.0"
   }
 }
