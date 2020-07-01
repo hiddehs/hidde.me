@@ -16,7 +16,7 @@ export default function ContributionViewer ({ contributions }) {
 
         {(contributions && contributions.length > 0) ? <>
           {contributions.slice(0, 3).map((contribution, i) =>
-              <div key={contribution.id}
+              <div key={contribution.id + i.toString()}
                    className={`contribution col-span-3 flex bg-white items-center justify-start row border-2 border-black border-solid bg-white p-4 ${(i ===
                      activeIndex) ? 'active-contribution' : ('index-' + i)}`}>
                 <div className="rounded-full bg-primary flex-shrink-0"
@@ -27,9 +27,9 @@ export default function ContributionViewer ({ contributions }) {
                      style={{ maxWidth: 'calc(100% - 46px - 1rem)' }}>
                   <div
                     className="font-medium text-gray-900 truncate">{contribution.message}</div>
-                  <p className='text-gray-600 text-xs'>
+                  <p className='text-gray-700 text-xs'>
           <span style={{ width: '13px', verticalAlign: 'baseline' }}
-                className={`hs-icon mr-1 social-${contribution.type}`}/>
+                className={`hs-icon mr-1 opacity-75 social-${contribution.type}`}/>
                     {(contribution.repository.url &&
                       contribution.repository.visibility === 'public') ?
                       <a target="_blank" href={contribution.repository.url}

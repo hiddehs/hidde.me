@@ -6,7 +6,7 @@ export default function About () {
 
   let patternDimensions = {
     h: 16,
-    s: 12,
+    s: 20,
   }
   if(process.browser){
     if(window.innerWidth < 768){
@@ -30,8 +30,8 @@ export default function About () {
                     <h2 className="leading-none">👋 hi,</h2>
                     <h2>nice to meet you.</h2>
                   </div>
-                  <p className='mb-2'>I'm Hidde Schultze, a full stack
-                    developer from <a
+                  <p className='mb-2'>I'm Hidde Schultze, a freelance full stack
+                     developer from <a
                       href="https://nomadlist.com/zwolle"
                       style={{ textDecoration: 'none' }}
                       className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
@@ -46,6 +46,7 @@ export default function About () {
                   <p>I love working on projects that have a real impact on the
                     society. Especially when it can improve healthcare or change
                     the way people interact with radio broadcasts.</p>
+
                   <div className="social-links mt-6 mb-8">
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
                        href="https://github.com/hiddehs"><span
