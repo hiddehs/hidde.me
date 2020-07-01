@@ -8,8 +8,8 @@ export default function About () {
     h: 16,
     s: 20,
   }
-  if(process.browser){
-    if(window.innerWidth < 768){
+  if (process.browser) {
+    if (window.innerWidth < 768) {
       patternDimensions.h = 40
     }
   }
@@ -31,7 +31,7 @@ export default function About () {
                     <h2>nice to meet you.</h2>
                   </div>
                   <p className='mb-2'>I'm Hidde Schultze, a freelance full stack
-                     developer from <a
+                    developer from <a
                       href="https://nomadlist.com/zwolle"
                       style={{ textDecoration: 'none' }}
                       className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
@@ -49,18 +49,27 @@ export default function About () {
 
                   <div className="social-links mt-6 mb-8">
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
+                       title="Go to my GitHub"
                        href="https://github.com/hiddehs"><span
-                      className="hs-icon social-github"></span></a>
+                      className="hs-icon social-github"></span><span
+                      className="hidden">GitHub</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
+                       title="Go to my GitLab"
                        href="https://gitlab.com/hiddehs"><span
-                      className="hs-icon social-gitlab"></span></a>
+                      className="hs-icon social-gitlab"></span><span
+                      className="hidden">GitLab</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
+                       title="Go to my LinkedIn"
                        href="https://linkedin.com/hiddeschultze"><span
-                      className="hs-icon social-linkedin"></span></a>
+                      className="hs-icon social-linkedin"></span><span
+                      className="hidden">LinkedIn</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
+                       title="Go to my Twitter"
                        href="https://twitter.com/hiddehs"><span
-                      className="hs-icon social-twitter"></span></a>
-                    <a href="mailto:hi@hidde.me" className="">hi@hidde.me</a>
+                      className="hs-icon social-twitter"></span><span
+                      className="hidden">Twitter</span></a>
+                    <a href="mailto:hi@hidde.me"
+                       title="Email me at hi@hidde.me">hi@hidde.me</a>
                   </div>
                 </div>
               </div>
@@ -68,7 +77,8 @@ export default function About () {
           </div>
         </div>
         <div className="pattern-background z-0">
-          {PatternCreator(patternDimensions.h).createPattern(patternDimensions.s)}
+          {PatternCreator(patternDimensions.h).
+            createPattern(patternDimensions.s)}
         </div>
       </Section>
       <style jsx>{`

@@ -19,7 +19,7 @@ export default function Header () {
           <Link href={'/'}><a className={'logo'}><img height="31px"
                                                       src="logo.svg"
                                                       alt="hidde.me Logo"/></a></Link>
-          <button onClick={() => {setLinksOpen(!getLinksOpen)}}
+          <button onClick={() => {setLinksOpen(!getLinksOpen)}} aria-label={getLinksOpen ? "Open menu" : "Close menu"}
                   className={`leading-none hamburger hamburger--minus sm:hidden ${getLinksOpen
                     ? 'is-active'
                     : ''}`}>
