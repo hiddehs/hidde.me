@@ -18,7 +18,6 @@ export default function gitPatternModule (
 
   let createGitPattern = (colSize) => {
     gitColCount = PatternCreator().colCalculator(colSize)
-
     let startDate = events.getGitStartMoment.clone()
 
     let pattern = []
@@ -29,8 +28,9 @@ export default function gitPatternModule (
       for (let j = 0; j < (height); j++) {
         let element
         startDate = startDate.add('1', 'day')
+        let startDateFreeze = false
         if (startDate.year() !==
-          prevStartDate.year) {
+          prevStartDate.year && (j !== 0 || i !== 0)) {
           element = <>
             <div key={startDate.unix()}
                  className={'month text-xs'}>{startDate.format('YY')}</div>
@@ -38,13 +38,16 @@ export default function gitPatternModule (
                  className={'month text-xs'}>{startDate.format('MMM')}
             </div>
           </>
+          startDateFreeze = true
           j++
-        } else if (startDate.month() !== prevStartDate.month) {
-          element = <div key={startDate.unix()}
+        } else if (startDate.month() !== prevStartDate.month &&
+          (j !== 0 || i !== 0)) {
+          element = <div key={startDate.unix() + startDate.format('MM')}
                          className={'month text-xs'}>{startDate.format(
             'MMM')}</div>
+          startDateFreeze = true
         } else {
-          let dateString =startDate.format( 'Y-MM-DD')
+          let dateString = startDate.format('Y-MM-DD')
           const contributionsOnDate = api.contributions[dateString]
 
           let count = (contributionsOnDate) ? contributionsOnDate.length : 0
@@ -56,17 +59,15 @@ export default function gitPatternModule (
               break
             }
           }
-
-          // if(getGitDayState && contributionsOnDate) console.log(getGitDayState[0].id ===
-          //   contributionsOnDate[0].id)
-          // onTouchStart={(e) => {console.log(e);events.enter(contributionsOnDate, e)}}
           element =
             <div onClick={() => {
               events.setContributionDay(dateString)
             }}
                  key={startDate.unix()}
                  className={`circle text-white circle-git color-${commitCountColor} ${startDate.format(
-                   'DD')} ${(events.getContributionDay === dateString) ? 'is-active' : ''}`}
+                   'DD')} ${(events.getContributionDay === dateString)
+                   ? 'is-active'
+                   : ''}`}
             ><span className="tag">{count}</span></div>
         }
         col.push(element)
@@ -74,11 +75,7 @@ export default function gitPatternModule (
           month: startDate.month(),
           year: startDate.year(),
         }
-      }
-      if (i + 1 === gitColCount) {
-        // col.pop()
-        // col.push(<div
-        //   className={'month text-xs'} key={i + 1}>today.</div>)
+        if (startDateFreeze) startDate.add('-1', 'day')
       }
       pattern.push(<div className="circle-col" key={i}>{col}</div>)
     }
@@ -86,6 +83,6 @@ export default function gitPatternModule (
   }
   return {
     createGitPattern,
-    gitColCount
+    gitColCount,
   }
 }
