@@ -8,7 +8,7 @@ export default function MyApp ({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>hidde.me</title>
+        <title>hidde.me – hidde schultze – full stack dev</title>
         <meta name="og:type" content="website"/>
         <meta name="description" content="Hidde Schultze is a full stack developer from the Netherlands, founder of VisualRadioAssist and working on several (e)health projects."/>
 

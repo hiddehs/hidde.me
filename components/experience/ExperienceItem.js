@@ -9,7 +9,7 @@ export default function ExperienceItem ({ data }) {
         className="experience-item mb-16 flex flex-col md:flex-row flex-no-wrap justify-between lg:w-3/4">
 
         <div
-          className="item-content flex flex-row items-start justify-start w-full lg:w-4/6 md:w-1/2">
+          className="item-content flex flex-row items-start justify-start w-full lg:w-4/6 md:w-5/8">
           <div className={`logo mr-5 ${!data.logo && 'bg-primary'}`}>
             {data.logo && <img src={data.logo.url} alt=""/>}
           </div>
@@ -30,10 +30,13 @@ export default function ExperienceItem ({ data }) {
           </div>
 
         </div>
-        <div className="item-timing md:h-full md:text-right mt-10 md:mt-0">
-          <h2 className="text-gray-300 font-normal md:pr-20 leading-none">{moment(
+        <div
+          className="item-timing md:h-full md:text-right mt-10 md:mt-0 md:pl-4">
+          <h2
+            className="text-gray-300 font-normal lg:pr-20 leading-none">{moment(
             data.start).year()} –</h2>
-          <h1 className="text-gray-400 leading-none md:leading-normal" style={{ fontSize: '93px' }}>{(data.end
+          <h1 className="text-gray-400 leading-none md:leading-normal"
+              style={{ fontSize: '93px' }}>{(data.end
             ? moment(data.end).year()
             : 'now.')}</h1>
         </div>

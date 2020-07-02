@@ -8,10 +8,10 @@ export default function ContributionViewer ({ contributions }) {
   return (
     <>
       <div
-        className={`contribution-viewer grid grid-cols-1 ${contributions &&
+        className={`contribution-viewer grid grid-cols-3 ${contributions &&
         contributions.length > 5
-          ? 'md:grid-cols-11'
-          : 'md:grid-cols-9'} gap-4 z-20 mb-5 md:mb-0 md:py-5`}>
+          ? 'lg:grid-cols-11 md:grid-cols-6'
+          : 'lg:grid-cols-9 md:grid-cols-2'} gap-4 z-20 mb-5 md:mb-0 md:py-5`}>
 
         {(contributions && contributions.length > 0) ? <>
           {contributions.slice(0, 3).map((contribution, i) =>
@@ -42,7 +42,7 @@ export default function ContributionViewer ({ contributions }) {
           )}
           {contributions.length > 5 &&
           <div
-            className="bg-white col-span-2 text-center border-2 border-gray-600 text-gray-600 border-solid flex justify-center items-center p-4">
+            className="bg-white col-span-3 md:col-span-2 text-center border-2 border-gray-600 text-gray-600 border-solid flex justify-center items-center p-4">
             <p>+{contributions.length - 3} more contributions</p>
           </div>}
         </> : <>
