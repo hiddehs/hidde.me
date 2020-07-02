@@ -30,10 +30,13 @@ export default function ExperienceItem ({ data }) {
           </div>
 
         </div>
-        <div className="item-timing md:h-full md:text-right mt-10 md:mt-0 md:pl-4">
-          <h2 className="text-gray-300 font-normal lg:pr-20 leading-none">{moment(
+        <div
+          className="item-timing md:h-full md:text-right mt-10 md:mt-0 md:pl-4">
+          <h2
+            className="text-gray-300 font-normal lg:pr-20 leading-none">{moment(
             data.start).year()} –</h2>
-          <h1 className="text-gray-400 leading-none md:leading-normal" style={{ fontSize: '93px' }}>{(data.end
+          <h1 className="text-gray-400 leading-none md:leading-normal"
+              style={{ fontSize: '93px' }}>{(data.end
             ? moment(data.end).year()
             : 'now.')}</h1>
         </div>

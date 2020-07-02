@@ -17,7 +17,7 @@ export default function HomeHero () {
 
   const workTitles = [
     '@ux/ui',
-    '@ehealth',
+    '@web',
     '@front-end',
     '@ne/uxt.js',
     '@vue.js',
@@ -25,6 +25,10 @@ export default function HomeHero () {
     '@back-end',
     '@laravel',
     '@node.js',
+    '@k8s ☸️',
+    '@hl7 🏥',
+    '@fhir 🔥',
+    '@ehealth',
     '@full stack',
   ]
 
@@ -32,7 +36,7 @@ export default function HomeHero () {
     if (getWorkTitleIndex < workTitles.length - 1) {
       const interval = setInterval(() => {
         setWorkTitleIndex((getWorkTitleIndex) + 1)
-      }, (1250 / workTitles.length))
+      }, (1400 / workTitles.length))
       return () => clearInterval(interval)
     }
   })
