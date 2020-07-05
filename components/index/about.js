@@ -60,7 +60,7 @@ export default function About () {
                       className="hidden">GitLab</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
                        title="Go to my LinkedIn"
-                       href="https://linkedin.com/hiddeschultze"><span
+                       href="https://linkedin.com/in/hiddeschultze"><span
                       className="hs-icon social-linkedin"></span><span
                       className="hidden">LinkedIn</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
