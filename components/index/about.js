@@ -43,8 +43,10 @@ export default function About () {
                     end-user (B2C/B2B) by connecting multidisciplinary teams
                     with
                     UX, UI designers and front- and back-end developers. </p>
-                  <p>I love working on projects that have a real impact on the
-                    society. Especially when it can improve healthcare or change
+                  <p>I love working on projects that have a real and measurable
+                    impact on the
+                    society. Especially when it could improve healthcare or
+                    change
                     the way people interact with radio broadcasts.</p>
 
                   <div className="social-links mt-6 mb-8">
@@ -60,7 +62,7 @@ export default function About () {
                       className="hidden">GitLab</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
                        title="Go to my LinkedIn"
-                       href="https://linkedin.com/hiddeschultze"><span
+                       href="https://www.linkedin.com/in/hiddeschultze/"><span
                       className="hs-icon social-linkedin"></span><span
                       className="hidden">LinkedIn</span></a>
                     <a className="btn btn-sm btn-square mr-3" target="_blank"
