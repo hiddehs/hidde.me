@@ -31,7 +31,7 @@ export default function About () {
                     <h2>nice to meet you.</h2>
                   </div>
                   <p className='mb-2'>I'm Hidde Schultze, a freelance full stack
-                    developer from <a
+                    developer currently working from <a
                       href="https://nomadlist.com/zwolle"
                       style={{ textDecoration: 'none' }}
                       className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
