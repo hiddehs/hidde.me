@@ -84,12 +84,37 @@ h6 {
   }
 }
 
-a:not(.btn) {
-  @apply underline;
-}
+a {
 
-a:hover {
-  @apply text-black;
+  &:not(.btn) {
+    @apply underline;
+  }
+
+  &:hover {
+    @apply text-black;
+  }
+
+  &.link {
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: .2em;
+      margin-top: -.2em;
+      background: url('icons/link-arrow.svg') center no-repeat;
+      background-size: 9px;
+      fill: red;
+    }
+    &.text-gray-600::after{
+      opacity: .3;
+    }
+  }
+
+
+  &.link.text-gray-600:hover:after {
+    opacity: 1;
+  }
 }
 
 
@@ -117,18 +142,6 @@ a:hover {
   @apply mb-2;
 }
 
-
-a.link::after {
-  content: '';
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin-left: .2em;
-  margin-top: -.2em;
-  background: url('icons/link-arrow.svg') center no-repeat;
-  background-size: 9px;
-  fill: red;
-}
 
 .tag-circle {
   @apply rounded-full inline-block align-middle mr-2 w-3 h-3;

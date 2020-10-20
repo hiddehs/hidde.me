@@ -18,9 +18,12 @@ export default function ExperienceItem ({ data }) {
               <h6 className="mt-1">
                 {data.title[0].text}
               </h6>
-              <a className="text-gray-600 font-medium" target="_blank"
+              <a className="text-gray-600 font-medium link" target="_blank"
                  style={{ textDecoration: 'none' }} href={data.company_link &&
               data.company_link.url}>{data.company[0].text}</a>
+              {/*{data.link ? <><a href={data.link.url} target="blank"*/}
+              {/*                  className="font-medium link">{data.link.url.replace(*/}
+              {/*  'https://', '').replace('http://', '')}</a><br/></> : ''}*/}
             </div>
             <div className="description text-gray-800">
               {RichText.render(data.description)}
