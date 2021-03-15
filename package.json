@@ -21,7 +21,7 @@
     "graphql": "~15.5.0",
     "graphql-tag": "~2.11.0",
     "hamburgers": "^1.1.3",
-    "lodash": "~4.17.21",Up
+    "lodash": "~4.17.21",
     "moment": "~2.29.1",
     "next": "^10.0.8",
     "next-apollo": "^4.0.1",
