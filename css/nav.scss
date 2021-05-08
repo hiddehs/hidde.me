@@ -12,14 +12,14 @@ nav {
 
   @screen sm{
     .links a {
-      @apply w-auto font-normal;
+      @apply w-auto text-black font-normal;
       font-size: 1rem;
       margin-left: .5rem;
-      padding: .25rem .65rem;
+      padding: 0 .45rem;
       transition: .15s ease-in;
       display: block;
       &:hover {
-        @apply bg-gray-300 rounded-sm;
+        @apply bg-gray-300 rounded;
       }
     }
   }
