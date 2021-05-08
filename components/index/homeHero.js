@@ -5,52 +5,26 @@ import ContributionViewer from '../ContributionViewer'
 import useSWR from 'swr'
 import fetch from 'unfetch'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import WorkTitles from '../work/WorkTitles'
 
 const fetcher = url => fetch(url).then(r => r.json())
 export default function HomeHero () {
 
-  const [getWorkTitleIndex, setWorkTitleIndex] = useState(0)
   const [getContributionDay, setContributionDay] = useState(null)
   const [getGitStartMoment, setGitStartMoment] = useState(null)
   const { data } = useSWR(() => '/api/git?start=' + getGitStartMoment.unix(),
     fetcher)
 
-  const workTitles = [
-    '@ux/ui',
-    '@web',
-    '@front-end',
-    '@ne/uxt.js',
-    '@vue.js',
-    '@react',
-    '@back-end',
-    '@laravel',
-    '@node.js',
-    '@k8s ☸️',
-    '@hl7 🏥',
-    '@fhir 🔥',
-    '@ehealth',
-    '@full stack',
-  ]
-
-  useEffect(() => {
-    if (getWorkTitleIndex < workTitles.length - 1) {
-      const interval = setInterval(() => {
-        setWorkTitleIndex((getWorkTitleIndex) + 1)
-      }, (1400 / workTitles.length))
-      return () => clearInterval(interval)
-    }
-  })
-
   return (
     <Section className="hero bg-gray-200 z-0" id="hero">
-      <div className="bg-gray-200">
+      <div className="bg-gray-200 relative">
         <div
           className="container mx-auto flex items-start md:items-center justify-between">
           <div className="z-10 relative mt-12 md:my-auto inline-block">
             <h2 className={'leading-tight mb-4'}>Hidde Schultze <span
               className="hidden sm:inline">—</span><br/>
               <span
-                className="primary-bg-accent">{workTitles[getWorkTitleIndex]}</span> developer.
+                className="primary-bg-accent"><WorkTitles/></span> developer.
             </h2>
             <h5 className={'font-medium text-gray-800 mb-4'}>Founder
               VisualRadioAssist &
@@ -61,11 +35,11 @@ export default function HomeHero () {
               about
               me</AnchorLink>
           </div>
-          <PatternBackground data={data} setGitStartMoment={setGitStartMoment}
-                             getContributionDay={getContributionDay}
-                             getGitStartMoment={getGitStartMoment}
-                             setContributionDay={setContributionDay}/>
         </div>
+        <PatternBackground data={data} setGitStartMoment={setGitStartMoment}
+                           getContributionDay={getContributionDay}
+                           getGitStartMoment={getGitStartMoment}
+                           setContributionDay={setContributionDay}/>
 
       </div>
       <div className="bg-gray-100">
@@ -74,7 +48,7 @@ export default function HomeHero () {
             className="flex md:flex-row md:items-center flex-col justify-start">
             <div className={'title-row py-2 md:pr-10'}>
               <h3><span
-                className='text-gray-400 hover:text-gray-800'>live.</span>work
+                className="text-gray-400 hover:text-gray-800">live.</span>work
               </h3>
             </div>
             {data && getContributionDay !== null && getContributionDay !==
@@ -89,7 +63,7 @@ export default function HomeHero () {
 
       <style jsx>{`
 
-        .hero-bg{
+        .hero-bg {
           position: absolute;
           right: 0;
           top: 0;
@@ -99,6 +73,7 @@ export default function HomeHero () {
           mix-blend-mode: hard-light;
           margin-right: -36px;
         }
+
         // .wrapper .block{
         //   margin-left: 100px;
         // }

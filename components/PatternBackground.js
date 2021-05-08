@@ -108,10 +108,7 @@ export default function PatternBackground ({
       <div className="pattern-background z-0">
         {pc.createPattern(basePatternSize)}
         {data &&
-        <div className="git pattern-background p-0" onMouseLeave={() => {
-          // setContributionDay(Object.keys(data.contributions)[Object.keys(
-          //   data.contributions).length - 1])
-        }} style={{
+        <div className="git pattern-background p-0" style={{
           padding: 0,
           overflow: 'visible',
           position: 'relative',

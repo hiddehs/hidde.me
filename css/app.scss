@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @screen xl {
   .container {
-    @apply px-0;
+    //@apply px-0;
   }
 
 }
@@ -106,7 +106,8 @@ a {
       background-size: 9px;
       fill: red;
     }
-    &.text-gray-600::after{
+
+    &.text-gray-600::after {
       opacity: .3;
     }
   }
@@ -134,7 +135,7 @@ a {
   position: absolute;
   opacity: 1;
   z-index: -1;
-  transform: rotate(0.5deg);
+  transform: rotate(0.7deg);
 }
 
 
@@ -151,12 +152,11 @@ a {
 
 .hero {
   .bg-gray-200 .container:first-child {
-    &, .pattern-background {
-      min-height: 676px;
-      @screen md {
-        min-height: 588px;
-      }
+    min-height: 676px;
+    @screen md {
+      min-height: 588px;
     }
+
 
     margin-top: 67px;
   }
