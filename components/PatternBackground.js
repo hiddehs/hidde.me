@@ -106,21 +106,21 @@ export default function PatternBackground ({
   return (
     <>
       <div className="pattern-background z-0">
-        {/*{pc.createPattern(basePatternSize)}*/}
-        {/*{data &&*/}
-        {/*<div className="git pattern-background p-0" onMouseLeave={() => {*/}
-        {/*  // setContributionDay(Object.keys(data.contributions)[Object.keys(*/}
-        {/*  //   data.contributions).length - 1])*/}
-        {/*}} style={{*/}
-        {/*  padding: 0,*/}
-        {/*  overflow: 'visible',*/}
-        {/*  position: 'relative',*/}
-        {/*  width: 'auto',*/}
-        {/*}}>*/}
-        {/*  {gp.createGitPattern(gitPatternSize)}*/}
-        {/*</div>*/}
-        {/*}*/}
-        {/*{pc.createPattern(restPatternSize)}*/}
+        {pc.createPattern(basePatternSize)}
+        {data &&
+        <div className="git pattern-background p-0" onMouseLeave={() => {
+          // setContributionDay(Object.keys(data.contributions)[Object.keys(
+          //   data.contributions).length - 1])
+        }} style={{
+          padding: 0,
+          overflow: 'visible',
+          position: 'relative',
+          width: 'auto',
+        }}>
+          {gp.createGitPattern(gitPatternSize)}
+        </div>
+        }
+        {pc.createPattern(restPatternSize)}
       </div>
       <style jsx>{`
         .circle-col .month {
