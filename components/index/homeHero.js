@@ -88,7 +88,7 @@ export default function HomeHero () {
 
 
       <style jsx>{`
-        
+
         .hero-bg{
           position: absolute;
           right: 0;
