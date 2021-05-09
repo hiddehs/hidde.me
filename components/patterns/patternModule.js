@@ -66,8 +66,7 @@ export default function PatternCreator (height = 17) {
 
   let colCalculator = (colSize = 1) => {
     if (process.browser) {
-      const calc = Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20)));
-      return calc;
+      return Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20)))
     }
     return 0
   }
@@ -76,15 +75,12 @@ export default function PatternCreator (height = 17) {
     if (colSize < 1) return
     let colCount = colCalculator(colSize)
     let pattern = []
-    for (let i = 0; i < colCount; i++)
-    {let col = []
+    for (let i = 0; i < colCount; i++) {
+      let col = []
       for (let j = 0; j < height; j++) {
-        let el = <div onMouseEnter={elEnter} onMouseLeave={elLeave}
-                      key={1 + i + j}
-                      className="circle"></div>
-        col.push(el)
+        col.push(<div onMouseEnter={elEnter} onMouseLeave={elLeave} key={1 + i + j}
+                      className="circle"/>)
       }
-
       pattern.push(<div className="circle-col" key={i}>{col}</div>)
     }
     return pattern

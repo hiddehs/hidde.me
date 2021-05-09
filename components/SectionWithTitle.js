@@ -4,10 +4,10 @@ export default function SectionWithTitle ({ children, className, title, subtitle
   return (
     <>
       <Section className={className} id={title.toLowerCase()}>
-        <div className="container">
+        <div className="container group">
           <div className={'title-row py-10'}>
             <h2>{subtitle
-              ? <span className='text-gray-400 hover:text-gray-800'>{subtitle}.</span>
+              ? <span className='text-gray-400 group-hover:text-gray-800 transition duration-200'>{subtitle}.</span>
               : ''}{title}</h2>
           </div>
           <div className="content">
@@ -15,7 +15,6 @@ export default function SectionWithTitle ({ children, className, title, subtitle
           </div>
         </div>
       </Section>
-
     </>
   )
 }

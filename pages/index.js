@@ -53,17 +53,17 @@ const GET_INDEX_DATA = gql`
                     }
                 }
             }
-        }        
+        }
     }
 `
 
 const Home = ({ data }) => {
   return (
     <Layout>
-      <HomeHero></HomeHero>
-      <Work data={data.allWorks}></Work>
-      <Expierence data={data.allExperiences}></Expierence>
-      <About></About>
+      <HomeHero/>
+      <Work data={data.allWorks}/>
+      <Expierence data={data.allExperiences}/>
+      <About/>
     </Layout>
   )
 }
