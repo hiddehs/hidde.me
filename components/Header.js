@@ -18,6 +18,11 @@ export default function Header () {
 
   return (
     <nav className="fixed w-full top-0 z-50">
+      <div className="awesome-tnw text-white px-4 py-2 text-center font-medium">
+        <p>currently 📍 located at TNW 2021, we've talked? <a
+          href="https://www.linkedin.com/in/hiddeschultze/"> let's connect @ LinkedIn</a>!</p>
+      </div>
+
       <div className="container my-2">
         <div
           className={`flex flex-wrap flex-row justify-between items-center ${getLinksOpen
@@ -39,7 +44,8 @@ export default function Header () {
             : 'hidden'} sm:flex flex-wrap flex-row items-center py-3 md:py-0`}>
 
             {links.map(l => {
-              return (<AnchorLink offset={50} className="text-3xl text-gray-800 sm:my-0 my-2 block font-bold w-full" href={"#" + l}>{l}</AnchorLink>)
+              return (<AnchorLink offset={50} className="text-3xl text-gray-800 sm:my-0 my-2 block font-bold w-full"
+                                  href={'#' + l}>{l}</AnchorLink>)
             })}
 
             {/*<AnchorLink offset={50} className="text-3xl block font-bold w-full"*/}
@@ -51,6 +57,12 @@ export default function Header () {
         </div>
       </div>
       <style jsx>{`
+        .awesome-tnw {
+          backdrop-filter: blur(8px);
+          background-position:center;
+          background-size: auto 100%;
+          background-image: url(https://earlybird.thenextweb.com/assets/2.0/custom/tnw/bg-nav-desktop.jpg);
+        }
       `}</style>
     </nav>
   )
