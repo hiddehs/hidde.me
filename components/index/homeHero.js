@@ -20,7 +20,7 @@ export default function HomeHero () {
       <div className="bg-gray-200 relative">
         <div
           className="container mx-auto flex items-start md:items-center justify-between">
-          <div className="z-10 relative mt-12 md:my-auto inline-block">
+          <div className="z-10 relative mt-32 md:my-auto inline-block">
             <h2 className={'leading-tight mb-4'}>Hidde Schultze <span
               className="hidden sm:inline">—</span><br/>
               <span
