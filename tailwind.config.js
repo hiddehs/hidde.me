@@ -2,7 +2,7 @@ const { colors } = require('tailwindcss/defaultTheme')
 
 module.exports = {
   purge: {
-    content: ['./components/**/*.js', './pages/**/*.js', './css/**/*.css'],
+    content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './css/**/*.css'],
     options: {
       whitelist: [
         'bg-red-600',
