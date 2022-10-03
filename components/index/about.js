@@ -30,13 +30,13 @@ export default function About () {
                     <h2 className="leading-none">👋 hi,</h2>
                     <h2>nice to meet you.</h2>
                   </div>
-                  <p className='mb-2'>I'm Hidde Schultze, a freelance full stack
+                  <p className='mb-2'>I'm Hidde Schultze, a freelance lead
                     developer currently working from <a
-                      href="https://nomadlist.com/zwolle"
+                      href="https://nomadlist.com/utrecht"
                       style={{ textDecoration: 'none' }}
                       className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
-                      className="tag-circle bg-green-400"></span> Zwolle
-                      🇳🇱</a></p>
+                      className="tag-circle bg-green-400"></span> Utrecht
+                      🚲</a></p>
                   <p className='mb-1'>As a developer I strive to create the best
                     experience for
                     the
