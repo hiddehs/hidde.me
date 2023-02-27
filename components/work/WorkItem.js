@@ -33,7 +33,7 @@ export default function WorkItem ({ data, video = '' }) {
         </div>
         <div className="footer mt-auto">
           {data.link ? <><a href={data.link.url} target="blank"
-                            className="font-medium link">{data.link.url.replace(
+                            className="font-medium link hover:opacity-60 hover:text-black">{data.link.url.replace(
             'https://', '').replace('http://', '')}</a><br/></> : ''}
           {/*<a href="#more" className="font-medium">Read more</a>*/}
         </div>

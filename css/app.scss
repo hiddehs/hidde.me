@@ -91,11 +91,23 @@ a {
   }
 
   &:hover {
-    @apply text-black;
+    @apply text-gray-700;
   }
 
   &.link {
+    transition: all 100ms ease-out;
+    border-bottom: 0 solid black;
+
+    &:hover {
+      border-bottom-width: .1em;
+
+      &::after {
+        margin-left: .3em;
+      }
+    }
+
     &::after {
+      transition: all 150ms ease-out;
       content: '';
       display: inline-block;
       width: 10px;
@@ -141,6 +153,9 @@ a {
 
 .experience-item .content .description p:nth-child(1) {
   @apply mb-2;
+}
+.experience-item .content .description p {
+  @apply mb-1;
 }
 
 
