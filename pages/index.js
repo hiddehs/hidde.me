@@ -1,11 +1,12 @@
-import Head from 'next/head'
 import Layout from '../components/Layout'
 import HomeHero from '../components/index/homeHero'
 import Work from '../components/index/work'
 import Expierence from '../components/index/experience'
 import About from '../components/index/about'
 import gql from 'graphql-tag'
-import { getStandaloneApolloClient } from '../lib/prismicApolloClient'
+import {getStandaloneApolloClient} from '../lib/prismicApolloClient'
+import git from "../lib/git";
+import moment from 'moment'
 
 const GET_INDEX_DATA = gql`
     query {
@@ -57,30 +58,31 @@ const GET_INDEX_DATA = gql`
     }
 `
 
-const Home = ({ data }) => {
-  return (
-    <Layout>
-      <HomeHero/>
-      <Work data={data.allWorks}/>
-      <Expierence data={data.allExperiences}/>
-      <About/>
-    </Layout>
-  )
+const Home = ({prismic, git}) => {
+    return (
+        <Layout>
+            <HomeHero git={git}/>
+            <Work data={prismic.allWorks}/>
+            <Expierence data={prismic.allExperiences}/>
+            <About/>
+        </Layout>
+    )
 }
 
-export async function getStaticProps () {
-
-  const client = await getStandaloneApolloClient()
-  let result = await client.query({
-    query: GET_INDEX_DATA,
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'network-only'
-  })
-  return {
-    props: {
-      data: result.data
-    },
-  }
+export async function getStaticProps() {
+    const gitContributions = await git(moment().add(-200, "day"))
+    const client = await getStandaloneApolloClient()
+    let result = await client.query({
+        query: GET_INDEX_DATA,
+        notifyOnNetworkStatusChange: true,
+        fetchPolicy: 'network-only'
+    })
+    return {
+        props: {
+            prismic: result.data,
+            git: gitContributions
+        },
+    }
 }
 
 export default Home

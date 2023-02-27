@@ -7,13 +7,9 @@ import fetch from 'unfetch'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import WorkTitles from '../work/WorkTitles'
 
-const fetcher = url => fetch(url).then(r => r.json())
-export default function HomeHero() {
-
+export default function HomeHero({git}) {
     const [getContributionDay, setContributionDay] = useState(null)
     const [getGitStartMoment, setGitStartMoment] = useState(null)
-    const {data} = useSWR(() => '/api/git?start=' + getGitStartMoment.unix(),
-        fetcher)
 
     return (
         <Section className="hero bg-gray-200 z-0" id="hero">
@@ -36,7 +32,8 @@ export default function HomeHero() {
                             me</AnchorLink>
                     </div>
                 </div>
-                <PatternBackground data={data} setGitStartMoment={setGitStartMoment}
+                <PatternBackground data={git}
+                                   setGitStartMoment={setGitStartMoment}
                                    getContributionDay={getContributionDay}
                                    getGitStartMoment={getGitStartMoment}
                                    setContributionDay={setContributionDay}/>
@@ -56,10 +53,10 @@ export default function HomeHero() {
 </span>
                             </h3>
                         </div>
-                        {data && getContributionDay !== null && getContributionDay !==
+                        {git && getContributionDay !== null && getContributionDay !==
                             undefined &&
                             <ContributionViewer
-                                contributions={data.contributions[getContributionDay]}/>
+                                contributions={git.contributions[getContributionDay]}/>
                         }
                     </div>
                 </div>

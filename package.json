@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "yarn run gitlab_convert_1 && next build",
-    "start": "next start",
-    "gitlab_convert_1": "node lib/gitlab_contribution_converter.js 1",
-    "gitlab_convert_2": "node lib/gitlab_contribution_converter.js 2"
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "~3.7.9",

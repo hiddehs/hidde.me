@@ -45,7 +45,7 @@ export default function gitPatternModule (
                          className={'month text-xs'}>{startDate.format(
             'MMM')}</div>
           startDateFreeze = true
-        } else {
+        } else if(api.contributions) {
           let dateString = startDate.format('Y-MM-DD')
           const contributionsOnDate = api.contributions[dateString]
           let count = (contributionsOnDate) ? contributionsOnDate.length : 0
