@@ -25,7 +25,7 @@ export default function ExperienceItem({data}) {
                             </div>
                             <div>
                                 <h6 className="text-gray-600 font-medium inline-flex items-center">{moment(data.start).year()} {data.end ? ' – ' + moment(data.end).year() : <span className="inline-block ml-3 px-2 py-1 pb-1.5 bg-gray-50 text-gray-800 align-middle rounded-sm leading-none transition duration-100 select-none hover:bg-gray-500"><i
-                                    className={`tag-circle bg-primary`}></i>now</span>}</h6>
+                                    className={`tag-circle bg-primary position-relative animate-pulse`}></i>now</span>}</h6>
                             </div>
 
                             {/*{data.link ? <><a href={data.link.url} target="blank"*/}

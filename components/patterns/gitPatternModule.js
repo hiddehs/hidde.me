@@ -17,6 +17,7 @@ export default function gitPatternModule (
   // let totalGitCircleCount = 0
 
   let createGitPattern = (colSize) => {
+    console.log("createGitPattern")
     gitColCount = PatternCreator().colCalculator(colSize)
     let startDate = events.getGitStartMoment.clone()
 
@@ -31,25 +32,23 @@ export default function gitPatternModule (
         let startDateFreeze = false
         if (startDate.year() !==
           prevStartDate.year && (j !== 0 || i !== 0)) {
-          element = <>
-            <div key={startDate.unix()}
-                 className={'month text-xs'}>{startDate.format('YY')}</div>
-            <div key={startDate.unix() + 1}
+          element = <div key={'year-'+i+''+j}>
+            <div                  className={'month text-xs'}>{startDate.format('YY')}</div>
+            <div
                  className={'month text-xs'}>{startDate.format('MMM')}
             </div>
-          </>
+          </div>
           startDateFreeze = true
           j++
         } else if (startDate.month() !== prevStartDate.month &&
           (j !== 0 || i !== 0)) {
-          element = <div key={startDate.unix() + startDate.format('MM')}
+          element = <div key={'mm-'+i+''+j}
                          className={'month text-xs'}>{startDate.format(
             'MMM')}</div>
           startDateFreeze = true
         } else {
           let dateString = startDate.format('Y-MM-DD')
           const contributionsOnDate = api.contributions[dateString]
-
           let count = (contributionsOnDate) ? contributionsOnDate.length : 0
 
           let commitCountColor = 'primary'
@@ -59,25 +58,27 @@ export default function gitPatternModule (
               break
             }
           }
+
           element =
             <div onClick={() => {
               events.setContributionDay(dateString)
             }}
-                 key={startDate.unix()}
+                 key={i+j}
                  className={`circle text-white circle-git color-${commitCountColor} ${startDate.format(
                    'DD')} ${(events.getContributionDay === dateString)
                    ? 'is-active'
                    : ''}`}
             ><span className="tag">{count}</span></div>
         }
-        col.push(element)
+        if(element) col.push(element)
         prevStartDate = {
           month: startDate.month(),
           year: startDate.year(),
         }
         if (startDateFreeze) startDate.add('-1', 'day')
       }
-      pattern.push(<div className="circle-col" key={i}>{col}</div>)
+      console.log(i)
+      pattern.push(<div className="circle-col" key={'col-'+i}>{col}</div>)
     }
     return pattern
   }
