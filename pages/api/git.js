@@ -1,10 +1,7 @@
 import gql from 'graphql-tag'
 import standaloneGitHubApolloClient from '../../lib/githubApolloClient'
-
-const gitLabApiClient = require('../../lib/gitlabApiClient.js')
 import fs from 'fs'
 import moment from 'moment'
-import { concatAST } from 'graphql'
 import path from 'path'
 
 // TODO: Move caches to seperate cache folder
@@ -129,8 +126,7 @@ export default async (req, res) => {
 
   // Adding GitLab Cache (made on build time)
 
-  for (let i = 1; i < 3; i++) {
-    // gitLabApiClient.init(i)
+  for (let i = 1; i < 2; i++) {
     let gitLabContributions = JSON.parse(fs.readFileSync(
       path.join(process.cwd(),
         `lib/gitlab_contribution_history_cache_${i}.json`)))
