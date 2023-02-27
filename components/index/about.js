@@ -36,7 +36,7 @@ export default function About () {
                       style={{ textDecoration: 'none' }}
                       className="inline-block align-baseline px-2 py-1 bg-gray-300 rounded-sm leading-none hover:bg-gray-500"><span
                       className="tag-circle bg-green-400"></span> Utrecht
-                      🚲</a></p>
+                      🛕🚲</a></p>
                   <p className='mb-1'>As a developer I strive to create the best
                     experience for
                     the
