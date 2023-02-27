@@ -27,7 +27,7 @@ export default function PatternBackground ({
       gitHeight = 5
     } else if (window.innerWidth > 1200) {
       basePatternSize = 12
-      gitPatternSize = 6
+      gitPatternSize = 5
       restPatternSize = 4
     }
   }
@@ -83,7 +83,7 @@ export default function PatternBackground ({
 
   useEffect(() => {
     if (!getGitStartMoment) {
-      let totalGitCircleCount = ((pc.colCalculator(gitPatternSize)) * gitHeight)
+      let totalGitCircleCount = Math.min(((pc.colCalculator(gitPatternSize)) * gitHeight), 240)
       let initialMoment = moment().
         add('-' + totalGitCircleCount, 'days').
         set('hours', 0).
@@ -93,7 +93,6 @@ export default function PatternBackground ({
       initialMoment.add('+' + (moment().year() - initialMoment.year()), 'day')
       setGitStartMoment(initialMoment)
     }
-
     if (data && getContributionDay == null) {
       setContributionDay(
         Object.keys(data.contributions)[Object.keys(data.contributions).length -
@@ -107,7 +106,7 @@ export default function PatternBackground ({
     <>
       <div className="pattern-background z-0">
         {pc.createPattern(basePatternSize)}
-        {data &&
+        {data && getGitStartMoment &&
         <div className="git pattern-background p-0" style={{
           padding: 0,
           overflow: 'visible',

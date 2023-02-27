@@ -4,8 +4,8 @@ import LazyLoad from 'react-lazyload'
 export default function WorkItem ({ data, video = '' }) {
   return (
     <>
-      <div className="work-item flex flex-col">
-        <div className="image mb-4">
+      <div className="work-item flex flex-col" >
+        <div className="image mb-4  hover:opacity-80 transition duration-200 transition-ease-in cursor-pointer" onClick={()=>window.open(data.link.url)}>
           {(data.video) ?
             <LazyLoad>
               <video className="absolute z-20 lazy" muted playsInline loop
@@ -33,7 +33,7 @@ export default function WorkItem ({ data, video = '' }) {
         </div>
         <div className="footer mt-auto">
           {data.link ? <><a href={data.link.url} target="blank"
-                            className="font-medium link">{data.link.url.replace(
+                            className="font-medium link hover:opacity-60 hover:text-black">{data.link.url.replace(
             'https://', '').replace('http://', '')}</a><br/></> : ''}
           {/*<a href="#more" className="font-medium">Read more</a>*/}
         </div>

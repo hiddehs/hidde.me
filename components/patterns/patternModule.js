@@ -78,10 +78,10 @@ export default function PatternCreator (height = 17) {
     for (let i = 0; i < colCount; i++) {
       let col = []
       for (let j = 0; j < height; j++) {
-        col.push(<div onMouseEnter={elEnter} onMouseLeave={elLeave} key={1 + i + j}
-                      className="circle"/>)
+        col.push(<div onMouseEnter={elEnter} onMouseLeave={elLeave} key={(1 + i + j)}
+                      className="circle"></div>)
       }
-      pattern.push(<div className="circle-col" key={i}>{col}</div>)
+      pattern.push(<div className="circle-col" key={colSize + ''+i}>{col}</div>)
     }
     return pattern
   }
