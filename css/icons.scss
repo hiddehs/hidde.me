@@ -2,17 +2,15 @@
 /*TODO: SASS:*/
 
 span.hs-icon {
-  height: 100%;
   vertical-align: baseline;
-  line-height: 100%;
   display: inline-block;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100% auto;
   background-position: center;
 }
 
 .btn span.hs-icon {
-  margin-left: 1.5px;
+  //margin-left: 1.5px;
 }
 
 span.hs-icon:after {
@@ -21,8 +19,8 @@ span.hs-icon:after {
 }
 
 .btn span.hs-icon {
-  width: 18px;
-  min-height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .btn:not(.btn-primary):not(.btn-outline-primary):hover span.hs-icon {
