@@ -17,7 +17,6 @@ export default function gitPatternModule (
   // let totalGitCircleCount = 0
 
   let createGitPattern = (colSize) => {
-    console.log("createGitPattern")
     gitColCount = PatternCreator().colCalculator(colSize)
     let startDate = events.getGitStartMoment.clone()
 
@@ -64,11 +63,11 @@ export default function gitPatternModule (
               events.setContributionDay(dateString)
             }}
                  key={i+j}
-                 className={`circle text-white circle-git color-${commitCountColor} ${startDate.format(
+                 className={`circle relative text-white circle-git color-${commitCountColor} ${startDate.format(
                    'DD')} ${(events.getContributionDay === dateString)
                    ? 'is-active'
                    : ''}`}
-            ><span className="tag">{count}</span></div>
+            >{i===gitColCount -1 && j===height - 1 ? <span style={{top: "calc(50% - 3.4px)", left: "calc(50% - 3.4px)"}} className="absolute animate-ping inline-flex h-1.5 w-1.5 rounded-full bg-red-300 opacity-80"></span>:''} <span className="tag relative">{count}</span></div>
         }
         if(element) col.push(element)
         prevStartDate = {
@@ -77,7 +76,6 @@ export default function gitPatternModule (
         }
         if (startDateFreeze) startDate.add('-1', 'day')
       }
-      console.log(i)
       pattern.push(<div className="circle-col" key={'col-'+i}>{col}</div>)
     }
     return pattern
