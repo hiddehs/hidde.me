@@ -14,7 +14,7 @@ export default function ExperienceItem({data}) {
                         {data.logo && <img src={data.logo.url} alt=""/>}
                     </div>
                     <div className="content">
-                        <div className="title mb-2 flex items-center justify-between">
+                        <div className="title mb-2 flex items-center justify-between flex-wrap">
                             <div>
                                 <h6 className="mt-1">
                                     {data.title[0].text}
@@ -23,16 +23,10 @@ export default function ExperienceItem({data}) {
                                    style={{textDecoration: 'none'}} href={data.company_link &&
                                     data.company_link.url}>{data.company[0].text}</a>
                             </div>
-                            <div>
-                                <h6 className="text-gray-600 font-medium inline-flex items-center">{moment(data.start).year()} {data.end ? ' – ' + moment(data.end).year() : <span className="inline-block ml-3 px-2 py-1 pb-1.5 bg-gray-50 text-gray-800 align-middle rounded-sm leading-none transition duration-100 select-none hover:bg-gray-500"><i
+                            <div className={'flex-shrink mb-1'}>
+                                <h6 className="text-gray-600 font-medium inline-flex items-center flex-wrap justify-end">{moment(data.start).year()} {data.end ? ' – ' + moment(data.end).year() : <span className="inline-block ml-3 my-1 px-2 py-1 pb-1.5 bg-gray-50 text-gray-800 align-middle rounded-sm leading-none transition duration-100 select-none hover:bg-gray-500"><i
                                     className={`tag-circle bg-primary position-relative animate-pulse`}></i>now</span>}</h6>
                             </div>
-
-                            {/*{data.link ? <><a href={data.link.url} target="blank"*/}
-                            {/*                  className="font-medium link">{data.link.url.replace(*/}
-                            {/*  'https://', '').replace('http://', '')}</a><br/></> : ''}*/}
-
-
                         </div>
                         <div className="description text-gray-800">
                             {RichText.render(data.description)}
@@ -42,15 +36,6 @@ export default function ExperienceItem({data}) {
                     </div>
 
                 </div>
-                {/*<div*/}
-                {/*  className="item-timing md:h-full md:text-right mt-10 md:mt-0 md:pl-4">*/}
-                {/*  <h2*/}
-                {/*    className="text-gray-300 font-normal lg:pr-20 leading-none"> –</h2>*/}
-                {/*  <h1 className="text-gray-400 leading-none md:leading-normal"*/}
-                {/*      style={{ fontSize: '93px' }}>{(data.end*/}
-                {/*    ? moment(data.end).year()*/}
-                {/*    : 'now.')}</h1>*/}
-                {/*</div>*/}
             </div>
             <style jsx>
                 {`
