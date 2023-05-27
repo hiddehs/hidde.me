@@ -58,12 +58,12 @@ const GET_INDEX_DATA = gql`
     }
 `
 
-const Home = ({prismic, git}) => {
+const Home = ({experiences, works, git}) => {
     return (
         <Layout>
             <HomeHero git={git}/>
-            <Work data={prismic.allWorks}/>
-            <Expierence data={prismic.allExperiences}/>
+            <Work data={works}/>
+            <Expierence data={experiences}/>
             <About/>
         </Layout>
     )
@@ -79,7 +79,8 @@ export async function getStaticProps() {
     })
     return {
         props: {
-            prismic: result.data,
+            works: result.data.allWorks,
+            experiences: result.data.allExperiences.edges.sort((a,b)=> (a.node.index > b.node.index) ? 1 : -1),
             git: gitContributions
         },
     }
