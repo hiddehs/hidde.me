@@ -19,19 +19,16 @@ export default function MyApp ({ Component, pageProps }) {
         <meta name="og:description" content="Hidde Schultze is a full stack developer from the Netherlands, founder of VisualRadioAssist and working on several (e)health projects."/>
         <meta name="og:image" content=""/>
 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-59WQ8WPRZK"></script>
+        <script dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-
-          <!-- Google tag (gtag.js) -->
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-59WQ8WPRZK"></script>
-          <script dangerouslySetInnerHTML={{
-              __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-    
-              gtag('config', 'G-59WQ8WPRZK');
-          `}}
-          />
+            gtag('config', 'G-59WQ8WPRZK');
+        `}}
+        />
       </Head>
       <Header/>
       <Component className={'mt-20'} {...pageProps} />
