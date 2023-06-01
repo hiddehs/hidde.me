@@ -2,6 +2,7 @@ import '../css/app.scss'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Head from 'next/head'
+import {Analytics} from "@vercel/analytics/react";
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp ({ Component, pageProps }) {
@@ -34,6 +35,7 @@ export default function MyApp ({ Component, pageProps }) {
       </Head>
       <Header/>
       <Component className={'mt-20'} {...pageProps} />
+      <Analytics />
       <Footer/>
     </>
   )
