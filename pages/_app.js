@@ -2,6 +2,7 @@ import '../css/app.scss'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Head from 'next/head'
+import {Analytics} from "@vercel/analytics/react";
 
 // This default export is required in a new `pages/_app.js` file.
 export default function MyApp ({ Component, pageProps }) {
@@ -18,22 +19,20 @@ export default function MyApp ({ Component, pageProps }) {
         <meta name="og:description" content="Hidde Schultze is a full stack developer from the Netherlands, founder of VisualRadioAssist and working on several (e)health projects."/>
         <meta name="og:image" content=""/>
 
-        <script async
-                src="https://www.googletagmanager.com/gtag/js?id=UA-76194988-1"/>
-
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-59WQ8WPRZK"></script>
         <script dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'UA-76194988-1');
-         `,
-        }}
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-59WQ8WPRZK');
+        `}}
         />
       </Head>
       <Header/>
       <Component className={'mt-20'} {...pageProps} />
+      <Analytics />
       <Footer/>
     </>
   )
