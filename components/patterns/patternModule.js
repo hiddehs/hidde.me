@@ -74,7 +74,6 @@ export default function PatternCreator (height = 17, size = 0) {
       // Set window width/height to state
       setColCount(
         Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20))))
-      console.log(colCount)
     }
 
     // Add event listener
@@ -110,6 +109,7 @@ export default function PatternCreator (height = 17, size = 0) {
     calcCols: (colSize) => {
       return Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20)))
     },
+    height,
     colCount,
   }
 }

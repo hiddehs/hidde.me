@@ -17,9 +17,8 @@ export default function gitPatternModule (
 
   let createGitPattern = () => {
     gitColCount = pc.colCount
-    console.log({ gitColCount })
+    height = pc.height
     let startDate = events.getGitStartMoment.clone()
-    console.log(startDate.toISOString())
     let pattern = []
     let prevStartDate = { year: null, month: null }
 

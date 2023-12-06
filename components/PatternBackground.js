@@ -84,12 +84,12 @@ export default function PatternBackground ({
     patterns.g.setColSize(gitPatternSize)
 
     if (!getGitStartMoment) {
-      console.log(gitHeight)
-      console.log("calc cols", patterns.g.calcCols(gitPatternSize)
-      )
+      // console.log(gitHeight)
+      // console.log("calc cols", patterns.g.calcCols(gitPatternSize)
+      // )
       let totalGitCircleCount = Math.min(((patterns.g.calcCols(gitPatternSize)) * gitHeight),
         240)
-      console.log(totalGitCircleCount)
+      // console.log(totalGitCircleCount)
       let initialMoment = moment().
         add('-' + totalGitCircleCount, 'days').
         set('hours', 0).
@@ -97,7 +97,7 @@ export default function PatternBackground ({
         set('seconds', 0)
       initialMoment.add('+' + (moment().diff(initialMoment, 'months')), 'day')
       initialMoment.add('+' + (moment().year() - initialMoment.year()), 'day')
-      console.log({initialMoment: initialMoment.toISOString()})
+      // console.log({initialMoment: initialMoment.toISOString()})
       setGitStartMoment(initialMoment)
     }
     if (data && getContributionDay == null) {
