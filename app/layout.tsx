@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const metadata = {
   metadataBase: "https://hidde.me",
   title: 'hidde.me – hidde schultze – full stack dev',
@@ -17,7 +19,11 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Analytics } from '@vercel/analytics/react'
 
-export default function RootLayout ({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html>
     <head>
@@ -35,10 +41,7 @@ export default function RootLayout ({ children }) {
       />
     </head>
     <body>
-    <Header/>
     {children}
-    <Analytics/>
-    <Footer/>
     </body>
 
     </html>

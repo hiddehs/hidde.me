@@ -1,11 +1,11 @@
-import HomeHero from '../components/index/homeHero'
-import Work from '../components/index/work'
-import Expierence from '../components/index/experience'
-import About from '../components/index/about'
+import HomeHero from '../../components/index/homeHero'
+import Work from '../../components/index/work'
+import Expierence from '../../components/index/experience'
+import About from '../../components/index/about'
 import gql from 'graphql-tag'
-import { getStandaloneApolloClient } from '../lib/prismicApolloClient'
+import { getStandaloneApolloClient } from '../../lib/prismicApolloClient'
 import moment from 'moment'
-import git from '../lib/git'
+import git from '../../lib/git'
 
 const GET_INDEX_DATA = gql`
     query {
@@ -61,7 +61,6 @@ export default async function Index () {
   const client = await getStandaloneApolloClient()
   let result = await client.query({
     query: GET_INDEX_DATA,
-    notifyOnNetworkStatusChange: true,
     fetchPolicy: 'network-only',
   })
   const works = result.data.allWorks
