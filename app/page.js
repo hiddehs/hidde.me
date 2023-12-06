@@ -79,7 +79,7 @@ export default async function Index () {
   // }
 
   return (
-    <div className={"content"}>
+    <div className={"content mt-20"}>
       <HomeHero git={gitContributions}/>
       <Work data={works}/>
       <Expierence data={experiences}/>
