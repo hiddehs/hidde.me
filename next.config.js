@@ -19,7 +19,7 @@ module.exports = {
           has: [
             {
               type: 'host',
-              value: 'nye.dev.hidde.me',
+              value: 'nye.dev.hidde.dev',
             },
           ],
           destination: '/nye/:path*',
