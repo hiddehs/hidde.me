@@ -1,7 +1,13 @@
 const {colors} = require('tailwindcss/defaultTheme')
 
 module.exports = {
-    content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './css/**/*.css'],
+    content: [
+        './pages/**/*.{ts,tsx}',
+        './components/**/*.{ts,tsx}',
+        './app/**/*.{ts,tsx}',
+        './src/**/*.{ts,tsx}',
+        './css/**/*.css'
+    ],
     theme: {
         fontWeight: {
             normal: 400,

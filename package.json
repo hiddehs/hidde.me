@@ -10,6 +10,7 @@
   "dependencies": {
     "@apollo/client": "~3.7.17",
     "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@radix-ui/react-label": "^2.0.2",
     "@vercel/analytics": "^1.1.1",
     "apollo-boost": "^0.4.9",
     "apollo-cache-inmemory": "^1.6.6",
