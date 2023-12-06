@@ -1,7 +1,7 @@
 import SectionWithTitle from '../SectionWithTitle'
 import WorkItems from '../work/WorkItems'
 
-export default function Work ({data, children }) {
+export default function Work ({data }) {
   return (
     <>
       <SectionWithTitle title='work' subtitle='selected'>

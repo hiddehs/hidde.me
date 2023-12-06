@@ -4,13 +4,13 @@ hidde.me personal site @ 2020
 
 ## Development
 ```bash
-yarn # install packages
-yarn dev
+bun i # install packages
+bun dev
 ```
 
 ## Production
 ```bash
-yarn build && yarn start
+bun build && yarn start
 ```
 
 
@@ -21,11 +21,12 @@ The Git contribution converter fetches all commits from diffrent GitHub and GitL
 To fetch a fresh cache for the GitLab repositories / instances, run:
 
 ```bash
-yarn gitlab_convert_1
-yarn gitlab_convert_2
+bun gitlab_convert_1
+bun gitlab_convert_2
 ```
 
 To fetch from `.env` configured GitLab instances `GITLAB_BASE_URL_1` & `GITLAB_BASE_URL_2`
+
 
 ## Configuration
 

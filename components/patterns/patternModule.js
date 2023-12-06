@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-export default function PatternCreator (height = 17) {
+export default function PatternCreator (height = 17, size = 0) {
+
+  const [colSize, setColSize] = useState(0)
+  const [colCount, setColCount] = useState(0)
+
   const elEnter = (event) => {
     const el = event.target
     let index = Array.from(el.parentNode.children).indexOf(el)
@@ -64,33 +68,48 @@ export default function PatternCreator (height = 17) {
     })
   }
 
-  let colCalculator = (colSize = 1) => {
-    if (process.browser) {
-      return Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20)))
-    }
-    return 0
-  }
+  useEffect(() => {
 
-  const createPattern = (colSize) => {
+    function handleResize () {
+      // Set window width/height to state
+      setColCount(
+        Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20))))
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize()
+    return () => window.removeEventListener("resize", handleResize);
+
+  })
+  const createPattern = () => {
     if (colSize < 1) return
-    let colCount = colCalculator(colSize)
     let pattern = []
     for (let i = 0; i < colCount; i++) {
       let col = []
       for (let j = 0; j < height; j++) {
-        col.push(<div onMouseEnter={elEnter} onMouseLeave={elLeave} key={(1 + i + j)}
+        col.push(<div onMouseEnter={elEnter} onMouseLeave={elLeave}
+                      key={(1 + i + j)}
                       className="circle"></div>)
       }
-      pattern.push(<div className="circle-col" key={colSize + ''+i}>{col}</div>)
+      pattern.push(<div className="circle-col"
+                        key={colSize + '' + i}>{col}</div>)
     }
     return pattern
   }
   return {
     createPattern,
-    colCalculator,
+    setColSize,
     events: {
       elEnter,
       elLeave,
     },
+    calcCols: (colSize) => {
+      return Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20)))
+    },
+    height,
+    colCount,
   }
 }

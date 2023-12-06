@@ -1,7 +1,8 @@
+"use client"
 import Section from '../Section'
-import React from 'react'
 import PatternCreator from '../patterns/patternModule'
-
+import React from 'react'
+import Pattern from '../patterns/Pattern'
 export default function About () {
 
   let patternDimensions = {
@@ -79,8 +80,7 @@ export default function About () {
           </div>
         </div>
         <div className="pattern-background z-0">
-          {PatternCreator(patternDimensions.h).
-            createPattern(patternDimensions.s)}
+          <Pattern h={patternDimensions.h} w={patternDimensions.s}></Pattern>
         </div>
       </Section>
       <style jsx>{`
