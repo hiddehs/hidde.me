@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Input } from '../../../@/components/ui/input'
 
 export const metadata: Metadata = {
   title: 'hidde.me NYE',
@@ -11,7 +12,8 @@ export default function Page () {
 
       <div className="w-full p-12">
 
-        <div className="grid w-full xl:grid-cols-2 grid-cols-1 bg-primary p-10 gap-8">
+        <div
+          className="grid w-full xl:grid-cols-2 grid-cols-1 bg-primary p-10 gap-8">
           <div className="col-span-1">
             <div className={'pb-24 pt-4'}>
               <svg xmlns="http://www.w3.org/2000/svg" className={'max-h-[60vh]'}
@@ -50,7 +52,7 @@ export default function Page () {
           </div>
           <div className="col-span-1 text-right flex flex-col h-full items-end">
 
-            <div className="relative font-medium right-[9.5rem] mb-12">
+            <div className="relative mt-auto font-medium right-[9.5rem] mb-12">
               <div
                 className="ticket-left text-left w-full h-full justify-center pl-12 py-8 flex gap-4 flex-col">
                 <h6>31.12.2023 NYE COLDHOUSE<br/>
@@ -84,8 +86,7 @@ export default function Page () {
             </h2>
             <div className="py-4">
 
-
-              textfield
+              <Input type={'email'} placeholder={'email'}/>
               <a href={'#'}
                  className="btn ml-auto w-full text-center md:text-left md:w-auto"><span
                 className="hs-icon link-arrow-right mr-1"></span> get ticket</a>
