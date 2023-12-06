@@ -28,7 +28,7 @@ export default function Footer () {
                 <p>All rights reserved © {year}</p>
                 <p className="text-sm text-gray-600">KVK 67988695 – <a className="text-gray-600" target="_blank"
                   href="https://rusty.2k16.hiddeschultze.nl">rusty.2k16.hiddeschultze.nl</a> – <a
-                  href="https://github.com/hiddehs/hidde.me"><span className="hs-icon w-3 social-github"></span> github.repo</a></p>
+                  href="https://github.com/hiddehs/hidde.me"><span className="hs-icon w-3 social-github"></span> github</a></p>
               </div>
 
             </div>

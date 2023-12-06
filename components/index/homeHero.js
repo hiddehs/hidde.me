@@ -32,11 +32,11 @@ export default function HomeHero({git}) {
                             me</AnchorLink>
                     </div>
                 </div>
-                {/*<PatternBackground data={git}*/}
-                {/*                   setGitStartMoment={setGitStartMoment}*/}
-                {/*                   getContributionDay={getContributionDay}*/}
-                {/*                   getGitStartMoment={getGitStartMoment}*/}
-                {/*                   setContributionDay={setContributionDay}/>*/}
+                <PatternBackground data={git}
+                                   setGitStartMoment={setGitStartMoment}
+                                   getContributionDay={getContributionDay}
+                                   getGitStartMoment={getGitStartMoment}
+                                   setContributionDay={setContributionDay}/>
 
             </div>
             <div className="bg-gray-100">

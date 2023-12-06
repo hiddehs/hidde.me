@@ -59,7 +59,7 @@ const GET_INDEX_DATA = gql`
     }
 `
 
-const Home = ({works, experiences}) => {
+const Home = ({works, experiences, git}) => {
     return (
         <Layout>
             <HomeHero git={git}/>
@@ -78,6 +78,7 @@ export async function getStaticProps() {
         notifyOnNetworkStatusChange: true,
         fetchPolicy: 'network-only'
     })
+    console.log(git)
     return {
         props: {
             works: result.data.allWorks,

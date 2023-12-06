@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
-import useSWR from 'swr'
-import fetch from 'unfetch'
 import PatternCreator from './patterns/patternModule'
-import gitPatternModule from './patterns/gitPatternModule'
 import moment from 'moment'
+import gitPatternModule from './patterns/gitPatternModule'
 
 export default function PatternBackground ({
   data,
@@ -19,20 +17,12 @@ export default function PatternBackground ({
   let basePatternSize = 14
   let gitPatternSize = 6
   let restPatternSize = 0
-  if (process.browser) {
-    if (window.innerWidth < 768) {
-      // mobile enz
-      basePatternSize = gitPatternSize = 20
-      height = 10
-      gitHeight = 5
-    } else if (window.innerWidth > 1200) {
-      basePatternSize = 12
-      gitPatternSize = 5
-      restPatternSize = 4
-    }
+  const patterns = {
+    prepend: PatternCreator(height, basePatternSize),
+    g: PatternCreator(height, gitPatternSize),
+    append: PatternCreator(height, restPatternSize),
   }
 
-  let pc = PatternCreator(height)
   const gitElEnter = (contributionsOnDate, e) => {
     let el = e.target
     if (el.parentNode) {
@@ -60,14 +50,15 @@ export default function PatternBackground ({
     // setGitDayStateDebounced(contributionsOnDate)
     // PatternCreator().events.elEnter(e)
   }
+
   const gp = gitPatternModule(data, {
       enter: gitElEnter,
-      leave: pc.events.elLeave,
+      leave: patterns.g.events.elLeave,
       setContributionDay: setContributionDay,
       getContributionDay: getContributionDay,
       getGitStartMoment: getGitStartMoment,
     },
-    gitHeight,
+    patterns.g,
   )
   let setGitDayStateDebounced = _.debounce(function (contributionsOnDate) {
     // setGitDayState(contributionsOnDate)
@@ -82,8 +73,25 @@ export default function PatternBackground ({
   // }
 
   useEffect(() => {
+
+    if (window.innerWidth < 768) {
+      // mobile enz
+      basePatternSize = gitPatternSize = 20
+      height = 10
+      gitHeight = 5
+    } else if (window.innerWidth > 1200) {
+      basePatternSize = 12
+      gitPatternSize = 5
+      restPatternSize = 4
+    }
+
+    patterns.prepend.setColSize(basePatternSize)
+    patterns.append.setColSize(restPatternSize)
+
     if (!getGitStartMoment) {
-      let totalGitCircleCount = Math.min(((pc.colCalculator(gitPatternSize)) * gitHeight), 240)
+      patterns.g.setColSize(gitPatternSize)
+      let totalGitCircleCount = Math.min(((patterns.g.colCount) * gitHeight),
+        240)
       let initialMoment = moment().
         add('-' + totalGitCircleCount, 'days').
         set('hours', 0).
@@ -94,29 +102,28 @@ export default function PatternBackground ({
       setGitStartMoment(initialMoment)
     }
     if (data && getContributionDay == null) {
+      console.log(data.contributions)
       setContributionDay(
         Object.keys(data.contributions)[Object.keys(data.contributions).length -
         1])
     }
   })
 
-
-
   return (
     <>
       <div className="pattern-background z-0">
-        {pc.createPattern(basePatternSize)}
+        {patterns.prepend.createPattern(basePatternSize)}
         {data && getGitStartMoment &&
-        <div className="git pattern-background p-0" style={{
-          padding: 0,
-          overflow: 'visible',
-          position: 'relative',
-          width: 'auto',
-        }}>
-          {gp.createGitPattern(gitPatternSize)}
-        </div>
+          <div className="git pattern-background p-0" style={{
+            padding: 0,
+            overflow: 'visible',
+            position: 'relative',
+            width: 'auto',
+          }}>
+            {gp.createGitPattern(gitPatternSize)}
+          </div>
         }
-        {pc.createPattern(restPatternSize)}
+        {patterns.append.createPattern(basePatternSize)}
       </div>
       <style jsx>{`
         .circle-col .month {

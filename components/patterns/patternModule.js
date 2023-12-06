@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function PatternCreator (height = 17, size = 0) {
 
-  const [colSize, setColSize] = useState(size)
+  const [colSize, setColSize] = useState(0)
   const [colCount, setColCount] = useState(0)
 
   const elEnter = (event) => {
@@ -88,9 +88,11 @@ export default function PatternCreator (height = 17, size = 0) {
   }
   return {
     createPattern,
+    setColSize,
     events: {
       elEnter,
       elLeave,
     },
+    colCount
   }
 }
