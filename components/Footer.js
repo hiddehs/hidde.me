@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
-
 const year = (new Date()).getFullYear()
 
 export default function Footer () {
@@ -33,10 +31,10 @@ export default function Footer () {
 
             </div>
             <div className="col w-1/5 text-right">
-              <AnchorLink href="#hero" title={'Go to Top'}
+              <Link href="#hero" title={'Go to Top'}
                  className='btn btn-outline-primary btn-square'>
                 <span className="hs-icon arrow-up"></span>
-              </AnchorLink>
+              </Link>
             </div>
           </div>
         </div>

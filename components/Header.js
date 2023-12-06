@@ -1,6 +1,6 @@
+"use client"
 import Link from 'next/link'
 import React, { useState } from 'react'
-import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 export default function Header () {
   const [getLinksOpen, setLinksOpen] = useState(0)
@@ -40,9 +40,9 @@ export default function Header () {
             : 'hidden'} sm:flex flex-wrap flex-row items-center py-3 md:py-0`}>
 
             {links.map(l => {
-              return (<AnchorLink offset={50} key={l}
+              return (<Link offset={50} key={l}
                                   className="text-3xl text-gray-800 sm:my-0 my-2 block font-bold w-full"
-                                  href={'#' + l}>{l}</AnchorLink>)
+                                  href={'#' + l}>{l}</Link>)
             })}
 
             {/*<AnchorLink offset={50} className="text-3xl block font-bold w-full"*/}

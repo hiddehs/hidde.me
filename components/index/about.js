@@ -1,8 +1,8 @@
+"use client"
 import Section from '../Section'
-import React from 'react'
 import PatternCreator from '../patterns/patternModule'
+import React from 'react'
 import Pattern from '../patterns/Pattern'
-
 export default function About () {
 
   let patternDimensions = {

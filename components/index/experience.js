@@ -1,3 +1,4 @@
+"use client"
 import SectionWithTitle from '../SectionWithTitle'
 import Experiences from '../experience/Experiences'
 

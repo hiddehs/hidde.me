@@ -102,7 +102,6 @@ export default function PatternBackground ({
       setGitStartMoment(initialMoment)
     }
     if (data && getContributionDay == null) {
-      console.log(data.contributions)
       setContributionDay(
         Object.keys(data.contributions)[Object.keys(data.contributions).length -
         1])

@@ -14,7 +14,7 @@ class MyDocument extends Document {
           {/*      type="font/woff2"/>*/}
           {/*<link rel="preload" href="fonts/font-55Rg.woff2" as="font"*/}
           {/*      type="font/woff2"/>*/}
-          <meta name={"description"} content={"Hidde Schultze – Creative Developer from the Netherlands. Founder of VisualRadioAssist and hidde.dev, working at Drimpy."}/>
+          <meta name={"description"} content={"Hidde Schultze – Creative Developer from the Netherlands. Founder of VisualRadioAssist and hidde.dev"}/>
         </Head>
         <body>
         <Main/>
