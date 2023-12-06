@@ -1,4 +1,5 @@
 export const metadata = {
+  metadataBase: "https://hidde.me",
   title: 'hidde.me – hidde schultze – full stack dev',
   description: 'Hidde Schultze – Creative Developer from the Netherlands. Founder of VisualRadioAssist and hidde.dev',
   keywords: 'hidde, schultze, visual radio, visual radio assist, visualradioassist, drimpy, hidde.dev, ehealth, health, corona app, backend minvws, brain bakery website',

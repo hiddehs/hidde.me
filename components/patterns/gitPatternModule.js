@@ -4,8 +4,7 @@ import moment from 'moment'
 import { useState } from 'react'
 
 export default function gitPatternModule (
-  data, events, pc, height = 17) {
-
+  apiData, events, pc, height = 17) {
   const gitCountThresholdColors = {
     '0': 'primary',
     '2': 'blue',
@@ -16,10 +15,11 @@ export default function gitPatternModule (
   let gitColCount = 0
   // let totalGitCircleCount = 0
 
-  let createGitPattern = (colSize) => {
+  let createGitPattern = () => {
     gitColCount = pc.colCount
+    console.log({ gitColCount })
     let startDate = events.getGitStartMoment.clone()
-
+    console.log(startDate.toISOString())
     let pattern = []
     let prevStartDate = { year: null, month: null }
 
@@ -45,9 +45,9 @@ export default function gitPatternModule (
                          className={'month text-xs'}>{startDate.format(
             'MMM')}</div>
           startDateFreeze = true
-        } else if(data.contributions) {
+        } else if(apiData.contributions) {
           let dateString = startDate.format('Y-MM-DD')
-          const contributionsOnDate = data.contributions[dateString]
+          const contributionsOnDate = apiData.contributions[dateString]
           let count = (contributionsOnDate) ? contributionsOnDate.length : 0
 
           let commitCountColor = 'primary'

@@ -69,7 +69,21 @@ export default function PatternCreator (height = 17, size = 0) {
   }
 
   useEffect(() => {
-    setColCount(Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20))))
+
+    function handleResize () {
+      // Set window width/height to state
+      setColCount(
+        Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20))))
+      console.log(colCount)
+    }
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize()
+    return () => window.removeEventListener("resize", handleResize);
+
   })
   const createPattern = () => {
     if (colSize < 1) return
@@ -93,6 +107,9 @@ export default function PatternCreator (height = 17, size = 0) {
       elEnter,
       elLeave,
     },
-    colCount
+    calcCols: (colSize) => {
+      return Math.floor((((window.innerWidth - 16) / 44) * (colSize / 20)))
+    },
+    colCount,
   }
 }

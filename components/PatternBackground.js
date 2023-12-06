@@ -66,12 +66,6 @@ export default function PatternBackground ({
 
   const [getCommitViewerLocation, setCommitViewerLocation] = useState('top')
 
-  // if (process.browser) {
-  //   window.addEventListener('resize', _.debounce(() => {
-  //     // setPattern(makePattern())
-  //   }, 200))
-  // }
-
   useEffect(() => {
 
     if (window.innerWidth < 768) {
@@ -87,11 +81,15 @@ export default function PatternBackground ({
 
     patterns.prepend.setColSize(basePatternSize)
     patterns.append.setColSize(restPatternSize)
+    patterns.g.setColSize(gitPatternSize)
 
     if (!getGitStartMoment) {
-      patterns.g.setColSize(gitPatternSize)
-      let totalGitCircleCount = Math.min(((patterns.g.colCount) * gitHeight),
+      console.log(gitHeight)
+      console.log("calc cols", patterns.g.calcCols(gitPatternSize)
+      )
+      let totalGitCircleCount = Math.min(((patterns.g.calcCols(gitPatternSize)) * gitHeight),
         240)
+      console.log(totalGitCircleCount)
       let initialMoment = moment().
         add('-' + totalGitCircleCount, 'days').
         set('hours', 0).
@@ -99,6 +97,7 @@ export default function PatternBackground ({
         set('seconds', 0)
       initialMoment.add('+' + (moment().diff(initialMoment, 'months')), 'day')
       initialMoment.add('+' + (moment().year() - initialMoment.year()), 'day')
+      console.log({initialMoment: initialMoment.toISOString()})
       setGitStartMoment(initialMoment)
     }
     if (data && getContributionDay == null) {
@@ -119,7 +118,7 @@ export default function PatternBackground ({
             position: 'relative',
             width: 'auto',
           }}>
-            {gp.createGitPattern(gitPatternSize)}
+            {gp.createGitPattern()}
           </div>
         }
         {patterns.append.createPattern(basePatternSize)}
