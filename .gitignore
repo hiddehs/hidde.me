@@ -34,3 +34,5 @@ lib/gitlab_cache/*
 lib/*_cache.json
 lib/*_cache_1.json
 lib/*_cache_2.json
+.vercel
+.env*.local

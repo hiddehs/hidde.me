@@ -78,10 +78,10 @@ export default function About () {
             </div>
           </div>
         </div>
-        <div className="pattern-background z-0">
-          {PatternCreator(patternDimensions.h).
-            createPattern(patternDimensions.s)}
-        </div>
+        {/*<div className="pattern-background z-0">*/}
+        {/*  {PatternCreator(patternDimensions.h).*/}
+        {/*    createPattern(patternDimensions.s)}*/}
+        {/*</div>*/}
       </Section>
       <style jsx>{`
       `}</style>

@@ -23,10 +23,11 @@ export default function Header () {
           className={`flex flex-wrap flex-row justify-between items-center ${getLinksOpen
             ? 'active'
             : ''}`}>
-          <Link href={'/'}><a className={'logo'}><img height="31px"
-                                                      src="logo.svg"
-                                                      alt="hidde.me Logo"/></a></Link>
-          <button onClick={() => {setLinksOpen(!getLinksOpen)}} aria-label={getLinksOpen ? 'Open menu' : 'Close menu'}
+          <Link href={'/'} className={'logo'}><img height="31px"
+                                                   src="logo.svg"
+                                                   alt="hidde.me Logo"/></Link>
+          <button onClick={() => {setLinksOpen(!getLinksOpen)}}
+                  aria-label={getLinksOpen ? 'Open menu' : 'Close menu'}
                   className={`leading-none hamburger hamburger--minus sm:hidden ${getLinksOpen
                     ? 'is-active'
                     : ''}`}>
@@ -39,7 +40,9 @@ export default function Header () {
             : 'hidden'} sm:flex flex-wrap flex-row items-center py-3 md:py-0`}>
 
             {links.map(l => {
-              return (<AnchorLink offset={50} key={l} className="text-3xl text-gray-800 sm:my-0 my-2 block font-bold w-full" href={"#" + l}>{l}</AnchorLink>)
+              return (<AnchorLink offset={50} key={l}
+                                  className="text-3xl text-gray-800 sm:my-0 my-2 block font-bold w-full"
+                                  href={'#' + l}>{l}</AnchorLink>)
             })}
 
             {/*<AnchorLink offset={50} className="text-3xl block font-bold w-full"*/}

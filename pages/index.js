@@ -5,8 +5,9 @@ import Expierence from '../components/index/experience'
 import About from '../components/index/about'
 import gql from 'graphql-tag'
 import {getStandaloneApolloClient} from '../lib/prismicApolloClient'
-import git from "../lib/git";
+// import git from "../lib/git";
 import moment from 'moment'
+import git from '../lib/git'
 
 const GET_INDEX_DATA = gql`
     query {
@@ -58,7 +59,7 @@ const GET_INDEX_DATA = gql`
     }
 `
 
-const Home = ({experiences, works, git}) => {
+const Home = ({works, experiences}) => {
     return (
         <Layout>
             <HomeHero git={git}/>

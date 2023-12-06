@@ -11,7 +11,7 @@ export default function Footer () {
           <div className="flex flex-row justify-between items-center">
             <div className="col w-1/5">
               <Link href={'/'}>
-                <a><img src="icon.svg" height="31px" alt="hidde.me Logo"/></a>
+                <img src="icon.svg" height="31px" alt="hidde.me Logo"/>
               </Link>
             </div>
             <div className="col w-3/5 text-center">
