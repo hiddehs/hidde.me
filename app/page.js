@@ -57,8 +57,8 @@ const GET_INDEX_DATA = gql`
     }
 `
 export default async function Index () {
-  const gitContributions = await git(moment().add(-200, 'day')),
-    client = await getStandaloneApolloClient()
+  const gitContributions = await git(moment().add(-200, 'day'))
+  const client = await getStandaloneApolloClient()
   let result = await client.query({
     query: GET_INDEX_DATA,
     notifyOnNetworkStatusChange: true,
@@ -68,9 +68,8 @@ export default async function Index () {
   const experiences = result.data.allExperiences.edges.sort(
     (a, b) => (a.node.index > b.node.index) ? 1 : -1)
 
-
   return (
-    <div className={"content mt-20"}>
+    <div className={'content mt-20'}>
       <HomeHero git={gitContributions}/>
       <Work data={works}/>
       <Expierence data={experiences}/>
