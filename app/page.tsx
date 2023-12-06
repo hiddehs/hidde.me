@@ -69,7 +69,7 @@ export default async function Index () {
     (a, b) => (a.node.index > b.node.index) ? 1 : -1)
 
   return (
-    <div className={'content mt-20'}>
+    <div className={'content'}>
       <HomeHero git={gitContributions}/>
       <Work data={works}/>
       <Expierence data={experiences}/>
