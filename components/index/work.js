@@ -1,5 +1,3 @@
-"use client"
-
 import SectionWithTitle from '../SectionWithTitle'
 import WorkItems from '../work/WorkItems'
 

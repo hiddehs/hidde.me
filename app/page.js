@@ -1,11 +1,9 @@
-import Layout from '../components/Layout'
 import HomeHero from '../components/index/homeHero'
 import Work from '../components/index/work'
 import Expierence from '../components/index/experience'
 import About from '../components/index/about'
 import gql from 'graphql-tag'
 import { getStandaloneApolloClient } from '../lib/prismicApolloClient'
-// import git from "../lib/git";
 import moment from 'moment'
 import git from '../lib/git'
 
@@ -69,14 +67,7 @@ export default async function Index () {
   const works = result.data.allWorks
   const experiences = result.data.allExperiences.edges.sort(
     (a, b) => (a.node.index > b.node.index) ? 1 : -1)
-  // console.log(git)
-  // return {
-  //     props: {
-  //         works: result.data.allWorks,
-  //
-  //         git: gitContributions
-  //     },
-  // }
+
 
   return (
     <div className={"content mt-20"}>

@@ -12,11 +12,6 @@ function WorkItems ({ className, data }) {
               <WorkItem data={item.node} key={k}/>,
             )}
         </div>
-        <style jsx>{`
-          .work-items{
-            //min-width: 1000px;
-          }
-        `}</style>
       </>
   )
   }
@@ -24,15 +19,3 @@ function WorkItems ({ className, data }) {
 }
 
 export default WorkItems
-
-// export default function WorkItems({className,items}){
-//   return (
-//     <>
-//       <div className={`flex flex-row items-start flex-wrap work-items ${className}`}>
-//         <WorkItem/>
-//         <WorkItem/>
-//         <WorkItem/>
-//       </div>
-//     </>
-//   )
-// }

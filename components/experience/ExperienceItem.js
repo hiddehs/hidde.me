@@ -7,7 +7,6 @@ export default function ExperienceItem({data}) {
         <>
             <div
                 className="experience-item mb-16 flex flex-col md:flex-row flex-no-wrap justify-between lg:w-3/4">
-
                 <div
                     className="item-content flex flex-row items-start justify-start w-full lg:w-4/6 md:w-5/8">
                     <div className={`logo mr-5 ${!data.logo && 'bg-primary'}`}>
@@ -37,21 +36,6 @@ export default function ExperienceItem({data}) {
 
                 </div>
             </div>
-            <style jsx>
-                {`
-                  .experience-item .logo {
-                    max-width: 64px;
-                    flex-shrink: 0;
-                    height: 64px;
-                    display: block;
-                  }
-
-                  .experience-item .logo img {
-                    width: 100%;
-                    height: 100%;
-                  }
-                `}
-            </style>
         </>
     )
 }
