@@ -66,11 +66,7 @@ export function TicketViewer ({ ticket }) {
         <h2
           className={'text-2xl md:text-5xl max-w-[20rem] break-all ' +
             (canvassing ? 'max-h-24' : 'line-clamp-2')}>{ticket.name.substring(
-          0, 24)}{ticket.name.substring(
-          0, 24)}{ticket.name.substring(
-          0, 24)}{ticket.name.substring(
-          0, 24)}{ticket.name.substring(
-          0, 24)}</h2>
+          0, 40)}</h2>
 
         <div className="flex items-center gap-4">
           <div
