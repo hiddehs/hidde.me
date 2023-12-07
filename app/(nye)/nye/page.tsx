@@ -45,7 +45,7 @@ export default async function Page () {
     <div className="w-full overflow-hidden p-4 md:p-12 h-full min-h-[100vh]">
       <div
         className="grid w-full xl:grid-cols-2 grid-cols-1 bg-primary min-h-full p-6 md:p-12 gap-8">
-        <div className="col-span-1 mt-auto">
+        <div className="col-span-1">
           <div className={'md:pb-24 pb-12 pt-4'}>
             <svg xmlns="http://www.w3.org/2000/svg" className={'max-h-[50vh]'}
                  viewBox="0 0 432 427"
@@ -75,7 +75,7 @@ export default async function Page () {
             </svg>
           </div>
 
-          <div className="border-t-4 border-black pt-4">
+          <div className="border-t-4 inline-block border-black pt-4">
             <h1 className={'md:text-5xl text-4xl'}>let's party New Year's!</h1>
           </div>
         </div>
