@@ -31,5 +31,6 @@ SUMMARY:NYE Party Hidde @ Utrecht
 URL:https://nye.hidde.me
 DESCRIPTION:NYE Party Hidde @ Utrecht
 LOCATION:Haverstraat 32 BS\, 3211ND\, Utrecht
+ORGANIZER;CN=Hidde:mailto:hidde+nye@hidde.me
 END:VEVENT
 END:VCALENDAR

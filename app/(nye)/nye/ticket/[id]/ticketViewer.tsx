@@ -1,25 +1,49 @@
 'use client'
 import html2canvas from 'html2canvas'
+import { useEffect } from 'react'
+import sendTicketMail from '@/app/(nye)/nye/ticket/[id]/ticketMail'
 
 export function TicketViewer ({ ticket }) {
+  let canvas
+  const getImageDataUrl = async () => {
+    if (!canvas) canvas = await html2canvas(document.getElementById('ticket'))
+    return canvas.toDataURL('image/png')
+  }
+  ticket.email = ''
+
+  const sendMail = async () => {
+    const imageData = await getImageDataUrl()
+    // .split("data:image/png;base64,")[1]
+    await sendTicketMail(ticket, imageData)
+  }
+  let running = false
+
+  useEffect(() => {
+    if (running) return
+    running = true
+    console.log(((new Date()).valueOf() - ticket.created_at))
+    if (ticket.created_at && ((new Date()).valueOf() - ticket.created_at) <
+      5000) {
+      setTimeout(() => {
+        sendMail()
+      }, 200)
+    }
+  }, [])
   const download = async () => {
-
-    const canvas = await html2canvas(document.getElementById("ticket"))
-    const imageData = canvas.toDataURL('image/png');
-
+    'use client'
     // Create a link element
-    const downloadLink = document.createElement('a');
-    downloadLink.href = imageData;
-    downloadLink.download = `hidde_nye_ticket_${ticket.no}.png`;
+    const downloadLink = document.createElement('a')
+    downloadLink.href = await getImageDataUrl()
+    downloadLink.download = `hidde_nye_ticket_${ticket.no}.png`
 
     // Append the link to the body
-    document.body.appendChild(downloadLink);
+    document.body.appendChild(downloadLink)
 
     // Simulate click to trigger download
-    downloadLink.click();
+    downloadLink.click()
 
     // Clean up
-    document.body.removeChild(downloadLink);
+    document.body.removeChild(downloadLink)
   }
   return [
     <div
@@ -28,11 +52,11 @@ export function TicketViewer ({ ticket }) {
       className="relative bg-primary md:w-auto w-full text-xs mt-auto font-medium mb-12">
       <div
         className="ticket-left text-left w-full h-full justify-center pl-7 pr-44 md:pl-12 py-6 md:py-8 flex gap-2 md:gap-4 flex-col">
-                <span>31.12.2023 NYE COLDHOUSE<br/>
-                  WARMINGHIDDEBIRTHDAYPARTY</span>
+                <span>31.12.2023 HIDDE'S NYE COLDHOUSE<br/>
+                  WARMINGBIRTHDAYPARTY</span>
 
         <h2
-          className={'text-2xl md:text-5xl max-w-[22rem] break-all'}>{ticket.name.substring(
+          className={'text-2xl line-clamp-2 overflow-ellipsis md:text-5xl max-w-[20rem] break-all'}>{ticket.name.substring(
           0, 24)}</h2>
 
         <div className="flex items-center gap-4">
@@ -44,7 +68,7 @@ export function TicketViewer ({ ticket }) {
               : '💃'}</h3>
           </div>
           <h6 className={'text-sm leading-none md:text-base'}>
-            {ticket.email}<br/>
+            {ticket.email.length > 0 ? ticket.email + '<br/>' : null}
             see you at {ticket.dinner ? '18:00' : '20:00'}!
           </h6>
         </div>
@@ -70,9 +94,34 @@ export function TicketViewer ({ ticket }) {
       </div>
 
     </div>,
-    <button key={2}
-            onClick={download}
-            className={`btn text-center`}><span
-      className="hs-icon link-arrow-right mr-1"></span> Download</button>,
+
+    <div key={3} className={'text-xl'}>superleuk dat je erbij bent! <span
+      className="text-purple-500">
+          ☺
+        </span>︎ groetjes hidde
+    </div>
+    ,
+    ticket.dinner ? <div key={5} className={'text-base'}>
+      Dieet wensen? <a href="https://wa.me/310623051810">let me know</a>
+    </div> : null,
+    <div className={'flex gap-4'} key={2}>
+      <button
+        onClick={() => navigator.share ? navigator.share({
+          title: document.title,
+          url: window.location.href,
+        }) : null}
+        className={`btn text-center`}><span
+        className="hs-icon link-arrow-right mr-1"></span> Share NYE party with
+        friends
+      </button>
+      <button
+        onClick={download}
+        className={`btn text-center`}><span
+        className="hs-icon link-arrow-right mr-1"></span> Download Ticket
+      </button>
+
+
+    </div>
+    ,
   ]
 }

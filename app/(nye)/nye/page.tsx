@@ -8,7 +8,6 @@ import { randomUUID } from 'crypto'
 import { Ticket } from '@/app/(nye)/nye/ticket'
 import { kv } from '@vercel/kv'
 import Custom404 from '@/app/not-found'
-import { Resend } from 'resend'
 
 export const metadata: Metadata = {
   title: 'hidde NYE party',
@@ -23,33 +22,17 @@ export default function Page () {
       id: randomUUID(),
       no: Math.floor(Math.random() * (999999 - 100000) + 10000),
       name: formData.get('name').toString(),
-      email: formData.get('email').toString(),
+      email: formData.get('email')?.toString() ?? '',
       dinner: formData.get('dinner') ? true : false,
+      created_at: (new Date()).valueOf(),
     }
     if (!ticket) return Custom404()
-    await kv.set('ticket_' + ticket.id, ticket)
-    await kv.set('ticket_no_' + ticket.no.toString(), ticket.id)
-    await kv.sadd('ticket_ids', ticket.id)
 
-
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    await resend.emails.send({
-      from: "NYE PARTY TICKETS \<tickets@nye.hidde.me\>",
-      to: ticket.email,
-      bcc: 'nye+tickets@hidde.me',
-      attachments: [{
-        filename: "NYE Party Hidde Utrecht.ics",
-        path: "https://nye.dev.hidde.dev/NYE Party Hidde at Utrecht.ics"
-      }],
-      subject: `🎆💃New Year's Eve Party: Here's your ticket ${ticket.name}!`,
-      html: `<div>
-    <h1>Hi ${ticket.name}, here's your NYE ticket!</h1>
-      <p>Check the calendar invite attached, so you don't miss the new year.</p>
-      <p>Check your very unique and personal ticket №${ticket.no} via the following link: </p>
-      <a href="https://nye.hidde.me/nye/ticket/${ticket.id}">See your ticket fullscreen</a>
-</div>`
-    });
+    const pipe = kv.pipeline()
+    pipe.set('ticket_' + ticket.id, ticket)
+    pipe.set('ticket_no_' + ticket.no.toString(), ticket.id)
+    pipe.sadd('ticket_ids', ticket.id)
+    await pipe.exec()
 
     return redirect(`/nye/ticket/${ticket.id}`)
   }
@@ -139,20 +122,23 @@ export default function Page () {
           <h2 className="text-3xl md:text-4xl font-medium w-full right-0 top-0">
             get your special unique personalised party fissa ticket
           </h2>
+          <p className="w-3/4 my-3">the long awaited cold house warming birthday (13-11) fissa @ de utrechtse bouwput with balcony and loopbrug is here.
+            very excited to invite You and your Friend(s+2) to the best place to enjoy an oliebol, fireworks, music, and to perform your last 2k23 dances 💃 ☺
+            <br/><br/>Sincerely,<br/>hidde</p>
           <form
             action={getTicket}
             className="p-6 text-left flex flex-col border border-black mt-6 mb-10">
             <div className="flex flex-wrap gap-4 items-center">
               <div
                 className="grid mb-2 w-full md:w-auto max-w-sm items-center gap-1.5">
-                <Label htmlFor="email">Your very personal name</Label>
+                <Label htmlFor="email">your very personal name</Label>
                 <Input required type="text" name={'name'} autoComplete={'fname'}
                        placeholder="Name"/>
               </div>
               <div
                 className="grid mb-2 w-full md:w-auto max-w-sm items-center gap-1.5">
-                <Label htmlFor="email">Email (ticket confirmation)</Label>
-                <Input required name={'email'} type="email" id="email"
+                <Label htmlFor="email">email (updates & confirmation)</Label>
+                <Input name={'email'} type="email" id="email"
                        placeholder="Email"/>
               </div>
             </div>
@@ -185,7 +171,6 @@ export default function Page () {
           </div>
         </div>
       </div>
-
     </div>
   )
 }

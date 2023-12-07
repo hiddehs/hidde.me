@@ -49,10 +49,6 @@ export default async function Page ({ params }: { params: { id: string } }) {
                 fill="#FE4100"/>
         </svg>
         <TicketViewer ticket={ticket}></TicketViewer>
-        <div className={'text-xl'}> <span className="text-purple-500">
-          ☺
-        </span>︎ groetjes hidde
-        </div>
       </div>
     </div>
 

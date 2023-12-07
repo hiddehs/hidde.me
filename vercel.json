@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/nye/api/tickets",
+      "schedule": "0 5 * * *"
+    }
+  ]
+}
