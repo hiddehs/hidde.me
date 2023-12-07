@@ -80,7 +80,7 @@ export default async function Page () {
           </div>
         </div>
         <div
-          className="col-span-1 text-right flex flex-col h-full jus items-end">
+          className="col-span-1 md:text-right flex flex-col h-full jus items-end">
           <div
             className="relative md:w-auto w-full md:right-[12rem] text-xs mt-auto font-medium mb-12">
             <div
@@ -126,7 +126,7 @@ export default async function Page () {
           <h2 className="text-3xl md:text-4xl font-medium w-full right-0 top-0">
             get your special unique personalised party fissa ticket
           </h2>
-          <p className="w-3/4 my-3">the long awaited cold house warming birthday
+          <p className="md:w-3/4 my-3">the long awaited cold house warming birthday
             (13-11) fissa @ de utrechtse bouwput with balcony and loopbrug is
             here!
             super excited to invite You and your Friend(s+2) to the best place

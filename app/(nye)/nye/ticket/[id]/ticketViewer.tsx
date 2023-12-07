@@ -110,7 +110,6 @@ export function TicketViewer ({ ticket }) {
 
       </div>
     </div>,
-
     <button
       key={6}
       onClick={download}
