@@ -6,7 +6,7 @@ export default async function sendTicketMail (
   ticket: Ticket, imageDataB64: string) {
   const resend = new Resend(process.env.RESEND_API_KEY)
 
-  return true
+
   const mailResponse = await resend.emails.send({
     from: 'HIDDE\'s NYE PARTY TICKETS SYSTEM SERVICE B.V.LCC. \<tickets@nye.hidde.me\>',
     to: ticket.email.length > 0 ? ticket.email : 'nye+tickets@hidde.me',
