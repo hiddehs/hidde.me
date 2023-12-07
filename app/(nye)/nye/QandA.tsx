@@ -16,7 +16,7 @@ export default function QandA () {
         <br/>A: yes, you've managed to kill mathematics! please share
         nye.hidde.me with friends whom you think should & would also enjoy
         fireworks at het kasteel met ophaalbrug!</p>
-      <p></p></div>) : <div className="font-bold cursor-pointer" onClick={() => setEnabled(true)}>FAQ and A ></div>
+      <p></p></div>) : <div className="font-bold cursor-pointer" onClick={() => setEnabled(true)}>FAQ and A {">"}</div>
 
   )
 }
