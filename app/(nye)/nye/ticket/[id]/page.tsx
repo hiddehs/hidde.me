@@ -7,7 +7,6 @@ export default async function Page ({ params }: { params: { id: string } }) {
 
   const idOrNO = params.id
   let ticket = await kv.get<Ticket>(`ticket_${idOrNO}`)
-  console.log(ticket)
 
   if (!ticket) {
     let ticketId = await kv.get(`ticket_no_${idOrNO}`)

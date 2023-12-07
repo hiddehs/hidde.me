@@ -1,20 +1,23 @@
 'use client'
 import html2canvas from 'html2canvas'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import sendTicketMail from '@/app/(nye)/nye/ticket/[id]/ticketMail'
 
 export function TicketViewer ({ ticket }) {
+  const [canvassing, setCanvassing] = useState(false)
   let canvas
   const getImageDataUrl = async () => {
-    if (!canvas) canvas = await html2canvas(document.getElementById('ticket'))
+    // if (!canvas)
+    canvas = await html2canvas(document.getElementById('ticket'))
     return canvas.toDataURL('image/png')
   }
-  ticket.email = ''
 
   const sendMail = async () => {
+    setCanvassing(true)
     const imageData = await getImageDataUrl()
     // .split("data:image/png;base64,")[1]
     await sendTicketMail(ticket, imageData)
+    setCanvassing(false)
   }
   let running = false
 
@@ -24,26 +27,32 @@ export function TicketViewer ({ ticket }) {
     console.log(((new Date()).valueOf() - ticket.created_at))
     if (ticket.created_at && ((new Date()).valueOf() - ticket.created_at) <
       5000) {
+      setCanvassing(true)
       setTimeout(() => {
         sendMail()
       }, 200)
     }
+    setCanvassing(false)
   }, [])
   const download = async () => {
     'use client'
-    // Create a link element
-    const downloadLink = document.createElement('a')
-    downloadLink.href = await getImageDataUrl()
-    downloadLink.download = `hidde_nye_ticket_${ticket.no}.png`
+    setCanvassing(true)
+    setTimeout(async () => {
+      // Create a link element
+      const downloadLink = document.createElement('a')
+      downloadLink.href = await getImageDataUrl()
+      downloadLink.download = `hidde_nye_ticket_${ticket.no}.png`
 
-    // Append the link to the body
-    document.body.appendChild(downloadLink)
+      // Append the link to the body
+      document.body.appendChild(downloadLink)
 
-    // Simulate click to trigger download
-    downloadLink.click()
+      // Simulate click to trigger download
+      downloadLink.click()
+      setCanvassing(false)
 
-    // Clean up
-    document.body.removeChild(downloadLink)
+      // Clean up
+      document.body.removeChild(downloadLink)
+    }, 100)
   }
   return [
     <div
@@ -54,9 +63,13 @@ export function TicketViewer ({ ticket }) {
         className="ticket-left text-left w-full h-full justify-center pl-7 pr-44 md:pl-12 py-6 md:py-8 flex gap-2 md:gap-4 flex-col">
                 <span>31.12.2023 HIDDE'S NYE COLDHOUSE<br/>
                   WARMINGBIRTHDAYPARTY</span>
-
         <h2
-          className={'text-2xl line-clamp-2 overflow-ellipsis md:text-5xl max-w-[20rem] break-all'}>{ticket.name.substring(
+          className={'text-2xl md:text-5xl max-w-[20rem] break-all ' +
+            (canvassing ? 'max-h-24' : 'line-clamp-2')}>{ticket.name.substring(
+          0, 24)}{ticket.name.substring(
+          0, 24)}{ticket.name.substring(
+          0, 24)}{ticket.name.substring(
+          0, 24)}{ticket.name.substring(
           0, 24)}</h2>
 
         <div className="flex items-center gap-4">
@@ -68,7 +81,9 @@ export function TicketViewer ({ ticket }) {
               : '💃'}</h3>
           </div>
           <h6 className={'text-sm leading-none md:text-base'}>
-            {ticket.email.length > 0 ? ticket.email + '<br/>' : null}
+            {ticket.email.length > 0 ? ticket.email.substring(0, 20) : null}
+            {ticket.email.length > 0 ? <br/> : null}
+
             see you at {ticket.dinner ? '18:00' : '20:00'}!
           </h6>
         </div>
@@ -102,7 +117,7 @@ export function TicketViewer ({ ticket }) {
     </div>
     ,
     ticket.dinner ? <div key={5} className={'text-base'}>
-      Dieet wensen? <a href="https://wa.me/310623051810">let me know</a>
+      dieet wensen? <a href="https://wa.me/310623051810">let me know</a>
     </div> : null,
     <div className={'flex gap-4'} key={2}>
       <button
@@ -111,7 +126,7 @@ export function TicketViewer ({ ticket }) {
           url: window.location.href,
         }) : null}
         className={`btn text-center`}><span
-        className="hs-icon link-arrow-right mr-1"></span> Share NYE party with
+        className="hs-icon link-arrow-right mr-1"></span> Share this NYE party with
         friends
       </button>
       <button

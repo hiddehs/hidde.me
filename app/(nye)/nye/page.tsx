@@ -8,6 +8,8 @@ import { randomUUID } from 'crypto'
 import { Ticket } from '@/app/(nye)/nye/ticket'
 import { kv } from '@vercel/kv'
 import Custom404 from '@/app/not-found'
+import React from 'react'
+import QandA from '@/app/(nye)/nye/QandA'
 
 export const metadata: Metadata = {
   title: 'hidde NYE party',
@@ -33,7 +35,7 @@ export default async function Page () {
     pipe.set('ticket_' + ticket.id, ticket)
     pipe.set('ticket_no_' + ticket.no.toString(), ticket.id)
     pipe.sadd('ticket_ids', ticket.id)
-    if(ticket.dinner) pipe.incr("dinner_ticket_no")
+    if (ticket.dinner) pipe.incr('dinner_ticket_no')
     await pipe.exec()
 
     return redirect(`/nye/ticket/${ticket.id}`)
@@ -126,11 +128,15 @@ export default async function Page () {
           </h2>
           <p className="w-3/4 my-3">the long awaited cold house warming birthday
             (13-11) fissa @ de utrechtse bouwput with balcony and loopbrug is
-            here.
-            very excited to invite You and your Friend(s+2) to the best place to
-            enjoy an oliebol, fireworks, music, and to perform your last 2k23
+            here!
+            super excited to invite You and your Friend(s+2) to the best place
+            to
+            enjoy an oliebol, fireworks, music, and to perform your last 23 and
+            first 2024
             dances 💃 ☺
-            <br/><br/>Sincerely,<br/>hidde</p>
+            <br/><br/>Sincerely,<br/>hidde
+          </p>
+
           <form
             action={getTicket}
             className="p-6 text-left flex flex-col border border-black mt-6 mb-10">
@@ -155,11 +161,13 @@ export default async function Page () {
                 htmlFor="dinner"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                join for dinner {!dinnerEnabled ? '– sold out :(':''}
+                join for dinner {!dinnerEnabled ? '– sold out :(' : ''}
               </label>
             </div>
             <SubmitButton/>
-
+           <div className="ml-auto mt-2">
+             <QandA/>
+           </div>
           </form>
           <div
             className="flex text-right align-end gap-8 md:flex-nowrap flex-wrap">
