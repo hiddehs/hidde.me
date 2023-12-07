@@ -185,6 +185,7 @@ export default async function Page () {
           </div>
         </div>
       </div>
+      <a target={"_blank"} className={"text-center mx-auto my-2 block opacity-20 !no-underline"} href="https://github.com/hiddehs/hidde.me">open source for my devnerds 💙</a>
     </div>
   )
 }
