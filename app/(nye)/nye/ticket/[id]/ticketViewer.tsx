@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import sendTicketMail from '@/app/(nye)/nye/ticket/[id]/ticketMail'
 
 export function TicketViewer ({ ticket }) {
-  const [canvassing, setCanvassing] = useState(false)
+  const [canvassing, setCanvassing] = useState(true)
   let canvas
   const getImageDataUrl = async () => {
     // if (!canvas)
@@ -24,15 +24,16 @@ export function TicketViewer ({ ticket }) {
   useEffect(() => {
     if (running) return
     running = true
-    console.log(((new Date()).valueOf() - ticket.created_at))
     if (ticket.created_at && ((new Date()).valueOf() - ticket.created_at) <
-      5000) {
+      10000) {
       setCanvassing(true)
       setTimeout(() => {
-        sendMail()
-      }, 200)
+        sendMail().then(() => {
+          setCanvassing(false)
+        })
+      }, 1000)
     }
-    setCanvassing(false)
+
   }, [])
   const download = async () => {
     'use client'
