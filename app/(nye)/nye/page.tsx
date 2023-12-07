@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   title: 'hidde NYE party',
 }
 
-export default function Page () {
+export default async function Page () {
+  const dinnerEnabled = (await kv.get<number>('dinner_ticket_no')) < 10
 
   async function getTicket (formData: FormData) {
     'use server'
@@ -32,6 +33,7 @@ export default function Page () {
     pipe.set('ticket_' + ticket.id, ticket)
     pipe.set('ticket_no_' + ticket.no.toString(), ticket.id)
     pipe.sadd('ticket_ids', ticket.id)
+    if(ticket.dinner) pipe.incr("dinner_ticket_no")
     await pipe.exec()
 
     return redirect(`/nye/ticket/${ticket.id}`)
@@ -122,8 +124,12 @@ export default function Page () {
           <h2 className="text-3xl md:text-4xl font-medium w-full right-0 top-0">
             get your special unique personalised party fissa ticket
           </h2>
-          <p className="w-3/4 my-3">the long awaited cold house warming birthday (13-11) fissa @ de utrechtse bouwput with balcony and loopbrug is here.
-            very excited to invite You and your Friend(s+2) to the best place to enjoy an oliebol, fireworks, music, and to perform your last 2k23 dances 💃 ☺
+          <p className="w-3/4 my-3">the long awaited cold house warming birthday
+            (13-11) fissa @ de utrechtse bouwput with balcony and loopbrug is
+            here.
+            very excited to invite You and your Friend(s+2) to the best place to
+            enjoy an oliebol, fireworks, music, and to perform your last 2k23
+            dances 💃 ☺
             <br/><br/>Sincerely,<br/>hidde</p>
           <form
             action={getTicket}
@@ -144,12 +150,12 @@ export default function Page () {
             </div>
 
             <div className="flex items-center space-x-2 mt-2 mb-4 md:m-0">
-              <Checkbox name={'dinner'} id="dinner"/>
+              <Checkbox disabled={!dinnerEnabled} name={'dinner'} id="dinner"/>
               <label
                 htmlFor="dinner"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                join for dinner
+                join for dinner {!dinnerEnabled ? '– sold out :(':''}
               </label>
             </div>
             <SubmitButton/>

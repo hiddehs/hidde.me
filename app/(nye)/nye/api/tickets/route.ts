@@ -18,6 +18,6 @@ export async function GET (request: NextRequest) {
   }
 
   const tickets = await pipe.exec<Ticket[]>()
-
-  return Response.json({  })
+  const dinner_count = (await kv.get<number>('dinner_ticket_no'))
+  return Response.json({ tickets, dinner_count })
 }
