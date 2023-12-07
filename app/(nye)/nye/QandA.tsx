@@ -4,7 +4,7 @@ import { useState } from 'react'
 export default function QandA () {
   const [enabled, setEnabled] = useState(false)
   return (
-    enabled === true ? (<div className={'text-left'}><h4>FAQ and A</h4>
+    enabled === true ? (<div className={'text-left'}><h5 className={"mb-2"}>FAQ and A</h5>
       <p className={'mb-2'}>Q: house warming? die woons toch al lange tied in
         Utereg? da huus is
         toch al lange küüld?
