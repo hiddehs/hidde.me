@@ -26,7 +26,7 @@ export default async function sendTicketMail (
     subject: `🎆💃Hidde's NYE Party: Here's your ticket ${ticket.name}!`,
     html: `<div style="font-family: Helvetica, Arial;">
     <h1>Hi ${ticket.name}, here's your NYE ticket №${ticket.no}!</h1>
-      <p>Check the calendar invite attached, so you don't miss the new year (yes it's already in ${31 -
+      <p>Check the calendar invite attached, so you won't miss the new year (yes it's already in ${31 -
     new Date().getDay()} days!).</p>
       <p>Joining for dinner, and dietary wishes? happy to customise, <a href="https://wa.me/310623051810">let me know</a> </p>
       <p>Check your very personal unique and personal ticket №${ticket.no} via the following link: (I don't know if I still have a functioning frontdoor by 31-12, so the ticket doorpolicy is questionable)</p>
