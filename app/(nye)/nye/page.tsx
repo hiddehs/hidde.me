@@ -12,7 +12,16 @@ import React from 'react'
 import QandA from '@/app/(nye)/nye/QandA'
 
 export const metadata: Metadata = {
+  icons: ['nye_icon.jpg'],
   title: 'hidde NYE party',
+  description: 'get your special unique personalised party fissa ticket',
+  openGraph: {
+    title: 'hidde NYE party',
+    description: 'get your special unique personalised party fissa ticket',
+    type: 'website',
+    url: 'https://nye.hidde.me/',
+    image: 'nye_icon.jpg',
+  },
 }
 
 export default async function Page () {
@@ -126,7 +135,8 @@ export default async function Page () {
           <h2 className="text-3xl md:text-4xl font-medium w-full right-0 top-0">
             get your special unique personalised party fissa ticket
           </h2>
-          <p className="md:w-3/4 my-3">the long awaited cold house warming birthday
+          <p className="md:w-3/4 my-3">the long awaited cold house warming
+            birthday
             (13-11) fissa @ de utrechtse bouwput with balcony and loopbrug is
             here!
             super excited to invite You and your Friend(s+2) to the best place
@@ -165,9 +175,9 @@ export default async function Page () {
               </label>
             </div>
             <SubmitButton/>
-           <div className="ml-auto mt-2">
-             <QandA/>
-           </div>
+            <div className="ml-auto mt-2">
+              <QandA/>
+            </div>
           </form>
           <div
             className="flex text-right align-end gap-8 md:flex-nowrap flex-wrap">
@@ -185,7 +195,10 @@ export default async function Page () {
           </div>
         </div>
       </div>
-      <a target={"_blank"} className={"text-center mx-auto my-2 block opacity-20 !no-underline"} href="https://github.com/hiddehs/hidde.me">open source for my devnerds 💙</a>
+      <a target={'_blank'}
+         className={'text-center mx-auto my-2 block opacity-20 !no-underline'}
+         href="https://github.com/hiddehs/hidde.me">open source for my devnerds
+        💙</a>
     </div>
   )
 }
