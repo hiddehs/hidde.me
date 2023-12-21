@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     description: 'get your special unique personalised party fissa ticket',
     type: 'website',
     url: 'https://nye.hidde.me/',
-    image: 'nye_icon.jpg',
   },
 }
 
