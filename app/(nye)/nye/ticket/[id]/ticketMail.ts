@@ -6,11 +6,11 @@ export default async function sendTicketMail (
   ticket: Ticket, imageDataB64: string) {
   const resend = new Resend(process.env.RESEND_API_KEY)
 
-
+  const daysLeft = 31 - (new Date().getDate())
   const mailResponse = await resend.emails.send({
     from: 'HIDDE\'s NYE PARTY TICKETS SYSTEM SERVICE B.V.LCC. \<tickets@nye.hidde.me\>',
     to: ticket.email.length > 0 ? ticket.email : 'nye+tickets@hidde.me',
-    reply_to: "nye+tickets@hidde.me",
+    reply_to: 'nye+tickets@hidde.me',
     bcc: 'hidde+nyetickets@hidde.me',
     attachments: [
       {
@@ -26,8 +26,7 @@ export default async function sendTicketMail (
     subject: `🎆💃Hidde's NYE Party: Here's your ticket ${ticket.name}!`,
     html: `<div style="font-family: Helvetica, Arial;">
     <h1>Hi ${ticket.name}, here's your NYE ticket №${ticket.no}!</h1>
-      <p>Check the calendar invite attached, so you won't miss the new year (yes it's already in ${31 -
-    new Date().getDay()} days!).</p>
+      <p>Check the calendar invite attached, so you won't miss the new year (yes it's already in ${daysLeft} days!).</p>
       <p>Joining for dinner, and dietary wishes? happy to customise, <a href="https://wa.me/310623051810">let me know</a> </p>
       <p>Check your very personal unique and personal ticket №${ticket.no} via the following link: (I don't know if I still have a functioning frontdoor by 31-12, so the ticket doorpolicy is questionable)</p>
       <a href="https://nye.hidde.me/nye/ticket/${ticket.id}">
