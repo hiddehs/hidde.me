@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Page () {
-  const dinnerEnabled = (await kv.get<number>('dinner_ticket_no')) < 10
+  const dinnerEnabled = (await kv.get<number>('dinner_ticket_no')) < 14
 
   async function getTicket (formData: FormData) {
     'use server'
