@@ -84,7 +84,7 @@ export function TicketViewer ({ ticket }) {
                ? ticket.email.substring(0, 20)
                : null}
                {ticket.email.length > 0 ? <br/> : null}</span>
-            see you at {ticket.dinner ? '18:00' : '20:00'}!
+            see you at {ticket.dinner ? '19:00' : '21:00'}!
           </h6>
         </div>
       </div>
