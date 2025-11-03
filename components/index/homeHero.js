@@ -3,8 +3,6 @@ import React, {useState} from 'react'
 import Section from '../Section'
 import PatternBackground from '../PatternBackground'
 import ContributionViewer from '../ContributionViewer'
-import useSWR from 'swr'
-import fetch from 'unfetch'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import WorkTitles from '../work/WorkTitles'
 
