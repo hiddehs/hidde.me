@@ -16,14 +16,12 @@ export default function HomeHero({git}) {
                 <div
                     className="container mx-auto flex items-start md:items-center justify-between">
                     <div className="z-10 relative mt-32 md:my-auto inline-block">
-                        <h2 className={'leading-tight mb-4'}>Hidde Schultze <span
-                            className="hidden sm:inline">—</span><br/>
+                        <h2 className={'leading-tight mb-4'}>Hidde Schultze<br/>
                             <span
                                 className="primary-bg-accent"><WorkTitles/></span> developer.
                         </h2>
-                        <h5 className={'font-medium text-gray-800 mb-4'}>Founder
-                            VisualRadioAssist &
-                            hidde.dev</h5>
+                        <h5 className={'font-medium text-gray-800 mb-4'}>& technical founder
+                            Visual Radio Assist</h5>
                         <AnchorLink href="#about" className="btn">
                             {/*<span*/}
                             {/*  className="hs-icon link-arrow-right hover:mr-1 hover:inline opacity-0 hover:opacity-100"></span>*/}
