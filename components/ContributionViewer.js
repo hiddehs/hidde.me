@@ -19,7 +19,6 @@ export default function ContributionViewer ({ contributions }) {
                    className="contribution col-span-3 flex bg-white items-center justify-start row border-2 border-black border-solid bg-white p-4">
                 <div className="rounded-full bg-primary flex-shrink-0"
                      style={{ width: '46px', height: '46px' }}>
-                  <img src="" alt="" className={'w-full'}/>
                 </div>
                 <div className="description ml-4"
                      style={{ maxWidth: 'calc(100% - 46px - 1rem)' }}>
