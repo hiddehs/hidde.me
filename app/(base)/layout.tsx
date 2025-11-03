@@ -9,9 +9,9 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return [
-    <Header/>,
+    <Header key={1}/>,
     children,
-    <Analytics/>,
-    <Footer/>
+    <Analytics key={2}/>,
+    <Footer key={3}/>
   ]
 }
