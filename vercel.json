@@ -7,7 +7,18 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "nye.hidde.me"
+        }
+      ],
+      "destination": "https://partiful.com/e/eXioYuhm9zzyMCsYoGjh",
+      "permanent": false
+    },
+    {
+      "source": "/:path+",
       "has": [
         {
           "type": "host",
