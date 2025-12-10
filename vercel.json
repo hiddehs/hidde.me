@@ -5,7 +5,7 @@
       "schedule": "0 5 * * *"
     }
   ],
-  "rewrites": [
+  "redirects": [
     {
       "source": "/:path*",
       "has": [
@@ -14,7 +14,8 @@
           "value": "nye.hidde.me"
         }
       ],
-      "destination": "https://partiful.com/e/eXioYuhm9zzyMCsYoGjh:path*"
+      "destination": "https://partiful.com/e/eXioYuhm9zzyMCsYoGjh",
+      "permanent": false
     }
   ]
 }
