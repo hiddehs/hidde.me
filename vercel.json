@@ -4,5 +4,17 @@
       "path": "/nye/api/tickets",
       "schedule": "0 5 * * *"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "nye.hidde.me"
+        }
+      ],
+      "destination": "https://partiful.com/e/eXioYuhm9zzyMCsYoGjh:path*"
+    }
   ]
 }
